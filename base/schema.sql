@@ -1,7 +1,7 @@
 CREATE TABLE Genre(
-   id SERIAL,
+   Id_Genre SERIAL,
    description VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(Id_Genre)
 );
 
 CREATE TABLE Bonus(
@@ -134,47 +134,44 @@ CREATE TABLE ModePaiement(
 );
 
 CREATE TABLE Collecteur(
-   id SERIAL,
+   Id_Collecteur SERIAL,
    nom VARCHAR(255)  NOT NULL,
    contact VARCHAR(255)  NOT NULL,
    adresse VARCHAR(255)  NOT NULL,
    dateDebuche DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Genre(id)
+   Id_Genre INTEGER NOT NULL,
+   PRIMARY KEY(Id_Collecteur),
+   FOREIGN KEY(Id_Genre) REFERENCES Genre(Id_Genre)
 );
 
 CREATE TABLE SalaireCollecteur(
-   id SERIAL,
+   Id_SalaireCollecteur SERIAL,
    prix NUMERIC(16,2)  ,
    dates DATE,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
+   Id_Collecteur INTEGER NOT NULL,
+   PRIMARY KEY(Id_SalaireCollecteur),
+   FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur)
 );
 
 CREATE TABLE PaymentCollecteur(
-   id MONEY,
+   Id_PaymentCollecteur SERIAL,
    datePayments DATE NOT NULL,
    prix NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
+   Id_Collecteur INTEGER NOT NULL,
+   PRIMARY KEY(Id_PaymentCollecteur),
+   FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur)
 );
 
 CREATE TABLE Collects(
-   id SERIAL,
+   Id_Collects SERIAL,
    DateCollect DATE NOT NULL,
    matierPremier INTEGER NOT NULL,
    qtt NUMERIC(15,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id),
-   FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
+   Id_Collecteur INTEGER NOT NULL,
+   id INTEGER NOT NULL,
+   PRIMARY KEY(Id_Collects),
+   FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur),
+   FOREIGN KEY(id) REFERENCES MatierPremier(id)
 );
 
 CREATE TABLE Commande(
@@ -214,11 +211,11 @@ CREATE TABLE Employees(
    email VARCHAR(255)  NOT NULL,
    numPhone VARCHAR(50)  NOT NULL,
    addresse VARCHAR(255)  NOT NULL,
+   Id_Genre INTEGER NOT NULL,
    id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Genre(id),
-   FOREIGN KEY(id_2) REFERENCES Poste(id)
+   FOREIGN KEY(Id_Genre) REFERENCES Genre(Id_Genre),
+   FOREIGN KEY(id_1) REFERENCES Poste(id)
 );
 
 CREATE TABLE Depense(

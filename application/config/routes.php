@@ -52,5 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'admin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['findAllBonus'] = 'bonusController/find_all';
+$route['listBonus'] = 'bonusController/find_all';
 $route['saveBonus'] = 'bonusController/save';
+$route['listCollecteur'] = 'CollecteurController/find_all';
+$route['saveCollecteur'] = 'CollecteurController/save';

@@ -153,12 +153,13 @@ CREATE TABLE SalaireCollecteur(
    FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur)
 );
 
-CREATE TABLE PaymentCollecteur(
-   Id_PaymentCollecteur SERIAL,
-   datePayments DATE NOT NULL,
+CREATE TABLE paiementcollecteur(
+   Id_paiementcollecteur SERIAL,
+   dates DATE NOT NULL,
    prix NUMERIC(16,2)   NOT NULL,
+   libelle VARCHAR(255)  NOT NULL,
    Id_Collecteur INTEGER NOT NULL,
-   PRIMARY KEY(Id_PaymentCollecteur),
+   PRIMARY KEY(Id_paiementcollecteur),
    FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur)
 );
 

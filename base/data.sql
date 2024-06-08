@@ -9,3 +9,8 @@ insert  into genre values
 
 insert  into collecteur values
 (default, 'Mahaliana', 'XXXX','Antanimenakely','2024-04-04', 1);
+
+select  * from bonus;
+
+select  * from collecteur;
+

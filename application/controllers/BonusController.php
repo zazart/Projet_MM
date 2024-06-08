@@ -19,7 +19,6 @@ class BonusController extends CI_Controller {
             )
         );
         if ($this->form_validation->run() == FALSE) {
-            // La validation a échoué, afficher la vue du formulaire de connexion
             $this->load->view('bonus');
         } else {
             $date = $this->input->post('date');

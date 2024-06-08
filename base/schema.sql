@@ -42,18 +42,18 @@ CREATE TABLE vente(
 );
 
 CREATE TABLE MatierPremier(
-   id SERIAL,
+   Id_MatierPremier SERIAL,
    Nom VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(Id_MatierPremier)
 );
 
 CREATE TABLE PrixMatierePremier(
    id SERIAL,
    prix NUMERIC(16,2)   NOT NULL,
    datePrix DATE,
-   id_1 INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
 CREATE TABLE Source(
@@ -67,9 +67,9 @@ CREATE TABLE StockMatierPremier(
    dates DATE,
    in_qtt INTEGER NOT NULL,
    out_qtt INTEGER NOT NULL,
-   id_1 INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
 CREATE TABLE Production(
@@ -165,13 +165,12 @@ CREATE TABLE PaymentCollecteur(
 CREATE TABLE Collects(
    Id_Collects SERIAL,
    DateCollect DATE NOT NULL,
-   matierPremier INTEGER NOT NULL,
    qtt NUMERIC(15,2)   NOT NULL,
    Id_Collecteur INTEGER NOT NULL,
-   id INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(Id_Collects),
    FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur),
-   FOREIGN KEY(id) REFERENCES MatierPremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
 CREATE TABLE Commande(
@@ -199,10 +198,10 @@ CREATE TABLE SourceMatierePremier(
    id SERIAL,
    datePrelevement DATE NOT NULL,
    id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(id_1) REFERENCES Source(id),
-   FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
 CREATE TABLE Employees(

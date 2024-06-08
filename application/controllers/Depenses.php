@@ -13,4 +13,10 @@ class Depenses extends CI_Controller {
         $data["contents"]="pages/depenses/journal";
 		$this->load->view("templates/depenses",$data);
     }
+
+    // Access au liste de journal
+    public function grandLivre(){
+        $data["contents"]="pages/depenses/grand-livre";
+		$this->load->view("templates/depenses",$data);
+    }
 }

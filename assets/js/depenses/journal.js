@@ -1,6 +1,8 @@
 window.addEventListener('load', function(){
 // VARIABLES
-    
+    const date_actuelle = new Date();
+    var annee_actuelle = date_actuelle.getFullYear();
+    var mois_actuelle = date_actuelle.getMonth();
     // Bouton precedent
     const precedent_btn = this.document.getElementById("saisonPrecedentBtn");
     // Bouton suivant
@@ -13,9 +15,20 @@ window.addEventListener('load', function(){
 // FONCTIONS
     // Afficher la saison 
     const afficher_saison_actuelle = function(){
-        mois_saison.textContent = monthNames[mois] +"("+mois+")";
-        annee_saison.textContent = annee;
+        mois_saison.textContent = getMonthNames()[mois_actuelle] +"("+mois_actuelle+")";
+        annee_saison.textContent = annee_actuelle;
     }
+    // Changer de saison
+    function change_saison_actuelle(direction){
+        mois_actuelle += direction;
+        if (mois_actuelle > 11 || mois_actuelle < 0){
+            annee_actuelle += (Math.abs(direction) / direction);
+            if(mois_actuelle < 0){
+                mois_actuelle = 12 + mois_actuelle;
+            }
+            mois_actuelle = Math.abs(mois_actuelle)  % 12
+        } 
+    };
     // Afficher saison suivante
     const saison_suivant = function(){
         change_saison_actuelle(1);
@@ -35,3 +48,11 @@ window.addEventListener('load', function(){
 // ACTIONS
     afficher_saison_actuelle();
 });
+
+const monthNames = [
+    'Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout',
+    'Septembere', 'Octobre', 'Novembre', 'Decembre'
+  ];
+function getMonthNames(){
+    return monthNames;
+}

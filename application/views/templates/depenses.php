@@ -16,7 +16,7 @@
         ?>
     </div>
     <!-- JS IMPORTS -->
-    <script src="<?php echo base_url('assets/js/depenses/journal.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
     <!-- / / / -->
 </body>
 </html>

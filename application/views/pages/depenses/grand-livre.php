@@ -16,33 +16,25 @@
         </div>
         <!-- #/ Indication de saison -->
         <!-- Tableau de GRAND LIVRE -->
-        <table class="table">
-            <!-- <thead class="row">
-                <th >Date</th>
-                <th>Libelle</th>
-                <th>Debit</th>
-                <th>Credit</th>
+        <table class="table text-center">
+            <thead>
+                <th class="col text-uppercase">Date</th>
+
+                <th class="col text-uppercase">Libelle</th>
+                <th class="col text-uppercase">Debit</th>
+                <th class="col text-uppercase">Credit</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>-- / -- / --</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>Transport</td>
-                    <td>50 000Ar</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td></td>
+                <tr class="">
+                    <td colspan="4" class="bg-primary text-center text-uppercase">Lorem ipsum</td>
                 </tr>
                 <tr>
                     <td>-- / -- / --</td>
                     <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>Transport</td>
-                    <td>50 000Ar</td>
                     <td>1</td>
                     <td>2</td>
-                    <td></td>
                 </tr>
-            </tbody> -->
+            </tbody>
         </table>
         <!-- #/ Tableau GRAND LIVRE -->
         <!-- Navigation buttons  -->

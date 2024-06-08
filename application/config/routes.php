@@ -62,3 +62,6 @@ $route['saveCollecteur'] = 'CollecteurController/save';
 $route['listCollect'] = 'CollectController/find_all';
 $route['saveCollect'] = 'CollectController/save';
 $route['updateCollect'] = 'CollectController/update';
+// Salaire
+$route['saveSalaire'] = 'ColSalaireController/save';
+$route['listColSalaire'] = 'ColSalaireController/find_all';

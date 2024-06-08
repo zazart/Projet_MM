@@ -8,12 +8,12 @@
 <section class="row">
     <div class="col-12">
         <!-- Indication de saison -->
-        <div class=" col-4 d-flex">
+        <div class=" col-md-4 col d-flex justify-content-center">
             <h3 id="titreJouranl">Titre</h3>
             <h3 id="titreSaison" class="text-center px-2">
                 <b id="moisSaison">##</b>
                 <b id="anneeSaison">####</b>
-</h3>
+        </h3>
         </div>
         <!-- #/ Indication de saison -->
         <!-- Tableau de journal -->
@@ -61,5 +61,5 @@
         <!-- #/ Navigation buttons -->
     </div>
 </section>
-<script src="<?php echo base_url('assets/js/depenses/journal.js') ?>">></script>
+<script src="<?php echo base_url('assets/js/depenses/journal.js')?>">></script>
 <!-- END JOURNAL -->

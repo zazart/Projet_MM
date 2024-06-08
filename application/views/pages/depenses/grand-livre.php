@@ -35,6 +35,13 @@
                     <td>2</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-center text-uppercase">Total de grand livre</td>
+                    <td>##</td>
+                    <td>##</td>
+                </tr>
+            </tfoot>
         </table>
         <!-- #/ Tableau GRAND LIVRE -->
         <!-- Navigation buttons  -->

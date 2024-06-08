@@ -65,3 +65,6 @@ $route['updateCollect'] = 'CollectController/update';
 // Salaire
 $route['saveSalaire'] = 'ColSalaireController/save';
 $route['listColSalaire'] = 'ColSalaireController/find_all';
+//paiement salaire
+$route['saveColPaiement'] = 'PaiementController/save';
+$route['listColPaiement'] = 'PaiementController/find_all';

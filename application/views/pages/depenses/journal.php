@@ -51,11 +51,11 @@
         <!-- #/ Tableau journal -->
         <!-- Navigation buttons  -->
         <div class="row">
-            <div class="col-6 justify-content-center-start">
-                <button class="btn px-12">Precedent</button>
+            <div class="col-6 d-flex justify-content-start">
+                <button class="btn btn-secondary px-12">Precedent</button>
             </div>
-            <div class="col-6 justify-content-center-end">
-                <button class="btn px-12">Suivant</button>
+            <div class="col-6 d-flex justify-content-end">
+                <button class="btn btn-secondary px-12">Suivant</button>
             </div>
         </div>
         <!-- #/ Navigation buttons -->

@@ -36,10 +36,9 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="#" class="logo d-flex align-items-center">
-        <img src="<?php echo(base_url("assets/img/logo.png"))?>" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block color_secondary text-uppercase">Flecs </span><span class="d-none d-lg-block color_black">Company</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+      <i class="bi bi-list toggle-sidebar-btn color_black"></i>
     </div><!-- End Logo -->
 
 
@@ -50,7 +49,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="<?php echo(base_url("assets/img/profile-img.jpg"))?>" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2 color_black">Chan Alex</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -113,39 +112,205 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-bucket-fill color_black"></i><span class="color_black">Tâches collecteurs</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecteur</span>
             </a>
           </li>
           <li>
             <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecte</span>
             </a>
           </li>
           <li>
             <a href="components-badges.html">
-              <i class="bi bi-circle"></i><span>Badges</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Salaire</span>
             </a>
           </li>
           <li>
             <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Breadcrumbs</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion bonus</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li><!-- Collecteurs Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#matiere-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-minecart-loaded color_black"></i><span class="color_black">Matière première</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+        </a>
+        <ul id="matiere-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="matiere-alerts.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière première</span>
+            </a>
+          </li>
+          <li>
+            <a href="matiere-accordion.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion prix</span>
+            </a>
+          </li>
+          <li>
+            <a href="matiere-badges.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source</span>
+            </a>
+          </li>
+          <li>
+            <a href="matiere-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source matière</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Matière première -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-fill color_black"></i><span class="color_black">Personnel</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+        </a>
+        <ul id="personnel-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="personnel-alerts.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion personnel</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel-accordion.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste employés</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel-badges.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure de travail</span>
+            </a>
+          </li>
+          <li>
+            <a href="personnel-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Personnel -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#transformation-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-arrow-repeat color_black"></i><span class="color_black">Transformation</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+        </a>
+        <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="transformation-alerts.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matériaux</span>
+            </a>
+          </li>
+          <li>
+            <a href="transformation-accordion.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état matériaux</span>
+            </a>
+          </li>
+          <li>
+            <a href="transformation-badges.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
+            </a>
+          </li>
+          <li>
+            <a href="transformation-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de saison</span>
+            </a>
+          </li>
+          <li>
+            <a href="transformation-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matériaux</span>
+            </a>
+          </li>
+          <li>
+            <a href="transformation-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état matériels</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Transformation -->
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#vente-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-graph-up-arrow color_black"></i><span class="color_black">Ventes & prise de commande</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+        </a>
+        <ul id="vente-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="vente-alerts.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Vente</span>
+            </a>
+          </li>
+          <li>
+            <a href="vente-accordion.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Client</span>
+            </a>
+          </li>
+          <li>
+            <a href="vente-badges.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
+            </a>
+          </li>
+          <li>
+            <a href="vente-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Panier</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- vente et prise de commande -->
+
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+        </a>
+        <ul id="depense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="depense-alerts.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion dépenses</span>
+            </a>
+          </li>
+          <li>
+            <a href="depense-accordion.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Journal</span>
+            </a>
+          </li>
+          <li>
+            <a href="depense-badges.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Grand livre</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Dépenses -->
+
 
     </ul>
 

@@ -4,9 +4,9 @@
 - [ ] Back Etat de Collecte générale
 - [ ] Front CRUD :
 	- [ ]  Paie
-	- [ ]  Bonus {cm:2024-06-08}
-    - [ ] Collecte de matière matière première  {cm:2024-06-08}
-    -  Collecteur {cm:2024-06-08}
+	- [ ]  Bonus
+    - [ ] Collecte de matière matière première 
+    - [ ] Collecteur
 - [ ] Front Etat de Collecte générale
 - [ ] Integration CRUD
 - [ ] Integration Etat de collecte générale

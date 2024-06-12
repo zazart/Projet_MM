@@ -6,6 +6,8 @@ class Admin extends CI_Controller {
         $this->load->view('bonus');
     } 
     public function index(){
-        $this->load->view('collecteur');
+        $data["title"] = "Projet MM";
+		$data["contents"]="pages/home";
+		$this->load->view("templates/template",$data);
     }
 }

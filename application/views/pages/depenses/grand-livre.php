@@ -1,9 +1,5 @@
 <!-- START GRAND LIVRE -->
 <section class="row">
-    <!-- Titre GRAND LIVRE -->
-    <div class="col-12 d-flex justify-content-center">
-        <h2>GRAND LIVRE</h2>
-    </div>
 </section>
 <section class="row">
     <div class="col-12">

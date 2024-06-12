@@ -1,9 +1,5 @@
 <!-- START JOURNAL -->
 <section class="row">
-    <!-- Titre journal -->
-    <div class="col-12 d-flex justify-content-center">
-        <h2>JOURNAL</h2>
-    </div>
 </section>
 <section class="row">
     <div class="col-12">

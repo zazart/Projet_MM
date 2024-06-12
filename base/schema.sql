@@ -76,27 +76,25 @@ CREATE TABLE Production(
    id SERIAL,
    quantite INTEGER NOT NULL,
    dateProduction DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
+   id_StockMatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES StockMatierPremier(id)
+   FOREIGN KEY(id_stock) REFERENCES StockMatierPremier(id_StockMatierPremier)
 );
 
-CREATE TABLE Machine(
-   id SERIAL,
-   nom VARCHAR(255)  NOT NULL,
-   fonction VARCHAR(255)  NOT NULL,
-   dateAchat DATE NOT NULL,
-   PRIMARY KEY(id)
+create table machine(
+    id_machine serial primary key,
+    nom_machine varchar(255),
+    fonction varchar(255),
+    date_achat date
 );
 
-CREATE TABLE StatMachine(
-   id SERIAL,
-   dateVerification DATE NOT NULL,
-   state INTEGER NOT NULL,
-   description VARCHAR(255) ,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Machine(id)
+create table stat_machine(
+    id_stat serial primary key,
+    id_machine int,
+    date_verification date,
+    statut int,
+    descri varchar(255),
+    foreign key(id_machine) references machine(id_machine)
 );
 
 CREATE TABLE Poste(

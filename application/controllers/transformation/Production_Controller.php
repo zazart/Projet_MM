@@ -1,16 +1,18 @@
 <?php 
-class Statut_Controller extends CI_Controller{
+class Production_Controller extends CI_Controller{
     public function __construct() {
         parent::__construct();
-        $this->load->model('transformation/Statut_Model');
+        $this->load->model('transformation/Production_Model');
+        $this->load->model('transformation/Produit_Model');
+        $this->load->model('transformation/StockProduit_Model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
     }
 
     public function index() {
-        $data['statuts'] = $this->Statut_Model->get_statut_actuel();
-        $this->load->view('transformation/liste-statut', $data);
+        $data['productions'] = $this->Production_Model->get_all_production();
+        $this->load->view('transformation/liste-production', $data);
     }
 
     public function view_insertion_statut() {

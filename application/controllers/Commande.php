@@ -21,7 +21,7 @@ class Commande extends CI_Controller {
 
     public function store() {
         $commande_data = array(
-            'datecommande' => date('Y-m-d H:i:s'),
+            'datecommande' => $this->input->post('date'),
             'id_client' => $this->input->post('id_client')
         );
         $this->Commande_model->insert_commande($commande_data);

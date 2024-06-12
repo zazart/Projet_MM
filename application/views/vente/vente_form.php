@@ -13,10 +13,13 @@
             <?php foreach ($commandes as $commande): ?>
                 <option value="<?php echo $commande['id']; ?>"><?php echo $commande['nomglobal']; ?></option>
             <?php endforeach; ?>
-        </select>
+        </select><br>
         <label for="livraison">Livraison:</label>
         <input type="checkbox" name="livraison"><br>
 
+        <label for="date">Date:</label>
+        <input type="date" name="date_vente"><br>
+        
         <label for="prixTotal">Prix Total:</label>
         <input type="text" name="prixTotal" required><br>
 

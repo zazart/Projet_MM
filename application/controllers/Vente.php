@@ -16,7 +16,7 @@ class Vente extends CI_Controller {
     }
 
     public function create() {
-        $data['commandes'] = $this->Commande_model->get_commandes();
+        $data['commandes'] = $this->Commande_model->get_commandes_sv();
         $this->load->view('vente/vente_form', $data);
     }
 
@@ -25,6 +25,7 @@ class Vente extends CI_Controller {
         $vente_data = array(
             'livraison' => $this->input->post('livraison'),
             'prixtotal' => $this->input->post('prixTotal'),
+            'date_vente' => $this->input->post('date_vente'),
             'id_commande' => $commande_id
         );
         $this->Vente_model->insert_vente($vente_data);

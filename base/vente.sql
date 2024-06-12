@@ -35,15 +35,31 @@ CREATE TABLE Produit(
 CREATE TABLE vente(
    id SERIAL,
    livraison BOOLEAN NOT NULL,
-   prixTotal NUMERIC(16,2)   NOT NULL,
+   date_vente DATE NOT NULL,
+   prixTotal NUMERIC(16,2)  NOT NULL,
    id_commande INTEGER NOT NULL,
    FOREIGN KEY(id_commande) REFERENCES Commande(id),
    PRIMARY KEY(id)
 );
 
-INSERT INTO Client (nomglobal, email, adresse) VALUES
-('Société Malgache de Construction', 'contact@societemalgache.mg', 'Lot IVG 36 Rue Rainitsarovy, Antananarivo, Madagascar'),
-('MadaTech Solutions', 'info@madatech.mg', 'Lot 10B Route de la Digue, Tananarive, Madagascar'),
-('Transports Malgaches', 'support@transports-mg.mg', 'Rue Dr Joseph Raseta, Antananarivo, Madagascar'),
-('Bionex Madagascar', 'contact@bionex.mg', 'Rue Andrianary Ratianarivo, Antananarivo, Madagascar'),
-('Énergies Nouvelles Madagascar', 'info@energiesnouve-mg.mg', 'Lot AB 87, Analamahitsy, Antananarivo, Madagascar');
+INSERT INTO Client (id, nomglobal, email, adresse) VALUES
+(1,'Société Malgache de Construction', 'contact@societemalgache.mg', 'Lot IVG 36 Rue Rainitsarovy, Antananarivo, Madagascar');
+INSERT INTO Client (id, nomglobal, email, adresse) VALUES
+(2,'MadaTech Solutions', 'info@madatech.mg', 'Lot 10B Route de la Digue, Tananarive, Madagascar');
+INSERT INTO Client (id, nomglobal, email, adresse) VALUES
+(3,'Transports Malgaches', 'support@transports-mg.mg', 'Rue Dr Joseph Raseta, Antananarivo, Madagascar');
+INSERT INTO Client (id, nomglobal, email, adresse) VALUES
+(4,'Bionex Madagascar', 'contact@bionex.mg', 'Rue Andrianary Ratianarivo, Antananarivo, Madagascar');
+INSERT INTO Client (id, nomglobal, email, adresse) VALUES
+(5,'Énergies Nouvelles Madagascar', 'info@energiesnouve-mg.mg', 'Lot AB 87, Analamahitsy, Antananarivo, Madagascar');
+
+INSERT INTO Commande (id, datecommande, id_client) VALUES
+(1,'2024-06-10 14:30:00', 1);
+INSERT INTO Commande (id, datecommande, id_client) VALUES
+(2,'2024-06-11 09:15:00', 2);
+INSERT INTO Commande (id, datecommande, id_client) VALUES
+(3,'2024-06-12 16:45:00', 3);
+INSERT INTO Commande (id, datecommande, id_client) VALUES
+(4,'2024-06-13 11:00:00', 4);
+INSERT INTO Commande (id, datecommande, id_client) VALUES
+(5,'2024-06-14 08:20:00', 5);

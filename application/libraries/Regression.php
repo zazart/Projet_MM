@@ -50,13 +50,13 @@ class Regression {
         return $transposed;
     }
 
-    public function trainAndSave($data, $filename) {
-        $X = [];
-        $y = [];
-        foreach ($data as $row) {
-            $X[] = array_merge([1], array_slice($row, 0, -1));
-            $y[] = [$row[count($row) - 1]];
-        }
+    public function trainAndSave($X, $y, $filename) {
+        // $X = [];
+        // $y = [];
+        // foreach ($data as $row) {
+        //     $X[] = array_merge([1], array_slice($row, 0, -1));
+        //     $y[] = [$row[count($row) - 1]];
+        // }
 
         $X_T = $this->transpose($X);
 

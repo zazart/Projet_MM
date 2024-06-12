@@ -46,7 +46,8 @@
                 <option value="<?php echo $client['id']; ?>"><?php echo $client['nomglobal']; ?></option>
             <?php endforeach; ?>
         </select><br>
-
+        <label for="">Date</label>
+        <input type="date" name="date" id=""><br>
         <h2>Ajouter des Produits</h2>
         <select id="product-select">
             <?php foreach ($produits as $produit): ?>

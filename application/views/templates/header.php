@@ -264,17 +264,17 @@
         </a>
         <ul id="depense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(base_url("depense/formulaire"))?>">
+            <a href="depense-alerts.html">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion dépenses</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(base_url("depense/journal"))?>">
+            <a href="depense-accordion.html">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Journal</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(base_url("depense/grandLivre"))?>">
+            <a href="depense-badges.html">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Grand livre</span>
             </a>
           </li>

@@ -25,10 +25,3 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
-
-
-# --- ASSETS IGNORE ---
-assets/css/bootstrap
-assets/css/fonts
-assets/css/bootstrap-icons.min.css
-assets/js/bootstrap

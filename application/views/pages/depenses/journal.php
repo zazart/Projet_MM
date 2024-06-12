@@ -1,9 +1,5 @@
 <!-- START JOURNAL -->
 <section class="row">
-    <!-- Titre journal -->
-    <div class="col-12 d-flex justify-content-center">
-        <h2>JOURNAL</h2>
-    </div>
 </section>
 <section class="row">
     <div class="col-12">
@@ -52,14 +48,15 @@
         <!-- Navigation buttons  -->
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-                <button id="saisonPrecedentBtn" class="btn btn-secondary px-12">Precedent</button>
+                <button id="saisonPrecedentBtn" class="btn boutton-light px-12">Precedent</button>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button id="saisonSuivantBtn" class="btn btn-secondary px-12">Suivant</button>
+                <button id="saisonSuivantBtn" class="btn boutton-light px-12">Suivant</button>
             </div>
         </div>
         <!-- #/ Navigation buttons -->
     </div>
 </section>
+<script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <script src="<?php echo base_url('assets/js/depenses/journal.js')?>">></script>
 <!-- END JOURNAL -->

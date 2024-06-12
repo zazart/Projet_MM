@@ -1,9 +1,5 @@
 <!-- START GRAND LIVRE -->
 <section class="row">
-    <!-- Titre GRAND LIVRE -->
-    <div class="col-12 d-flex justify-content-center">
-        <h2>GRAND LIVRE</h2>
-    </div>
 </section>
 <section class="row">
     <div class="col-12">
@@ -19,14 +15,13 @@
         <table class="table text-center">
             <thead>
                 <th class="col text-uppercase">Date</th>
-
                 <th class="col text-uppercase">Libelle</th>
                 <th class="col text-uppercase">Debit</th>
                 <th class="col text-uppercase">Credit</th>
             </thead>
             <tbody>
                 <tr class="">
-                    <td colspan="4" class="bg-primary text-center text-uppercase">Lorem ipsum</td>
+                    <td colspan="4" class="bg-secondary text-light text-center text-uppercase">Lorem ipsum</td>
                 </tr>
                 <tr>
                     <td>-- / -- / --</td>
@@ -47,14 +42,15 @@
         <!-- Navigation buttons  -->
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-                <button id="saisonPrecedentBtn" class="btn btn-secondary px-12">Precedent</button>
+                <button id="saisonPrecedentBtn" class="btn boutton-light px-12">Precedent</button>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button id="saisonSuivantBtn" class="btn btn-secondary px-12">Suivant</button>
+                <button id="saisonSuivantBtn" class="btn boutton-light px-12">Suivant</button>
             </div>
         </div>
         <!-- #/ Navigation buttons -->
     </div>
 </section>
+<script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <script src="<?php echo base_url('assets/js/depenses/grand-livre.js')?>">></script>
 <!-- END GRAND LIVRE -->

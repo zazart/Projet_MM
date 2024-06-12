@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Transformation_Controller extends CI_Controller {
     public function insert_machine(){
-        $data["title"] = "Projet MM";
+        $data["title"] = "Projet MM ";
 		$data["contents"]="pages/Transformation/insert_machine";
 		$this->load->view("templates/template",$data);
     }

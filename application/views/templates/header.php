@@ -243,7 +243,7 @@
             </a>
           </li>
           <li>
-            <a href="vente-badges.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
             </a>
           </li>
@@ -285,4 +285,6 @@
     </ul>
 
   </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
     

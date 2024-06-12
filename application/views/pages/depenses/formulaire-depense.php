@@ -25,8 +25,11 @@
                     <label for="categorie" class="input-label">Categorie </label>
                     <select class="form-select" name="categorie" id="categorie" required>
                         <option value=""></option>
-                        <option value="1">Transport</option>
-                        <option value="2">Maintenance</option>
+                        <?php for ($i=0; $i < count($categories) ; $i++) { ?>
+                            <option value="<?php echo($categories[$i]['id']); ?>">
+                                <?php echo($categories[$i]['nom']); ?>
+                            </option>
+                        <?php } ?>
                     </select>
                 </div>
                 <!-- Mode de paiement -->
@@ -34,8 +37,11 @@
                 <label for="categorie" class="input-label">Mode de paiement</label>
                     <select class="form-select" name="categorie" id="categorie" required>
                         <option value=""></option>
-                        <option value="1">Espece</option>
-                        <option value="2">Carte Bancaire</option>
+                        <?php for ($i=0; $i < count($modePaiements) ; $i++) { ?>
+                            <option value="<?php echo($modePaiements[$i]['id']); ?>">
+                                <?php echo($modePaiements[$i]['nom']); ?>
+                            </option>
+                        <?php } ?>
                     </select>
                 </div>
                 <!-- Justificatif -->
@@ -49,9 +55,7 @@
             </form>
             </div>
         </div>
-        
     </div>
-
 </section>
 <script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <!-- END FORMULAIRE DEPENSE -->

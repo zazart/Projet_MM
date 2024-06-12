@@ -100,19 +100,11 @@ CREATE TABLE StatMachine(
 );
 
 CREATE TABLE Poste(
-   id SERIAL,
+   id_poste SERIAL,
    nom VARCHAR(255)  NOT NULL,
-   workDurrationDay TIME NOT NULL,
-   PRIMARY KEY(id)
-);
-
-CREATE TABLE Salaire(
-   id SERIAL,
-   dateDebut DATE NOT NULL,
-   prix NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Poste(id)
+   montant_salaire NUMERIC(16,2),
+   duree_travail TIME NOT NULL,
+   PRIMARY KEY(id_poste)
 );
 
 CREATE TABLE TypeDepense(
@@ -208,18 +200,38 @@ CREATE TABLE SourceMatierePremier(
    FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
 );
 
-CREATE TABLE Employees(
-   id SERIAL,
-   debuche DATE NOT NULL,
+CREATE TABLE Employe(
+   id_employe SERIAL,
+   embauche DATE NOT NULL,
+   debauche DATE DEFAULT NULL,
+   nom VARCHAR(255)  NOT NULL,
    email VARCHAR(255)  NOT NULL,
-   numPhone VARCHAR(50)  NOT NULL,
-   addresse VARCHAR(255)  NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Genre(id),
-   FOREIGN KEY(id_2) REFERENCES Poste(id)
+   telephone VARCHAR(50)  NOT NULL,
+   adresse VARCHAR(255)  NOT NULL,
+   id_genre INTEGER NOT NULL,
+   id_poste INTEGER NOT NULL,
+   PRIMARY KEY(id_employe),
+   FOREIGN KEY(id_genre) REFERENCES Genre(id),
+   FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
 );
+
+CREATE TABLE Presence (
+   id_presence SERIAL PRIMARY KEY,
+   id_employe INTEGER NOT NULL,
+   date DATE NOT NULL,
+   heure_arrivee TIME NOT NULL,
+   heure_depart TIME NOT NULL,
+   FOREIGN KEY (id_employe) REFERENCES Employe(id_employe)
+);
+
+CREATE OR REPLACE VIEW V_ProductiviteParJour AS
+SELECT Presence.id_employe, Presence.date, 
+       EXTRACT(HOUR FROM (LEAST(Presence.heure_depart, '23:59:59'::TIME) - GREATEST(Presence.heure_arrivee, '00:00:00'::TIME))) AS heures_reelles,
+       EXTRACT(HOUR FROM Poste.duree_travail) AS heures_theoriques,
+       EXTRACT(HOUR FROM (LEAST(Presence.heure_depart, '23:59:59'::TIME) - GREATEST(Presence.heure_arrivee, '00:00:00'::TIME))) / EXTRACT(HOUR FROM Poste.duree_travail) AS productivite_jour
+FROM Presence 
+JOIN Employe ON Presence.id_employe = Employe.id_employe
+JOIN Poste ON Employe.id_poste = Poste.id_poste;
 
 CREATE TABLE Depense(
    id SERIAL,

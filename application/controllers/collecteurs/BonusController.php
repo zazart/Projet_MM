@@ -19,10 +19,10 @@ class BonusController extends CI_Controller {
             )
         );
         if ($this->form_validation->run() == FALSE) {
-            // $data["contents"]="pages/Collecteur/insert_bonus";
-                // $data["collecteurs"] = $this->Collecteur_model->find_all();
-                // $this->load->view("templates/template",$data);
-                echo "errro";
+            $this->load->model("collecteur/Collecteur_model");
+            $data["title"] = "Projet MM";
+            $data["contents"]="pages/Collecteur/insert_bonus";
+            $this->load->view("templates/template",$data);
         } else {
             $date = $this->input->post('date');
             $amount = $this->input->post('amount');
@@ -31,9 +31,7 @@ class BonusController extends CI_Controller {
             $this->output
                 ->set_content_type('application/json')
                 ->set_output(json_encode(array('message' => 'success')));
-                $this->load->controller("Collecteur");
-                $this->Collecteur->insert_bonus();
-        
+            redirect('collecteur/insert_bonus');        
         }
     }
 }

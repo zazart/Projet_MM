@@ -8,8 +8,7 @@
               <h5 class="card-title text-center">Insertion bonus</h5>
 
               <!-- Vertical Form -->
-            <?php echo form_open('saveBonus', array('method' => 'post')); ?>
-              <form class="row g-3">
+            <?php echo form_open('saveBonus', array('method' => 'post','class' => 'row g-3')); ?>
                 <div class="col-12">
                   <label for="inputPassword4" class="form-label">Montant :</label>
                   <input type="number" class="form-control" name="amount">
@@ -19,7 +18,6 @@
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>
-              </form><!-- Vertical Form -->
             <?php echo form_close(); ?>
             </div>
           </div>

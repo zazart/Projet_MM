@@ -17,8 +17,10 @@ class Collect_model extends CI_Model {
         $sql = "update collects set datecollect = ?, qtt = ?, id_matierpremier = ?, id_collecteur = ?  where id_collects = ?"; 
         $this->db->query($sql, array($date, $qtt, $matiere, $collecteur, $id));
     }
-
-
+    function delete ($id){
+        $sql = "delete from collects where id_collects = ?"; 
+        $this->db->query($sql, array($id));       
+    }
 }
 
 ?>

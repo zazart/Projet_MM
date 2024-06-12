@@ -198,7 +198,7 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation_controller/insert_etat_machine")); ?>">
+            <a href="<?php echo(site_url("transformation/statut_controller/view_insertion_statut")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état machine</span>
             </a>
           </li>
@@ -223,7 +223,7 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("Transformation_Controller/liste_etat_machines")); ?>">
+            <a href="<?php echo(site_url("transformation/statut_controller")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état machines</span>
             </a>
           </li>

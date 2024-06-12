@@ -4,7 +4,6 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Date derniere verification</th>
             <th scope="col">Statut</th>
@@ -13,66 +12,18 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach ($statuts as $statut): ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
+              <th scope="row"><?php echo $statut['nom_machine']; ?></th>
+              <td><?php echo $statut['date_verification']; ?></td>
+              <td><?php echo $statut['statut']; ?></td>
+              <td><?php echo $statut['descri']; ?></td>
+              <td>
+                  <a href="<?php echo site_url('transformation/statut_controller/validation_update_statut/' . $statut['id_stat']); ?>">Modifier</a>
+                  <a href="<?php echo site_url('transformation/statut_controller/validation_delete_statut/' . $statut['id_stat']); ?>">Supprimer</a>
+              </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
   </div>

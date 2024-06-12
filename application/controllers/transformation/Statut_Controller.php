@@ -2,7 +2,7 @@
 class Statut_Controller extends CI_Controller{
     public function __construct() {
         parent::__construct();
-        $this->load->model('Statut_Model');
+        $this->load->model('transformation/Statut_Model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -10,12 +10,12 @@ class Statut_Controller extends CI_Controller{
 
     public function index() {
         $data['statuts'] = $this->Statut_Model->get_statut_actuel();
-        $this->load->view('liste-statut', $data);
+        $this->load->view('transformation/liste-statut', $data);
     }
 
     public function view_insertion_statut() {
         $data['machines'] = $this->Statut_Model->get_all_machine();
-        $this->load->view('insertion-statut', $data);
+        $this->load->view('transformation/insertion-statut', $data);
     }
 
     public function validation_update_statut($id) {
@@ -51,7 +51,7 @@ class Statut_Controller extends CI_Controller{
         $this->form_validation->set_rules('descri', 'Description de son Etat', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('insertion-statut');
+            $this->load->view('transformation/insertion-statut');
         } else {
             $date1 = $this->input->post('date_verification');
             $date12 = date('Y-m-d', strtotime($date1));
@@ -63,16 +63,16 @@ class Statut_Controller extends CI_Controller{
             );
 
             if ($this->Statut_Model->insert_statut($data)) {
-                redirect('statut_controller');
+                redirect('transformation/statut_controller');
             } else {
-                $this->load->view('insertion-statut');
+                $this->load->view('transformation/insertion-statut');
             }
         }
     }
 
     public function validation_delete_statut($id){
         $this->Statut_Model->delete_statut($id);
-        redirect('statut_controller');
+        redirect('transformation/statut_controller');
     }
 
 }

@@ -2,7 +2,7 @@
 class Machine_Controller extends CI_Controller{
     public function __construct() {
         parent::__construct();
-        $this->load->model('Machine_Model');
+        $this->load->model('transformation/Machine_Model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -10,11 +10,11 @@ class Machine_Controller extends CI_Controller{
 
     public function index() {
         $data['machines'] = $this->Machine_Model->get_all_machine();
-        $this->load->view('liste-machine', $data);
+        $this->load->view('transformation/liste-machine', $data);
     }
 
     public function view_insertion_machine() {
-        $this->load->view('insertion-machine');
+        $this->load->view('transformation/insertion-machine');
     }
 
     public function validation_update_machine($id) {
@@ -24,7 +24,7 @@ class Machine_Controller extends CI_Controller{
 
         if ($this->form_validation->run() === FALSE) {
             $data['machine'] = $this->Machine_Model->get_machine($id);
-            $this->load->view('insertion-machine', $data);
+            $this->load->view('transformation/insertion-machine', $data);
         } else {
             $date1 = $this->input->post('date_achat');
             $date12 = date('Y-m-d', strtotime($date1));
@@ -35,10 +35,10 @@ class Machine_Controller extends CI_Controller{
             );
 
             if ($this->Machine_Model->update_machine($id, $data)) {
-                redirect('machine_controller');
+                redirect('transformation/machine_controller');
             } else {
                 $data['machine'] = $this->Machine_Model->get_machine($id);
-                $this->load->view('insertion-machine', $data);
+                $this->load->view('transformation/insertion-machine', $data);
             }
         }
     }
@@ -49,7 +49,7 @@ class Machine_Controller extends CI_Controller{
         $this->form_validation->set_rules('date_achat', 'Date Achat', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('insertion-machine');
+            $this->load->view('transformation/insertion-machine');
         } else {
             $date1 = $this->input->post('date_achat');
             $date12 = date('Y-m-d', strtotime($date1));
@@ -60,16 +60,16 @@ class Machine_Controller extends CI_Controller{
             );
 
             if ($this->Machine_Model->insert_machine($data)) {
-                redirect('machine_controller');
+                redirect('transformation/machine_controller');
             } else {
-                $this->load->view('insertion-machine');
+                $this->load->view('transformation/insertion-machine');
             }
         }
     }
 
     public function validation_delete_machine($id){
         $this->Machine_Model->delete_machine($id);
-        redirect('machine_controller');
+        redirect('transformation/machine_controller');
     }
 
     public function search_by_date() {
@@ -93,7 +93,7 @@ class Machine_Controller extends CI_Controller{
             $data['machines'] = $this->Machine_Model->get_all_machine();
         }
     
-        $this->load->view('recherche-machine', $data);
+        $this->load->view('transformation/recherche-machine', $data);
     }
     
 }

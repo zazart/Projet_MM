@@ -50,7 +50,7 @@
                     <input type="file" name="justificatif" id="justificatif" class="form-control">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="col-2 btn boutton-light">Inserer</button>
+                    <button type="submit" class="col-2 btn boutton-secondary">Inserer</button>
                 </div>
             </form>
             </div>

@@ -57,6 +57,6 @@
         </tbody>
     </table>
 
-    <p><a href="<?php echo site_url('employes/create'); ?>">Créer un nouvel employé</a></p>
+    <p><a href="<?php echo(site_url("employes/_create")); ?>">Créer un nouvel employé</a></p>
 </body>
 </html>

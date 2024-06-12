@@ -10,7 +10,7 @@
 
     <?php echo validation_errors(); ?>
 
-    <?php echo form_open('employes/create'); ?>
+    <?php echo form_open('pages/Personnel/employes/create'); ?>
         <label for="embauche">Date d'Embauche</label>
         <input type="date" name="embauche"><br>
 

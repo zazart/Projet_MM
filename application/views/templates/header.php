@@ -152,34 +152,34 @@
         <a class="nav-link collapsed" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-fill color_black"></i><span class="color_black">Personnel</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
-        <ul id="personnel-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="personnel-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="personnel-alerts.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion personnel</span>
             </a>
           </li>
           <li>
-            <a href="personnel-accordion.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste employés</span>
             </a>
           </li>
           <li>
-            <a href="personnel-badges.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
             </a>
           </li>
           <li>
-            <a href="personnel-breadcrumbs.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
             </a>
           </li>
           <li>
-            <a href="personnel-breadcrumbs.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure de travail</span>
             </a>
           </li>
           <li>
-            <a href="personnel-breadcrumbs.html">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
             </a>
           </li>

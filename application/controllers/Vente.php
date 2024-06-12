@@ -37,7 +37,7 @@ class Vente extends CI_Controller {
 
         $vente_data = array(
             'livraison' => $this->input->post('livraison'),
-            'prixTotal' => $this->input->post('prixTotal'),
+            'prixtotal' => $this->input->post('prixTotal'),
             'id_commande' => $commande_id
         );
         $this->Vente_model->insert_vente($vente_data);

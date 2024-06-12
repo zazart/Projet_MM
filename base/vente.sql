@@ -40,3 +40,10 @@ CREATE TABLE vente(
    FOREIGN KEY(id_commande) REFERENCES Commande(id),
    PRIMARY KEY(id)
 );
+
+INSERT INTO Client (nomglobal, email, adresse) VALUES
+('Société Malgache de Construction', 'contact@societemalgache.mg', 'Lot IVG 36 Rue Rainitsarovy, Antananarivo, Madagascar'),
+('MadaTech Solutions', 'info@madatech.mg', 'Lot 10B Route de la Digue, Tananarive, Madagascar'),
+('Transports Malgaches', 'support@transports-mg.mg', 'Rue Dr Joseph Raseta, Antananarivo, Madagascar'),
+('Bionex Madagascar', 'contact@bionex.mg', 'Rue Andrianary Ratianarivo, Antananarivo, Madagascar'),
+('Énergies Nouvelles Madagascar', 'info@energiesnouve-mg.mg', 'Lot AB 87, Analamahitsy, Antananarivo, Madagascar');

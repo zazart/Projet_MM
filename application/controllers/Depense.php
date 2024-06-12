@@ -16,7 +16,7 @@ class Depense extends CI_Controller {
 
     // Access au liste de journal
     public function grandLivre(){
-        $data["contents"]="pages/depenses/grand-livre";
+        $data["contents"]="pages/depenses/grand-livre";  
 		$this->load->view("templates/template",$data);
     }
 }

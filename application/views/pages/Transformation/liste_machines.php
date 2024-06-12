@@ -7,16 +7,14 @@
             <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Fonction</th>
-            <th scope="col">Date derniere verification</th>
-            <th scope="col">Statut</th>
-            <th scope="col">Description</th>
+            <th scope="col">Date achat</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($machines as $machine): ?>
           <tr>
-              <td><?php echo $machine['id_machine']; ?></td>
+              <th scope="row"><?php echo $machine['id_machine']; ?></th>
               <td><?php echo $machine['nom_machine']; ?></td>
               <td><?php echo $machine['fonction']; ?></td>
               <td><?php echo $machine['date_achat']; ?></td>

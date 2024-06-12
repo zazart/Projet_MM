@@ -18,7 +18,7 @@ class Client extends CI_Controller {
 
     public function store() {
         $client_data = array(
-            'nomGlobal' => $this->input->post('nomGlobal'),
+            'nomglobal' => $this->input->post('nomGlobal'),
             'email' => $this->input->post('email'),
             'adresse' => $this->input->post('adresse')
         );
@@ -33,7 +33,7 @@ class Client extends CI_Controller {
 
     public function update($id) {
         $client_data = array(
-            'nomGlobal' => $this->input->post('nomGlobal'),
+            'nomglobal' => $this->input->post('nomGlobal'),
             'email' => $this->input->post('email'),
             'adresse' => $this->input->post('adresse')
         );

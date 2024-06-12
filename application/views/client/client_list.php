@@ -17,7 +17,7 @@
         <?php foreach ($clients as $client): ?>
         <tr>
             <td><?php echo $client['id']; ?></td>
-            <td><?php echo $client['nomGlobal']; ?></td>
+            <td><?php echo $client['nomglobal']; ?></td>
             <td><?php echo $client['email']; ?></td>
             <td><?php echo $client['adresse']; ?></td>
             <td>

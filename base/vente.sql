@@ -1,12 +1,3 @@
-CREATE TABLE vente(
-   id SERIAL,
-   livraison BOOLEAN NOT NULL,
-   prixTotal NUMERIC(16,2)   NOT NULL,
-   id_commande INTEGER NOT NULL,
-   FOREIGN KEY(id_commande) REFERENCES Commande(id)
-   PRIMARY KEY(id)
-);
-
 CREATE TABLE Client(
    id SERIAL,
    nomGlobal VARCHAR(255)  NOT NULL,
@@ -15,21 +6,21 @@ CREATE TABLE Client(
    PRIMARY KEY(id)
 );
 
+CREATE TABLE Commande(
+   id SERIAL,
+   datecommande TIMESTAMP NOT NULL,
+   id_client INTEGER NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_client) REFERENCES Client(id)
+);
+
 CREATE TABLE Panier(
    id SERIAL,
-   idProduit INTEGER NOT NULL,
+   id_produit INTEGER NOT NULL,
    quantite INTEGER NOT NULL,
    id_commande INTEGER NOT NULL,
    FOREIGN KEY(id_commande) REFERENCES Commande(id),
    PRIMARY KEY(id)
-);
-
-CREATE TABLE Commande(
-   id SERIAL,
-   dateCommande TIMESTAMP NOT NULL,
-   id_client INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_client) REFERENCES Client(id)
 );
 
 CREATE TABLE Produit(
@@ -39,4 +30,13 @@ CREATE TABLE Produit(
    id_stock INTEGER NOT NULL,
    PRIMARY KEY(id),
    FOREIGN KEY(id_stock) REFERENCES StockProduit(id)
+);
+
+CREATE TABLE vente(
+   id SERIAL,
+   livraison BOOLEAN NOT NULL,
+   prixTotal NUMERIC(16,2)   NOT NULL,
+   id_commande INTEGER NOT NULL,
+   FOREIGN KEY(id_commande) REFERENCES Commande(id),
+   PRIMARY KEY(id)
 );

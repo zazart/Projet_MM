@@ -15,7 +15,7 @@
         <?php foreach ($commandes as $commande): ?>
         <tr>
             <td><?php echo $commande['id']; ?></td>
-            <td><?php echo $commande['dateCommande']; ?></td>
+            <td><?php echo $commande['datecommande']; ?></td>
             <td><?php echo $commande['id_client']; ?></td>
             <td>
                 <a href="#">Voir Panier</a>

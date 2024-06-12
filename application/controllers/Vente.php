@@ -22,14 +22,14 @@ class Vente extends CI_Controller {
 
     public function store() {
         $commande_data = array(
-            'dateCommande' => date('Y-m-d H:i:s'),
+            'date_commande' => date('Y-m-d H:i:s'),
             'id_client' => $this->input->post('id_client')
         );
         $this->Commande_model->insert_commande($commande_data);
         $commande_id = $this->db->insert_id();
 
         $panier_data = array(
-            'idProduit' => $this->input->post('idProduit'),
+            'id_produit' => $this->input->post('idProduit'),
             'quantite' => $this->input->post('quantite'),
             'id_commande' => $commande_id
         );

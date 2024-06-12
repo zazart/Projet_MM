@@ -1,10 +1,7 @@
-<?php 
-    include("../../templates/template.php");
-?>	
+
 <section class="section">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title text-center">Insertion matière premiere</h5>

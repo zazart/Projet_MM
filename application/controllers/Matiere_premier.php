@@ -19,6 +19,9 @@ class Matiere_premier extends CI_Controller {
     public function index() 
     {
         $this->load->view('pages/matierePremiere/matiere_premier');
+        $data["title"]="Insertion de matiere Premiere";
+        $data["contents"]="pages/matierePremiere/matiere_premier";
+        $this->load->view("templates/template",$data);
     }
 
     public function matierepremier()

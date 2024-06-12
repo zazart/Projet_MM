@@ -15,14 +15,13 @@
         <table class="table text-center">
             <thead>
                 <th class="col text-uppercase">Date</th>
-
                 <th class="col text-uppercase">Libelle</th>
                 <th class="col text-uppercase">Debit</th>
                 <th class="col text-uppercase">Credit</th>
             </thead>
             <tbody>
                 <tr class="">
-                    <td colspan="4" class="bg-primary text-center text-uppercase">Lorem ipsum</td>
+                    <td colspan="4" class="bg-secondary text-light text-center text-uppercase">Lorem ipsum</td>
                 </tr>
                 <tr>
                     <td>-- / -- / --</td>

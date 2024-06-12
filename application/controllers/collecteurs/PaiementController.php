@@ -3,7 +3,7 @@
 class PaiementController extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('PaiementCollecteur_model','paiement');
+        $this->load->model('collecteur/PaiementCollecteur_model','paiement');
     }
     public function find_all() {
         $data  = $this->paiement->find_all();

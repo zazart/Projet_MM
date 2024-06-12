@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class ColSalaireController extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        $this->load->model('Col_Salaire_model');
+        $this->load->model('collecteur/Col_Salaire_model');
     }
     public function save(){
         $this->form_validation->set_rules('prix', 'prix', 'required|numeric|greater_than[0]',

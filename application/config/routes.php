@@ -53,18 +53,18 @@ $route['default_controller'] = 'admin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 // Bonus
-$route['listBonus'] = 'bonusController/find_all';
-$route['saveBonus'] = 'bonusController/save';
+$route['listBonus'] = 'collecteurs/BonusController/find_all';
+$route['saveBonus'] = 'collecteurs/BonusController/save';
 // Collecteur
-$route['listCollecteur'] = 'CollecteurController/find_all';
-$route['saveCollecteur'] = 'CollecteurController/save';
+$route['listCollecteur'] = 'collecteurs/CollecteurController/find_all';
+$route['saveCollecteur'] = 'collecteurs/CollecteurController/save';
 // Collect
-$route['listCollect'] = 'CollectController/find_all';
-$route['saveCollect'] = 'CollectController/save';
-$route['updateCollect'] = 'CollectController/update';
+$route['listCollect'] = 'collecteurs/CollectController/find_all';
+$route['saveCollect'] = 'collecteurs/CollectController/save';
+$route['updateCollect'] = 'collecteurs/CollectController/update';
 // Salaire
-$route['saveSalaire'] = 'ColSalaireController/save';
-$route['listColSalaire'] = 'ColSalaireController/find_all';
+$route['saveSalaire'] = 'collecteurs/ColSalaireController/save';
+$route['listColSalaire'] = 'collecteurs/ColSalaireController/find_all';
 //paiement salaire
-$route['saveColPaiement'] = 'PaiementController/save';
-$route['listColPaiement'] = 'PaiementController/find_all';
+$route['saveColPaiement'] = 'collecteurs/PaiementController/save';
+$route['listColPaiement'] = 'collecteurs/PaiementController/find_all';

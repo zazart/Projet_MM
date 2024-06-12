@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CollectController extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('Collect_model');
+        $this->load->model('collecteur/Collect_model');
     }
     public function find_all(){
         $data = $this->Collect_model->find_all();

@@ -34,7 +34,7 @@
                   <input type="number" class="form-control" id="inputNumber" placeholder="400.000" disabled>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Inserer</button>
+                  <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>
               </form><!-- Vertical Form -->
 

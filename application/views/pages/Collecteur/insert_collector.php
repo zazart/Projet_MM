@@ -36,7 +36,7 @@
                   <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Inserer</button>
+                  <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>
               </form><!-- Vertical Form -->
 

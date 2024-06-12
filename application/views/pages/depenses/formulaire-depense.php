@@ -8,7 +8,7 @@
                 <!-- Description -->
                 <div class="col-12 ">
                     <label for="description" class="input-label">Description </label>
-                    <input type="text" class="form-control" name="description" id="description" required>
+                    <input type="text" class="form-control"  name="description" id="description" required>
                 </div>
                 <!-- Date -->
                 <div class="col-12 ">

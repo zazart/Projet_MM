@@ -22,7 +22,7 @@ const monthNames = [
   'Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout',
   'Septembere', 'Octobre', 'Novembre', 'Decembre'
 ];
-
+ 
 function getMonthNames(){
   return monthNames;
 }

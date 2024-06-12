@@ -19,7 +19,7 @@ window.addEventListener('load', function(){
     const saison_suivant = function(){
         change_saison_actuelle(1);
         afficher_saison_actuelle();
-    }
+    } 
     suivant_btn.addEventListener('click',function(e){
         saison_suivant();
     });

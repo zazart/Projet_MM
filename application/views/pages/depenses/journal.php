@@ -12,7 +12,7 @@
         </h3>
         </div>
         <!-- #/ Indication de saison -->
-        <!-- Tableau de journal -->
+        <!-- Tableau de journal --> 
         <table class="table">
             <thead>
                 <th>Date</th>

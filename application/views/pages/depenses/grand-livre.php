@@ -28,7 +28,7 @@
                     <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                     <td>1</td>
                     <td>2</td>
-                </tr>
+                </tr> 
             </tbody>
             <tfoot>
                 <tr>

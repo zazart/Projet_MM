@@ -9,7 +9,7 @@ window.addEventListener('load' , function(e){
     // Afficher la saison 
     const afficher_saison_actuelle = function(){
         annee_saison.textContent = annee_actuelle;
-    }
+    } 
     // Afficher saison suivante
     const saison_suivant = function(){
         change_saison_actuelle(12);

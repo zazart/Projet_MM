@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * @property CI_Loader $load
- * @property CI_Session $session
  * @property matiere $matiere
  * @property prix_matiere $prix_matiere
  * @property source $source
@@ -16,17 +15,11 @@ class Matiere_premier extends CI_Controller {
         parent::__construct();
     }
 
-    public function index() 
+    public function matiere_premier_insert()
     {
-        $this->load->view('pages/matierePremiere/matiere_premier');
         $data["title"]="Insertion de matiere Premiere";
         $data["contents"]="pages/matierePremiere/matiere_premier";
         $this->load->view("templates/template",$data);
-    }
-
-    public function matierepremier()
-    {
-        $this->load->view('pages/matierePremiere/matiere_premier');
     }
 
     public function create()
@@ -34,10 +27,8 @@ class Matiere_premier extends CI_Controller {
         $this->load->model('matiere_Premiere/matiere');
         $id = $this->matiere->input->post('id');
         $nom = $this->matiere->input->post('matierepremier');
-
         if ($id) {
             $this->matiere->update_matiere($id,$nom);
-            $this->session->set_flashdata('success', 'Matière mise à jour avec succès.');
         }else {
             $this->matiere->insertmatierepremier($nom);   
         }
@@ -106,21 +97,25 @@ class Matiere_premier extends CI_Controller {
     }
 
     public function list_matiere() {
-        $this->load->model('matiere');
+        $this->load->model('matiere_Premiere/matiere');
         $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->view('Users/list_matiere_premier',$data);
+        $data["title"]="Insertion de matiere Premiere";
+        $data["contents"]="pages/matierePremiere/list_matiere_premier";
+        $this->load->view("templates/template",$data);
     }
 
     public function edit_matier_permier($id) {
-        $this->load->model('matiere');
+        $this->load->model('matiere_Premiere/matiere');
         $data['matiere'] = $this->matiere->get_matiere($id);
-        $this->load->view('Users/matiere_premier', $data);
+        $data["title"]="Modification de matiere Premiere";
+        $data["contents"]="pages/matierePremiere/matiere_premier";
+        $this->load->view("templates/template",$data);
     }
 
     public function drop_matier_permier($id) {
-        $this->load->model('matiere');
+        $this->load->model('matiere_Premiere/matiere');
         $this->matiere->delete_matiere($id);
-        redirect('MatierePremier/list_matiere');
+        redirect('Matiere_premier/list_matiere');
     }
 
     public function edit_prix_matier_permier($id) {

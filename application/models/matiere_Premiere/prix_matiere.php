@@ -1,7 +1,6 @@
 <?php
 /**
  * @property CI_Loader $load
- * @property CI_Session $session
  */
 class prix_matiere extends CI_Model{
     function __construct()
@@ -18,7 +17,6 @@ class prix_matiere extends CI_Model{
             'DatePrix'=>$date
         );
         $this->db->insert('PrixMatierePremier',$data);
-        $this->session->set_flashdata('successfull','Matiere Premier inserted');
         redirect('MatierePremier/prixmatierepremier');
     }
 

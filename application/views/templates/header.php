@@ -125,8 +125,13 @@
         </a>
         <ul id="matiere-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php  echo base_url("/Matiere_premier");?>">
+            <a href="<?php  echo site_url("Matiere_premier/matiere_premier_insert");?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière première</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php  echo site_url("Matiere_premier/list_matiere");?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matière première</span>
             </a>
           </li>
           <li>

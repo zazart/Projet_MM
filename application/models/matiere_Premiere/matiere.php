@@ -1,7 +1,6 @@
 <?php
 /**
  * @property CI_Loader $load
- * @property CI_Session $session
  */
 
 class matiere extends CI_Model{
@@ -16,8 +15,7 @@ class matiere extends CI_Model{
             'nom' => $nom
         );
         $this->db->insert("matierpremier",$data);
-        $this->session->set_flashdata('successfull','Matiere Premier inserted');
-        redirect('Matiere_premier/matierepremier');
+        redirect('Matiere_premier/matiere_premier_insert');
     }
 
     public function update_matiere($id,$nom){
@@ -26,21 +24,21 @@ class matiere extends CI_Model{
         );
         $this->db->where('id',$id);
         $this->db->update("matierpremier",$data);
-        redirect('MatierePremier/matierepremier');
+        redirect('Matiere_premier/matiere_premier_insert');
     }
 
     public function get_matiere_data(){
-        $query=$this->db->get('matierepremier');
+        $query=$this->db->get('matierpremier');
         return $query->result_array();
     }
 
     public function get_matiere($id){
-        $query = $this->db->get_where('matierepremier', array('id'=>$id));
+        $query = $this->db->get_where('matierpremier', array('id'=>$id));
         return $query->row_array();
     }
 
     public function delete_matiere($id) {
-        $this->db->delete('matierepremier',array('id'=>$id));
+        $this->db->delete('matierpremier',array('id'=>$id));
     }
 } 
 

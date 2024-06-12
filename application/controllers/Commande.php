@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
-    public function index(){
+class Commande extends CI_Controller {
+    public function insert_commande(){
         $data["title"] = "Projet MM";
-		$data["contents"]="pages/home";
+		$data["contents"]="pages/Commande/insert_commande";
 		$this->load->view("templates/template",$data);
     }
 }

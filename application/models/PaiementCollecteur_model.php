@@ -9,10 +9,13 @@ class PaiementCollecteur_model extends CI_Model {
         $query = $this->db->query('select * from paiementCollecteur');
         return $query->result_array();
     }
-    function save_salaire ($collecteur) {
+
+    function get_last_salary( $collecteur) {
         $query = $this->db->query('select * from get_last_salary(?)',array($collecteur));
-        $salaire =  $query->row_array()['prix'];
-        
+        return $query->row_array()['prix'];        
+    }
+    function save_salaire ($collecteur) {
+        $salaire = $this->get_last_salary($collecteur);
         $this->db->query('insert into paiementCollecteur (prix, dates, id_collecteur, libelle) values (?,?,?,?) ',
                 array($salaire,date('Y-m-d'), $collecteur,'salaire'));
 

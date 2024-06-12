@@ -47,10 +47,10 @@
         <!-- Navigation buttons  -->
         <div class="row">
             <div class="col-6 d-flex justify-content-start">
-                <button id="saisonPrecedentBtn" class="btn btn-secondary px-12">Precedent</button>
+                <button id="saisonPrecedentBtn" class="btn boutton-light px-12">Precedent</button>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <button id="saisonSuivantBtn" class="btn btn-secondary px-12">Suivant</button>
+                <button id="saisonSuivantBtn" class="btn boutton-light px-12">Suivant</button>
             </div>
         </div>
         <!-- #/ Navigation buttons -->

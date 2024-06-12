@@ -18,3 +18,26 @@ function generateTable(table, data) {
     }
   }
 }
+const monthNames = [
+  'Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout',
+  'Septembere', 'Octobre', 'Novembre', 'Decembre'
+];
+
+function getMonthNames(){
+  return monthNames;
+}
+// VARIABLES
+const date_actuelle = new Date();
+var annee_actuelle = date_actuelle.getFullYear();
+var mois_actuelle = date_actuelle.getMonth();
+// Changer de saison
+function change_saison_actuelle(direction){
+  mois_actuelle += direction;
+  if (mois_actuelle > 11 || mois_actuelle < 0){
+      annee_actuelle += (Math.abs(direction) / direction);
+      if(mois_actuelle < 0){
+          mois_actuelle = 12 + mois_actuelle;
+      }
+      mois_actuelle = Math.abs(mois_actuelle)  % 12
+  } 
+};

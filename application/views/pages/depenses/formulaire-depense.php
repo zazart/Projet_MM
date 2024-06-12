@@ -1,14 +1,8 @@
 <!-- START FORMULIARE DEPENSE -->
 <section class="row"> 
-
-    <div class="mx-auto col-4 col-6  p-2">
-        <!-- Form title -->
-        <div class="row">
-            <h2>INSERTION DEPENSES</h2>
-        </div>
+    <div class="mx-auto col-10 p-2">
         <!-- Formulaire -->
-        <div class="col">
-            <form action="/depenses/insertion" method="post">
+            <form action="depenses/insertion" method="post" class="card">
                 <!-- Description -->
                 <div class="row mb-3">
                     <label for="description" class="input-label">Description </label>
@@ -48,10 +42,9 @@
                     <input type="file" name="justificatif" id="justificatif" class="form-control">
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn btn-primary form-control">Inserer</button>
+                    <button type="submit" class="col-2 btn boutton-light">Inserer</button>
                 </div>
             </form>
-        </div>
     </div>
 
 </section>

@@ -12,7 +12,7 @@ class Employes extends CI_Controller {
         $data['title'] = 'Liste des Employés';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/employes/index', $data);
+        $this->load->view('pages/Personnel/employes/liste', $data);
         $this->load->view('templates/footer');
     }
 
@@ -47,7 +47,7 @@ class Employes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/Personnel/employes/_create', $data);
+            $this->load->view('pages/Personnel/employes/create', $data);
             $this->load->view('templates/footer');
         } else {
             $debauche = $this->input->post('debauche');

@@ -1,0 +1,61 @@
+<section class="section">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center"><?php echo $title; ?></h5>
+
+              <?php echo form_open('pages/Personnel/employes/create', ['class' => 'row g-3']);?>
+                <div class="col-12">
+                  <label for="embauche" class="form-label">Date d'Embauche :</label>
+                  <input type="date" class="form-control" name="embauche" id="embauche">
+                </div>
+                <div class="col-12">
+                  <label for="debauche" class="form-label">Date de Débauche :</label>
+                  <input type="date" class="form-control" name="debauche" id="debauche">
+                </div>
+                <div class="col-12">
+                  <label for="nom" class="form-label">Nom :</label>
+                  <input type="text" class="form-control" name="nom" id="nom">
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label">Email :</label>
+                  <input type="email" class="form-control" name="email" id="email">
+                </div>
+                <div class="col-12">
+                  <label for="adresse" class="form-label">Adresse :</label>
+                  <input type="text" class="form-control" name="adresse" id="adresse">
+                </div>
+                
+
+                <div class="col-12">
+                  <label for="id_genre" class="form-label">Genre :</label>
+                  <div class="col-sm-12">
+                    <select name="id_genre" class="form-select" aria-label="Default select example">
+                        <?php foreach ($genres as $genre): ?>
+                        <option value="<?php echo $genre['id']; ?>"><?php echo $genre['description']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="id_poste" class="form-label">Poste :</label>
+                  <div class="col-sm-12">
+                    <select name="id_poste" class="form-select" aria-label="Default select example">
+                        <?php foreach ($postes as $poste): ?>
+                        <option value="<?php echo $poste['id_poste']; ?>"><?php echo $poste['nom']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="boutton boutton-secondary">Créer un nouvel employé</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -12,7 +12,7 @@ class Postes extends CI_Controller {
         $data['title'] = 'Liste des Postes';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('postes/index', $data);
+        $this->load->view('pages/Personnel/postes/liste', $data);
         $this->load->view('templates/footer');
     }
 
@@ -41,7 +41,7 @@ class Postes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('postes/create');
+            $this->load->view('pages/Personnel/postes/create');
             $this->load->view('templates/footer');
         } else {
             $nom = $this->input->post('nom');

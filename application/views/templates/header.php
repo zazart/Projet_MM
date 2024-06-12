@@ -154,22 +154,22 @@
         </a>
         <ul id="personnel-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("employes/create")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion personnel</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("employes/index")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste employés</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("postes/create")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("postes/index")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
             </a>
           </li>

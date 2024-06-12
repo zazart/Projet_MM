@@ -193,18 +193,23 @@
         </a>
         <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="transformation-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matériaux</span>
+            <a href="<?php echo(site_url("transformation/insert_machine")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion machine</span>
             </a>
           </li>
           <li>
-            <a href="transformation-accordion.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état matériaux</span>
+            <a href="<?php echo(site_url("transformation/insert_etat_machine")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état machine</span>
             </a>
           </li>
           <li>
-            <a href="transformation-badges.html">
+            <a href="<?php echo(site_url("transformation/insert_production")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo(site_url("transformation/insert_produit")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion produit</span>
             </a>
           </li>
           <li>
@@ -213,13 +218,13 @@
             </a>
           </li>
           <li>
-            <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matériaux</span>
+            <a href="<?php echo(site_url("transformation/liste_machines")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste machines</span>
             </a>
           </li>
           <li>
-            <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état matériels</span>
+            <a href="<?php echo(site_url("transformation/liste_etat_machines")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état machines</span>
             </a>
           </li>
         </ul>

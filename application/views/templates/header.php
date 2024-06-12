@@ -87,33 +87,33 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecteur</span>
+            <a href="<?php echo(site_url("Collecteur/insert_collector")); ?>">
+              <i class="bi bi-circle"></i><span>Insertion collecteur</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecte</span>
+            <a href="<?php echo(site_url("Collecteur/insert_collect")); ?>">
+              <i class="bi bi-circle"></i><span>Insertion collecte</span>
             </a>
           </li>
           <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Salaire</span>
+            <a href="<?php echo(site_url("Collecteur/insert_salary")); ?>">
+              <i class="bi bi-circle"></i><span>Insertion salaire</span>
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion bonus</span>
+            <a href="<?php echo(site_url("Collecteur/insert_bonus")); ?>">
+              <i class="bi bi-circle"></i><span>Insertion bonus</span>
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement</span>
+            <a href="<?php echo(site_url("Collecteur/payement")); ?>">
+              <i class="bi bi-circle"></i><span>Paiement</span>
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+            <a href="<?php echo(site_url("Collecteur/state")); ?>">
+              <i class="bi bi-circle"></i><span>Etat</span>
             </a>
           </li>
         </ul>

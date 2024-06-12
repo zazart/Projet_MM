@@ -56,5 +56,6 @@
         <!-- #/ Navigation buttons -->
     </div>
 </section>
+<script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <script src="<?php echo base_url('assets/js/depenses/grand-livre.js')?>">></script>
 <!-- END GRAND LIVRE -->

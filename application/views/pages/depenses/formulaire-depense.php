@@ -55,4 +55,5 @@
     </div>
 
 </section>
+<script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <!-- END FORMULAIRE DEPENSE -->

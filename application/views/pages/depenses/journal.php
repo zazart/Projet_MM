@@ -61,5 +61,6 @@
         <!-- #/ Navigation buttons -->
     </div>
 </section>
+<script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <script src="<?php echo base_url('assets/js/depenses/journal.js')?>">></script>
 <!-- END JOURNAL -->

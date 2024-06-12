@@ -193,22 +193,22 @@
         </a>
         <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("transformation/insert_machine")); ?>">
+            <a href="<?php echo(site_url("transformation/machine_controller/view_insertion_machine")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion machine</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/insert_etat_machine")); ?>">
+            <a href="<?php echo(site_url("transformation_Controller/insert_etat_machine")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état machine</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/insert_production")); ?>">
+            <a href="<?php echo(site_url("transformation_Controller/insert_production")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/insert_produit")); ?>">
+            <a href="<?php echo(site_url("transformation_Controller/insert_produit")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion produit</span>
             </a>
           </li>
@@ -218,12 +218,12 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/liste_machines")); ?>">
+            <a href="<?php echo(site_url("transformation_Controller/machine_controller")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste machines</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/liste_etat_machines")); ?>">
+            <a href="<?php echo(site_url("transformation_Controller/liste_etat_machines")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état machines</span>
             </a>
           </li>

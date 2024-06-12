@@ -42,20 +42,24 @@ class CollectController extends CI_Controller {
                 ->set_output(json_encode(array('message' => 'success')));
         }
     }
-public function validation () {
-    $this->form_validation->set_rules('matiere', 'matiere', 'required',
-            array('required' => 'Le champ %s est obligatoire')
-    );
-    $this->form_validation->set_rules('qtt', 'qtt', 'required|numeric|greater_than[0]',
-        array('required' => 'Le champ %s est obligatoire',
-                'numeric' => 'Veuillez ne selectionner que des chiffres',
-                'greater_than' => 'Le champ %s doit positif '
-    ));
-    $this->form_validation->set_rules('date', 'date', 'required',
-        array('required' => 'Le champ %s est obligatoire'            )
-    );
-    $this->form_validation->set_rules('collecteur', 'collecteur', 'required',
-        array('required' => 'Le champ %s est obligatoire' )
-    );
-}
+    public function delete(){
+        $id = $this->input->post('id');
+        $this->Collect_model->delete($id);
+    }
+    public function validation () {
+        $this->form_validation->set_rules('matiere', 'matiere', 'required',
+                array('required' => 'Le champ %s est obligatoire')
+        );
+        $this->form_validation->set_rules('qtt', 'qtt', 'required|numeric|greater_than[0]',
+            array('required' => 'Le champ %s est obligatoire',
+                    'numeric' => 'Veuillez ne selectionner que des chiffres',
+                    'greater_than' => 'Le champ %s doit positif '
+        ));
+        $this->form_validation->set_rules('date', 'date', 'required',
+            array('required' => 'Le champ %s est obligatoire'            )
+        );
+        $this->form_validation->set_rules('collecteur', 'collecteur', 'required',
+            array('required' => 'Le champ %s est obligatoire' )
+        );
+    }
 }

@@ -233,30 +233,22 @@
         </a>
         <ul id="vente-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="vente-alerts.html">
+            <a href="<?php echo(site_url("vente_commande/vente/insert_vente")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Vente</span>
             </a>
           </li>
           <li>
-            <a href="vente-accordion.html">
+            <a href="<?php echo(site_url("vente_commande/client/insert_client")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Client</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("vente_commande/commande/insert_commande")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
-            </a>
-          </li>
-          <li>
-            <a href="vente-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Panier</span>
             </a>
           </li>
         </ul>
       </li><!-- vente et prise de commande -->
-
-
-
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">

@@ -4,24 +4,25 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">Insertion machine</h5>
+              <h5 class="card-title text-center"><?php echo isset($machine) ? 'Modifier Machine' : 'Ajouter une Machine'; ?></h5>
 
               <!-- Vertical Form -->
-              <form class="row g-3">
+              <?php echo validation_errors(); ?>
+              <?php echo form_open(isset($machine) ? 'transformation/machine_controller/update_machine/' . $machine['id_machine'] : 'transformation/machine_controller/validation_insert_machine'); ?>
                 <div class="col-12">
-                  <label for="Nom" class="form-label">Nom:</label>
-                  <input type="text" class="form-control" id="inputName">
+                  <label for="nom_machine" class="form-label">Nom:</label>
+                  <input type="text" class="form-control" name="date_achat">
                 </div>
                 <div class="col-12">
-                  <label for="Fonction" class="form-label">Fonction de la machine:</label>
-                  <input type="text" class="form-control" id="inputName">
+                  <label for="fonction" class="form-label">Fonction de la machine:</label>
+                  <input type="text" class="form-control" name="fonction">
                 </div>
                 <div class="col-12">
-                  <label for="Date" class="form-label">Date Achat:</label>
-                  <input type="date" class="form-control" id="inputName">
+                  <label for="date_achat" class="form-label">Date Achat:</label>
+                  <input type="date" class="form-control" name="date_achat">
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="boutton boutton-secondary">Inserer</button>
+                  <input type="submit" name="submit" class="boutton boutton-secondary" value="<?php echo isset($machine) ? 'Mettre à Jour' : 'Ajouter'; ?>" /> 
                 </div>
               </form><!-- Vertical Form -->
 

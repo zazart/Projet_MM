@@ -14,66 +14,18 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach ($machines as $machine): ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
+              <td><?php echo $machine['id_machine']; ?></td>
+              <td><?php echo $machine['nom_machine']; ?></td>
+              <td><?php echo $machine['fonction']; ?></td>
+              <td><?php echo $machine['date_achat']; ?></td>
+              <td>
+                  <a href="<?php echo site_url('transformation/machine_controller/validation_update_machine/' . $machine['id_machine']); ?>">Modifier</a>
+                  <a href="<?php echo site_url('transformation/machine_controller/validation_delete_machine/' . $machine['id_machine']); ?>">Supprimer</a>
+              </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Brandon Jacob</td>
-            <td>2016-05-25</td>
-            <td>2016-05-25</td>
-            <td>Designer</td>
-            <td>....</td>
-            <td>
-              <button type="boutton" >Modifier</button>
-              <button type="boutton" >Supprimer</button>
-            </td>
-          </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
   </div>

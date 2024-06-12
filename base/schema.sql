@@ -41,7 +41,7 @@ CREATE TABLE vente(
    PRIMARY KEY(id)
 );
 
-CREATE TABLE MatierPremier(
+CREATE TABLE matierpremier(
    id SERIAL,
    Nom VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id)
@@ -53,7 +53,7 @@ CREATE TABLE PrixMatierePremier(
    datePrix DATE,
    id_1 INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   FOREIGN KEY(id_1) REFERENCES matierpremier(id)
 );
 
 CREATE TABLE Source(
@@ -69,7 +69,7 @@ CREATE TABLE StockMatierPremier(
    out_qtt INTEGER NOT NULL,
    id_1 INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   FOREIGN KEY(id_1) REFERENCES matierpremier(id)
 );
 
 CREATE TABLE Production(

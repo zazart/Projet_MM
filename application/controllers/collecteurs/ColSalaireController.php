@@ -16,15 +16,21 @@ class ColSalaireController extends CI_Controller {
             array('required'=> 'Le champ est obligatoire'));
         
         if ($this->form_validation->run() == FALSE) {
-            echo json_encode(array('error'=> validation_errors()));
+            $this->load->model("collecteur/Collecteur_model", 'collecteur');
+            $data["title"] = "Projet MM";
+            $data["contents"]="pages/Collecteur/insert_salary";
+            $data["collectors"] =  $this->collecteur->find_all();
+            $this->load->view("templates/template",$data);
         } else {
             $collecteur = $this->input->post('collecteur');
             $amount = $this->input->post('prix');
             $date = $this->input->post('date');
+            $date = $date? $date: date('Y-m-d');
             $this->Col_Salaire_model->save($date, $amount, $collecteur);
             $this->output
                 ->set_content_type('application/json')
                 ->set_output(json_encode(array('message' => 'success')));
+            redirect("collecteur/insert_salary");
         }
     }
     public function find_all() {

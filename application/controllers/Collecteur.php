@@ -12,7 +12,6 @@ class Collecteur extends CI_Controller {
         $this->load->model("collecteur/Collecteur_model");
         $data["title"] = "Projet MM";
 		$data["contents"]="pages/Collecteur/insert_bonus";
-        // $data["collecteurs"] = $this->Collecteur_model->find_all();
 		$this->load->view("templates/template",$data);
 
     }

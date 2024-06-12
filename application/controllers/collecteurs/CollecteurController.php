@@ -29,7 +29,9 @@ class CollecteurController extends CI_Controller{
             array('required' => 'Le champ est obligatoire'            )
         );
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('collecteur');
+            $data["title"] = "Projet MM";
+            $data["contents"]="pages/Collecteur/insert_collecteur";
+            $this->load->view("templates/template",$data);
         } else {
             $nom = $this->input->post('nom');
             $contact = $this->input->post('contact');
@@ -40,6 +42,8 @@ class CollecteurController extends CI_Controller{
             $this->output
                 ->set_content_type('application/json')
                 ->set_output(json_encode(array('message' => 'success')));
+
+            redirect('collecteur/insert_collect');
         }
         
         

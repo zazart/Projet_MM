@@ -68,3 +68,5 @@ $route['listColSalaire'] = 'collecteurs/ColSalaireController/find_all';
 //paiement salaire
 $route['saveColPaiement'] = 'collecteurs/PaiementController/save';
 $route['listColPaiement'] = 'collecteurs/PaiementController/find_all';
+
+

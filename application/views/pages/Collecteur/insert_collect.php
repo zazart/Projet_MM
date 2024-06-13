@@ -35,6 +35,9 @@
                   <input type="number" class="form-control" name="qtt">
                   <?php echo form_error('qtt','<div class="text-danger"> ','</div>');  ?>
                 </div>
+                <div class="text-align-right">
+                  <a href="list_collect">Voir liste des matieres premieres collectes</a>
+                </div>
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>

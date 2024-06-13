@@ -14,6 +14,9 @@
                   <input type="number" class="form-control" name="amount">
                   <?php echo form_error('amount','<div class="text-danger"> ','</div>');  ?>
                 </div>
+                <div class="text-align-right">
+                  <a href="list_bonus">Voir liste des bonus</a>
+                </div>
 
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Inserer</button>

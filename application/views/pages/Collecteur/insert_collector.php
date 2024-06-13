@@ -39,6 +39,9 @@
                   <input type="date" class="form-control" id="inputNumber" name="date" value="<?= date('Y-m-d') ; ?>">
                   <?php echo form_error('date','<div class="text-danger"> ','</div>');  ?>
                 </div>
+                <div class="text-align-right">
+                  <a href="list_collector">Voir liste des collecteurs</a>
+                </div>
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>

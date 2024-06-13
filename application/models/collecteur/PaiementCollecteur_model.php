@@ -6,7 +6,9 @@ class PaiementCollecteur_model extends CI_Model {
         if ($type == 2) $this->save_bonus($collecteur, $date);
     }
     function find_all () {
-        $query = $this->db->query('select * from paiementCollecteur');
+        $sql = 'select p.id_paiementcollecteur, p.dates, p.prix, p.libelle, p.id_collecteur,c.nom  from paiementcollecteur p ';
+        $sql .= ' join collecteur c  on c.id_collecteur  = p.id_collecteur ';
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
     function save_salaire ($collecteur) {

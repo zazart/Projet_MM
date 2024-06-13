@@ -24,6 +24,9 @@
                     <input type="number" class="form-control" id="inputNumber" name="prix" >
                     <?php echo form_error('prix','<div class="text-danger"> ','</div>');  ?>
                 </div>
+                <div class="text-align-right">
+                  <a href="list_salary">Voir liste des salaires</a>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>

@@ -18,7 +18,7 @@
             <td><?php echo $commande['datecommande']; ?></td>
             <td><?php echo $commande['nomglobal']; ?></td>
             <td>
-                <a href="#">Voir Panier</a>
+                <a href="<?=base_url('/panier/list/' . $commande['id'])?>" >Voir Panier</a>
             </td>
         </tr>
         <?php endforeach; ?>

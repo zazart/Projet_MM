@@ -15,7 +15,7 @@ class Commande extends CI_Controller {
 
     public function create() {
         $data['clients'] = $this->Client_model->get_clients();
-        $data['produits'] = $this->Produit_model->get_produits();
+        $data['produits'] = $this->Produit_model->get_all_produit();
         $this->load->view('commande/commande_form', $data);
     }
 

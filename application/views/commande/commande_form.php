@@ -51,7 +51,7 @@
         <h2>Ajouter des Produits</h2>
         <select id="product-select">
             <?php foreach ($produits as $produit): ?>
-                <option value="<?php echo $produit['id']; ?>"><?php echo $produit['nom']; ?></option>
+                <option value="<?php echo $produit['id_produit']; ?>"><?php echo $produit['nom_produit']; ?></option>
             <?php endforeach; ?>
         </select>
         <input type="number" id="quantity" placeholder="Quantité">

@@ -6,6 +6,8 @@
             <div class="card-body">
               <h5 class="card-title text-center"><?php echo $title; ?></h5>
 
+              <?php echo validation_errors(); ?>
+              
               <?php echo form_open('postes/create', ['class' => 'row g-3']);?>
                 <div class="col-12">
                   <label for="nom" class="form-label">Nom :</label>
@@ -23,7 +25,7 @@
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Créer le Poste</button>
                 </div>
-              </form>
+              <?php echo form_close(); ?>
 
             </div>
           </div>

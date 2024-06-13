@@ -6,7 +6,9 @@
             <div class="card-body">
               <h5 class="card-title text-center"><?php echo $title; ?></h5>
 
-              <?php echo form_open('pages/Personnel/employes/create', ['class' => 'row g-3']);?>
+              <?php echo validation_errors(); ?>
+
+              <?php echo form_open('employes/create', ['class' => 'row g-3']);?>
                 <div class="col-12">
                   <label for="embauche" class="form-label">Date d'Embauche :</label>
                   <input type="date" class="form-control" name="embauche" id="embauche">
@@ -24,11 +26,13 @@
                   <input type="email" class="form-control" name="email" id="email">
                 </div>
                 <div class="col-12">
+                  <label for="telephone" class="form-label">Téléphone :</label>
+                  <input type="text" class="form-control" name="telephone" id="telephone">
+                </div>
+                <div class="col-12">
                   <label for="adresse" class="form-label">Adresse :</label>
                   <input type="text" class="form-control" name="adresse" id="adresse">
                 </div>
-                
-
                 <div class="col-12">
                   <label for="id_genre" class="form-label">Genre :</label>
                   <div class="col-sm-12">
@@ -52,8 +56,7 @@
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Créer un nouvel employé</button>
                 </div>
-              </form>
-
+              <?php echo form_close(); ?>
             </div>
           </div>
         </div>

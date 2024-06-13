@@ -155,12 +155,12 @@
         <ul id="personnel-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
             <a href="<?php echo(site_url("employes/create")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion personnel</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion employé</span>
             </a>
           </li>
           <li>
             <a href="<?php echo(site_url("employes/index")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste employés</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste d'employé</span>
             </a>
           </li>
           <li>

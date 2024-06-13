@@ -26,7 +26,7 @@ class Employes extends CI_Controller {
         $data['title'] = 'Détails de l\'Employé';
 
         $this->load->view('templates/header', $data);
-        $this->load->view('employes/view', $data);
+        $this->load->view('pages/Personnel/employes/view', $data);
         $this->load->view('templates/footer');
     }
 
@@ -89,7 +89,7 @@ class Employes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('employes/edit', $data);
+            $this->load->view('pages/Personnel/employes/edit', $data);
             $this->load->view('templates/footer');
         } else {
             $debauche = $this->input->post('debauche');

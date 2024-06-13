@@ -232,16 +232,3 @@ CREATE TABLE PanierProduit(
    FOREIGN KEY(id) REFERENCES Panier(id),
    FOREIGN KEY(id_1) REFERENCES Produit(id)
 );
-
-CREATE TABLE TypeProfil(
-   id SERIAL PRIMARY KEY,
-   libelle VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE Profil(
-   id SERIAL PRIMARY KEY,
-   email VARCHAR(255) NOT NULL,
-   mot_de_passe VARCHAR(255) NOT NULL,
-   id_personnel int REFERENCES Employe(id),
-   type_profil int REFERENCES TypeProfil(id)
-);

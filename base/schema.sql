@@ -170,7 +170,7 @@ CREATE TABLE Collects(
    Id_Collecteur INTEGER NOT NULL,
    Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(Id_Collects),
-   FOREIGN KEY(Id_Collecteur) REFERENCES Collecteur(Id_Collecteur),
+   FOREIGN KEY(Id_Collecteur) REFERENCES Employe(id_employe),
    FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
@@ -205,17 +205,26 @@ CREATE TABLE SourceMatierePremier(
    FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
-CREATE TABLE Employees(
-   id SERIAL,
-   debuche DATE NOT NULL,
-   email VARCHAR(255)  NOT NULL,
-   numPhone VARCHAR(50)  NOT NULL,
-   addresse VARCHAR(255)  NOT NULL,
-   Id_Genre INTEGER NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(Id_Genre) REFERENCES Genre(Id_Genre),
-   FOREIGN KEY(id_1) REFERENCES Poste(id)
+CREATE TABLE Employe(
+   id_employe SERIAL,
+   embauche DATE NOT NULL,
+   debauche DATE DEFAULT NULL,
+   nom VARCHAR(255)  NOT NULL,
+   email VARCHAR(255),
+   telephone VARCHAR(50)  NOT NULL,
+   adresse VARCHAR(255)  NOT NULL,
+   id_genre INTEGER NOT NULL,
+   id_poste INTEGER NOT NULL,
+   PRIMARY KEY(id_employe),
+   FOREIGN KEY(id_genre) REFERENCES Genre(Id_Genre),
+   FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
+);
+CREATE TABLE Poste(
+   id_poste SERIAL,
+   nom VARCHAR(255)  NOT NULL,
+   montant_salaire NUMERIC(16,2),
+   duree_travail TIME NOT NULL,
+   PRIMARY KEY(id_poste)
 );
 
 CREATE TABLE Depense(

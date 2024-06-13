@@ -96,11 +96,7 @@
               <i class="bi bi-circle"></i><span>Insertion collecte</span>
             </a>
           </li>
-          <li>
-            <a href="<?php echo(site_url("Collecteur/insert_salary")); ?>">
-              <i class="bi bi-circle"></i><span>Insertion salaire</span>
-            </a>
-          </li>
+          
           <li>
             <a href="<?php echo(site_url("Collecteur/insert_bonus")); ?>">
               <i class="bi bi-circle"></i><span>Insertion bonus</span>

@@ -1,0 +1,11 @@
+embauche;debauche;nom;email;telephone;adresse;id_genre;id_poste
+2023-01-15;;John Doe;john.doe@gmail.com;0341234567;123 Rue Principal, Antananarivo;1;1
+2022-06-01;;Jane Smith;jane.smith@gmail.com;0349876543;456 Rue Elm, Antsirabe;2;2
+2023-03-12;;Alice Jones;alice.jones@gmail.com;0331827364;789 Rue Oak, Toamasina;2;3
+2023-07-21;;Michel Rakoto;michel.rakoto@gmail.com;0321928374;101 Rue Ambatolampy, Fianarantsoa;1;1
+2023-08-05;;Sarah Randria;sarah.randria@gmail.com;0331928374;202 Rue Analakely, Mahajanga;2;2
+2023-09-10;;Patrick Rajaonary;patrick.rajaonary@gmail.com;0348765432;303 Rue Andavamamba, Toliara;1;3
+2022-10-11;;Christine Rasoanaivo;christine.rasoanaivo@gmail.com;0348765123;404 Rue Andohalo, Antsiranana;2;7
+2023-11-20;;Lucas Rabe;lucas.rabe@gmail.com;0321983746;505 Rue Ankadifotsy, Antananarivo;1;2
+2023-12-30;;Maria Ravelo;maria.ravelo@gmail.com;0348765987;606 Rue Andrainjato, Ambatondrazaka;2;3
+2024-01-05;;Daniel Rajaonarivelo;daniel.rajaonarivelo@gmail.com;0321983759;707 Rue Ampefiloha, Antsirabe;1;7

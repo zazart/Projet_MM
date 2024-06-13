@@ -13,7 +13,7 @@
                   <div class="col-sm-12">
                     <select class="form-select" aria-label="Default select example" name="collecteur">
                       <?php foreach($collectors as $collector): ?>
-                          <option value="<?php echo $collector['id_collecteur']; ?>"><?php echo $collector['nom']; ?></option>
+                          <option value="<?php echo $collector['id_employe']; ?>"><?php echo $collector['nom']; ?></option>
                       <?php endforeach; ?>
                       </select>
                     <?php echo form_error('collecteur','<div class="text-danger"> ','</div>');  ?>

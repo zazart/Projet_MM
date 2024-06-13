@@ -6,16 +6,18 @@ class PaiementCollecteur_model extends CI_Model {
         if ($type == 2) $this->save_bonus($collecteur, $date);
     }
     function find_all () {
-        $sql = 'select p.id_paiementcollecteur, p.dates, p.prix, p.libelle, p.id_collecteur,c.nom  from paiementcollecteur p ';
-        $sql .= ' join collecteur c  on c.id_collecteur  = p.id_collecteur ';
+        $sql = 'select p.id_paiement_employe, p.dates, p.prix, p.libelle, p.id_employe, c.nom  from paiementEmploye p ';
+        $sql .= ' join employe c  on c.id_employe  = p.id_employe ';
         $query = $this->db->query($sql);
         return $query->result_array();
     }
     function save_salaire ($collecteur) {
-        $query = $this->db->query('select * from get_last_salary(?)',array($collecteur));
+        $sql = "select   p.montant_salaire as prix from poste  p ";
+        $sql .= "join employe e on e.id_poste  = p.id_poste";
+        $query = $this->db->query($sql, array($collecteur));
         $salaire =  $query->row_array()['prix'];
         
-        $this->db->query('insert into paiementCollecteur (prix, dates, id_collecteur, libelle) values (?,?,?,?) ',
+        $this->db->query('insert into paiementEmploye (prix, dates, id_employe, libelle) values (?,?,?,?) ',
                 array($salaire,date('Y-m-d'), $collecteur,'salaire'));
 
     }
@@ -27,7 +29,7 @@ class PaiementCollecteur_model extends CI_Model {
         $query2 = $this->db->query('select * from get_sum_collect (?,?)', array($collecteur,$annne));
         $qtt =  $query2->row_array()['qtt'];
         echo $qtt;
-        $this->db->query('insert into paiementCollecteur (prix, dates, id_collecteur, libelle) values (?,?,?,?) ',
+        $this->db->query('insert into paiementEmploye (prix, dates, id_employe, libelle) values (?,?,?,?) ',
                 array($bonus*$qtt,date('Y-m-d'), $collecteur,'bonus'));
     }
 

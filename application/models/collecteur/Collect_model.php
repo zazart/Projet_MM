@@ -6,9 +6,9 @@ class Collect_model extends CI_Model {
         $this->db->query($sql, array($date, $qtt, $matiere, $collecteur));
     }
     function find_all () {
-        $sql = 'select  c.id_collects, c.datecollect as dates,c.qtt ,c.id_collecteur, col.nom as collecteur,c.id_matierpremier as id_matiere , mp.nom as matiere from collects c';
+        $sql = 'select  c.id_collects, c.datecollect as dates,c.qtt ,c.id_collecteur, e.nom as collecteur, c.id_matierpremier , mp.nom as matiere from collects c ';
         $sql .= ' join matierpremier mp on mp.id_matierpremier = c.id_matierpremier';
-        $sql .= ' join collecteur col on c.id_collecteur = col.id_collecteur';
+        $sql .= ' join employe e on c.id_collecteur = e.id_employe';
 
         $query = $this->db->query($sql);
         return $query->result_array();

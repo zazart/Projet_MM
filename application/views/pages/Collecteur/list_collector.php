@@ -21,9 +21,9 @@
                 <?php foreach($collector as  $b) { ?>
                     <tr>
                       <td><?php echo $b['nom'] ?></td>
-                      <td><?php  echo $b['contact']  ?></td>
+                      <td><?php  echo $b['telephone']  ?></td>
                       <td><?php echo $b['adresse'] ?></td>
-                      <td><?php  echo $b['datedebuche']  ?></td>
+                      <td><?php  echo $b['embauche']  ?></td>
                       <td><?php  echo $b['id_genre']==1?"Femme":"Homme";  ?></td>
                     </tr>
                   <?php  } ?>

@@ -1,6 +1,6 @@
 <div class="card">
 <div class="card-body">
-    <h5 class="card-title"><?php echo $title; ?></h5>
+    <h5 class="card-title color_black_0"><?php echo $title; ?></h5>
 
     <table class="table table-hover">
     <thead>

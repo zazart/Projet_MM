@@ -6,7 +6,13 @@
             <div class="card-body">
               <h5 class="card-title text-center"><?php echo $title; ?></h5>
 
-              <?php echo validation_errors(); ?>
+              <?php if (validation_errors()) : ?>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <i class="bi bi-exclamation-octagon me-1"> Erreur : </i>
+                      <?php echo validation_errors(); ?>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              <?php endif; ?>
               
               <?php echo form_open('postes/create', ['class' => 'row g-3']);?>
                 <div class="col-12">

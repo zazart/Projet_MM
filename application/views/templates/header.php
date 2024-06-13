@@ -203,7 +203,7 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("Transformation_Controller/insert_production")); ?>">
+            <a href="<?php echo(site_url("transformation/production_controller/view_insertion_production")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
             </a>
           </li>

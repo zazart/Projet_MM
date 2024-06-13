@@ -7,34 +7,34 @@
               <h5 class="card-title text-center">Insertion production</h5>
 
               <!-- Vertical Form -->
-              <form class="row g-3">
-              <div class="col-12">
-                  <label for="idStock" class="form-label">Id Stock :</label>
+              <?php echo validation_errors(); ?>
+              <?php echo form_open(isset($machine) ? 'transformation/production_controller/update_machine/' . $machine['id_machine'] : 'transformation/production_controller/validation_insert_production', ['class' => 'row g-3']); ?>
+                <div class="col-12">
+                  <label for="id_matierep" class="form-label">Matiere premiere :</label>
                   <div class="col-sm-12">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected disabled>Choisis un id stock</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">Autre</option>
-                    </select>
+                    <select class="form-select" aria-label="Default select example" id="id_machine" name="id_machine">
+                                <option selected disabled>Choisis une matiere premiere</option>
+                                <?php 
+                                    foreach ($matierepremiers as $matierepremier) {
+                                      $selected = isset($matierepremier) && $matierepremier['id_matierepremier'] == $matierepremier['id_matierepremier'] ? 'selected' : '';
+                                      echo '<option value="' . $matierepremier['id_matierepremier'] . '" ' . $selected . '>' . $matierepremier['nom_matierepremier'] . '</option>';
+                                    }
+                                ?>
+                            </select>
                   </div>
                 </div>
                 <div class="col-12">
-                  <label for="Quantite" class="form-label">Quantite:</label>
-                  <input type="number" class="form-control" id="inputName">
+                  <label for="quantiteburt" class="form-label">Quantite à produire:</label>
+                  <input type="number" class="form-control" name="quantiteburt">
                 </div>
                 <div class="col-12">
-                  <label for="Date" class="form-label">Date de production:</label>
-                  <input type="date" class="form-control" id="inputName">
-                </div>
-                <!-- <div class="col-12">
-                  <label for="Nom" class="form-label">Nom du produit:</label>
-                  <input type="text" class="form-control" id="inputName">
+                  <label for="quantite_produite" class="form-label">Quantite produite:</label>
+                  <input type="number" class="form-control" name="quantite_produite">
                 </div>
                 <div class="col-12">
-                  <label for="Quantite" class="form-label">Prix unitaire du produit:</label>
-                  <input type="number" class="form-control" id="inputName">
-                </div> -->
+                  <label for="date_prod" class="form-label">Date de production:</label>
+                  <input type="date" class="form-control" name="date_prod">
+                </div>
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Inserer</button>
                 </div>

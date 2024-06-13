@@ -35,7 +35,7 @@ CREATE TABLE Source (
 );
 
 CREATE TABLE SourceMatierePremier (
-    id SERIAL PRIMARY KEY,
+    id_SourceMatierePremier SERIAL PRIMARY KEY,
     MatierePremier INT NOT NULL,
     DatePrelevement DATE NOT NULL,
     Source INT NOT NULL,
@@ -43,22 +43,22 @@ CREATE TABLE SourceMatierePremier (
     FOREIGN KEY (Source) REFERENCES Source(id_Source)
 );
 
-CREATE TABLE StockMatierPremier (
-    id_StockMatierPremier SERIAL PRIMARY KEY,
+CREATE TABLE StockMatierePremier (
+    id_StockMatierePremier SERIAL PRIMARY KEY,
     MatierePremier INT NOT NULL,
     Dates DATE NOT NULL,
-    QuantiteEntrant INT NOT NULL,
-    QuantiteSortant INT NOT NULL,
+    QuantiteEntrant INT,
+    QuantiteSortant INT,
     FOREIGN KEY (MatierePremier) REFERENCES MatierePremier(id_MatierePremier)
 );
 
 CREATE TABLE Production (
-    id SERIAL PRIMARY KEY,
-    StockMatierPremier INT NOT NULL,
-    Quantite INT NOT NULL,
-    DateProduction DATE NOT NULL,
-    Nom VARCHAR(255),
-    FOREIGN KEY (StockMatierPremier) REFERENCES StockMatierPremier(id_StockMatierPremier)
+    id_production SERIAL PRIMARY KEY,
+    MatierePremier INT,
+    QuantiteBrut INT,
+    QuantiteProduit INT,
+    DateProduction DATE,
+    FOREIGN KEY (MatierePremier) REFERENCES MatierePremier(id_MatierePremier)
 );
 
 CREATE TABLE Produit(
@@ -76,8 +76,6 @@ CREATE TABLE StockProduit(
     FOREIGN KEY(id_Produit) REFERENCES Produit(id_Produit) 
 );
 
-
-
 insert into stat_machhine(id_machine,date_verification,statut,descri) values('2','2024-06-09','9','Tsara');
 insert into stat_machhine(id_machine,date_verification,statut,descri) values('2','2024-06-10','7','Tsara tsara ihany');
 
@@ -87,3 +85,27 @@ insert into stat_machhine(id_machine,date_verification,statut,descri) values('3'
 select * from machine;
 select * from machine where date_achat <= '2024-10-10';
 select * from machine where date_achat >= '2024-10-10';
+
+insert into matierepremier(nom_matierepremier) values
+('Jojoba'),
+('Ricin'),
+('Figue de Barbarie');
+
+insert into source(lieu) VALUES
+('Amboasary Atsimo'),
+('Tsihombe');
+
+insert into sourcematierePremier(matierepremier, dateprelevement,source) VALUES
+('1','2024-05-05','1'),
+('2','2024-05-05','2'),
+('3','2024-05-05','2');
+
+insert into stockmatierPremier(matierepremier,dates,quantiteentrant, quantitesortant) VALUES
+('1','2024-06-10','100','0'),
+('2','2024-06-10','100','0'),
+('3','2024-06-10','100','0');
+
+drop table stockmatierepremier;
+drop table production;
+drop table produit;
+drop table stockproduit;

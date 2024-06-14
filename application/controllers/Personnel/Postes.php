@@ -4,16 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Postes extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('Poste_model');
+        $this->load->model('Personnel/Poste_model');
+        $this->load->library('form_validation');
     }
 
     public function index() {
         $data['postes'] = $this->Poste_model->get_postes();
         $data['title'] = 'Liste des Postes';
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/postes/liste', $data);
-        $this->load->view('templates/footer');
+        $data['contents'] = 'pages/Personnel/postes/liste';
+        $this->load->view('templates/template', $data);
     }
 
     public function view($id_poste) {
@@ -44,11 +43,19 @@ class Postes extends CI_Controller {
             $this->load->view('pages/Personnel/postes/create');
             $this->load->view('templates/footer');
         } else {
+            $date_debut = date('Y-m-d'); // Définir sur la date actuelle
             $nom = $this->input->post('nom');
             $montant_salaire = $this->input->post('montant_salaire');
             $duree_travail = $this->input->post('duree_travail');
-            $this->Poste_model->insert_poste($nom, $montant_salaire, $duree_travail);
-            redirect('postes');
+            $id_poste = $this->Poste_model->insert_poste($nom, $montant_salaire, $duree_travail);
+            // Insérer le salaire
+            $data_salaire = array(
+                'id_poste' => $id_poste,
+                'date_debut' => $date_debut,
+                'montant_salaire' => $this->input->post('montant_salaire')
+            );
+            $this->Poste_model->insert_salaire($data_salaire);
+            redirect('/Personnel/postes');
         }
     }
 
@@ -76,13 +83,29 @@ class Postes extends CI_Controller {
             $montant_salaire = $this->input->post('montant_salaire');
             $duree_travail = $this->input->post('duree_travail');
             $this->Poste_model->update_poste($id_poste, $nom, $montant_salaire, $duree_travail);
-            redirect('postes');
+            $date_debut = date('Y-m-d');
+            // Insérer le salaire
+            $data_salaire = array(
+                'id_poste' => $id_poste,
+                'date_debut' => $date_debut,
+                'montant_salaire' => $this->input->post('montant_salaire')
+            );
+            $this->Poste_model->insert_salaire($data_salaire);
+
+            redirect('/Personnel/postes');
         }
     }
 
     public function delete($id_poste) {
+        // Supprimer les salaires associés à ce poste
+        $this->Poste_model->delete_salaire_by_poste($id_poste);
+        $this->Poste_model->delete_employe_by_poste($id_poste);
+
+        // Supprimer le poste
         $this->Poste_model->delete_poste($id_poste);
-        redirect('postes');
+
+        // Rediriger vers la liste des postes
+        redirect('/Personnel/postes');
     }
 }
 ?>

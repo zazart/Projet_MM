@@ -25,7 +25,8 @@ class Employe_model extends CI_Model {
     }
 
     public function insert_employe($data) {
-        return $this->db->insert('employe', $data);
+        $this->db->insert('employe', $data);
+        return $this->db->insert_id();
     }
 
     public function update_employe($id_employe, $data) {
@@ -45,6 +46,11 @@ class Employe_model extends CI_Model {
     public function get_postes() {
         $query = $this->db->get('poste');
         return $query->result_array();
+    }
+
+    public function delete_profil_employe_by_employe($id_employe) {
+        $this->db->where('id_personnel', $id_employe);
+        $this->db->delete('profil');
     }
 }
 ?>

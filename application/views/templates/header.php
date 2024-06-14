@@ -154,22 +154,22 @@
         </a>
         <ul id="personnel-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("employes/create")); ?>">
+            <a href="<?php echo(site_url("Personnel/employes/create")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion employé</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("employes/index")); ?>">
+            <a href="<?php echo(site_url("Personnel/employes/index")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste d'employé</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("postes/create")); ?>">
+            <a href="<?php echo(site_url("Personnel/postes/create")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("postes/index")); ?>">
+            <a href="<?php echo(site_url("Personnel/postes/index")); ?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
             </a>
           </li>

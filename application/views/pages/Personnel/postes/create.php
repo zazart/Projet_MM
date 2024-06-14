@@ -14,7 +14,7 @@
                   </div>
               <?php endif; ?>
               
-              <?php echo form_open('postes/create', ['class' => 'row g-3']);?>
+              <?php echo form_open('Personnel/postes/create', ['class' => 'row g-3']);?>
                 <div class="col-12">
                   <label for="nom" class="form-label">Nom :</label>
                   <input type="text" class="form-control" name="nom" id="nom">

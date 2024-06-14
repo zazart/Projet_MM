@@ -15,14 +15,14 @@
               <?php endif; ?>
               
 
-              <?php echo form_open('employes/edit/'.$employe['id_employe'], ['class' => 'row g-3']);?>
+              <?php echo form_open('Personnel/employes/edit/'.$employe['id_employe'], ['class' => 'row g-3']);?>
                 <div class="col-12">
                   <label for="embauche" class="form-label">Date d'Embauche :</label>
                   <input type="date" class="form-control" name="embauche" id="embauche" value="<?php echo $employe['embauche']; ?>">
                 </div>
                 <div class="col-12">
                   <label for="debauche" class="form-label">Date de Débauche :</label>
-                  <input type="date" class="form-control" name="debauche" id="debauche" value="<?php echo $employe['debauche']; ?>>
+                  <input type="date" class="form-control" name="debauche" id="debauche" value="<?php echo $employe['debauche']; ?>">
                 </div>
                 <div class="col-12">
                   <label for="nom" class="form-label">Nom :</label>

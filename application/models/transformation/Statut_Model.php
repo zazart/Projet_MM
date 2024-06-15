@@ -54,6 +54,9 @@
             return $query->result_array();
         }
 
+        public function delete_statut_bymachine($id) {
+            return $this->db->delete('stat_machine', array('id_machine' => $id));
+        }
 
     }
 ?>

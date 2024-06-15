@@ -11,14 +11,14 @@ class Statut_Controller extends CI_Controller{
     public function index() {
         $data['statuts'] = $this->Statut_Model->get_statut_actuel();
         $data["title"] = "Etat Machine";
-		$data["contents"]="pages/Transformation/liste_etat_machines";
+		$data["contents"]="pages/Transformation/liste-etat-machines";
         $this->load->view('templates/template', $data);
     }
 
     public function view_insertion_statut() {
         $data['machines'] = $this->Statut_Model->get_all_machine();
         $data["title"] = "Etat Machine";
-		$data["contents"]="pages/Transformation/insert_etat_machine";
+		$data["contents"]="pages/Transformation/insert-etat-machine";
         $this->load->view('templates/template',$data);
     }
 
@@ -32,7 +32,7 @@ class Statut_Controller extends CI_Controller{
             $data['statut'] = $this->Statut_Model->get_statut($id_statut);
             $data['machines'] = $this->Statut_Model->get_all_machine(); 
             $data["title"] = "Etat Machine";
-            $data["contents"]="pages/Transformation/insert_etat_machine";
+            $data["contents"]="pages/Transformation/insert-etat-machine";
             $this->load->view('templates/template', $data);
         } else {
             $date1 = $this->input->post('date_verification');
@@ -50,7 +50,7 @@ class Statut_Controller extends CI_Controller{
                 $data['statut'] = $this->Machine_Model->get_machine($id_statut);
                 $data['machines'] = $this->Statut_Model->get_all_machine(); 
                 $data["title"] = "Etat Machine";
-                $data["contents"]="pages/Transformation/insert_etat_machine";
+                $data["contents"]="pages/Transformation/insert-etat-machine";
                 $this->load->view('templates/template',$data);
             }
         }
@@ -64,7 +64,7 @@ class Statut_Controller extends CI_Controller{
 
         if ($this->form_validation->run() === FALSE) {
             $data["title"] = "Etat Machine";
-            $data["contents"]="pages/Transformation/insert_etat_machine";
+            $data["contents"]="pages/Transformation/insert-etat-machine";
             $this->load->view('templates/template',$data);
         } else {
             $date1 = $this->input->post('date_verification');
@@ -80,7 +80,7 @@ class Statut_Controller extends CI_Controller{
                 redirect('transformation/statut_controller');
             } else {
                 $data["title"] = "Etat Machine";
-                $data["contents"]="pages/Transformation/insert_etat_machine";
+                $data["contents"]="pages/Transformation/insert-etat-machine";
                 $this->load->view('templates/template',$data);
             }
         }

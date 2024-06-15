@@ -13,9 +13,9 @@
             $sql = 
             "select p.id_production, m.nom_matierepremier, 
             p.quantitebrut, p.quantiteproduit, p.dateproduction
-            from production as p join machine as m on
+            from production as p join matierepremier as m on
             p.matierepremier = m.id_matierepremier";
-            $query = $this->db->query();
+            $query = $this->db->query($sql);
             return $query->result_array();
         }
     

@@ -62,7 +62,7 @@ CREATE TABLE Production (
 );
 
 CREATE TABLE Produit(
-    id_Produit SERIAL PRIMARY KEY,
+    id_produit SERIAL PRIMARY KEY,
     nom_produit VARCHAR(255),
     prix_unitaire DECIMAL(16,2)
 );
@@ -71,7 +71,7 @@ CREATE TABLE StockProduit(
     id_StockProduit SERIAL PRIMARY KEY,
     DateStockProduit DATE,
     QuantiteEntrant int,
-    QantiteSortant int,
+    QuantiteSortant int,
     id_Produit int,
     FOREIGN KEY(id_Produit) REFERENCES Produit(id_Produit) 
 );

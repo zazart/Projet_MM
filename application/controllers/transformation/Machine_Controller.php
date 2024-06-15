@@ -3,6 +3,7 @@ class Machine_Controller extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('transformation/Machine_Model');
+        $this->load->model('transformation/Statut_Model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -10,14 +11,14 @@ class Machine_Controller extends CI_Controller{
 
     public function index() {
         $data["title"] = "Machine";
-		$data["contents"]="pages/Transformation/liste_machines";
+		$data["contents"]="pages/Transformation/liste-machines";
         $data['machines'] = $this->Machine_Model->get_all_machine();
         $this->load->view('templates/template', $data);
     }
 
     public function view_insertion_machine() {
         $data["title"] = "Machine";
-		$data["contents"]="pages/Transformation/insert_machine";
+		$data["contents"]="pages/Transformation/insert-machine";
         $this->load->view('templates/template',$data);
     }
 
@@ -29,7 +30,7 @@ class Machine_Controller extends CI_Controller{
         if ($this->form_validation->run() === FALSE) {
             $data['machine'] = $this->Machine_Model->get_machine($id);
             $data["title"] = "Machine";
-            $data["contents"]="pages/Transformation/insert_machine";
+            $data["contents"]="pages/Transformation/insert-machine";
             $this->load->view('templates/template',$data);
         } else {
             $date1 = $this->input->post('date_achat');
@@ -45,7 +46,7 @@ class Machine_Controller extends CI_Controller{
             } else {
                 $data['machine'] = $this->Machine_Model->get_machine($id);
                 $data["title"] = "Machine";
-                $data["contents"]="pages/Transformation/insert_machine";
+                $data["contents"]="pages/Transformation/insert-machine";
                 $this->load->view('templates/template',$data);
             }
         }
@@ -58,7 +59,7 @@ class Machine_Controller extends CI_Controller{
 
         if ($this->form_validation->run() === FALSE) {
             $data["title"] = "Machine";
-            $data["contents"]="pages/Transformation/insert_machine";
+            $data["contents"]="pages/Transformation/insert-machine";
             $this->load->view('templates/template',$data);
         } else {
             $date1 = $this->input->post('date_achat');
@@ -73,13 +74,14 @@ class Machine_Controller extends CI_Controller{
                 redirect('transformation/machine_controller');
             } else {
                 $data["title"] = "Machine";
-                $data["contents"]="pages/Transformation/insert_machine";
+                $data["contents"]="pages/Transformation/insert-machine";
                 $this->load->view('templates/template',$data);
             }
         }
     }
 
     public function validation_delete_machine($id){
+        $this->Statut_Model->delete_statut_bymachine($id);
         $this->Machine_Model->delete_machine($id);
         redirect('transformation/machine_controller');
     }

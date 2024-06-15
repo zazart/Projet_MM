@@ -12,7 +12,7 @@
                 <div class="col-12">
                   <label for="id_matierep" class="form-label">Matiere premiere :</label>
                   <div class="col-sm-12">
-                    <select class="form-select" aria-label="Default select example" id="id_machine" name="id_machine">
+                    <select class="form-select" aria-label="Default select example" id="id_matierep" name="id_matierep">
                                 <option selected disabled>Choisis une matiere premiere</option>
                                 <?php 
                                     foreach ($matierepremiers as $matierepremier) {
@@ -24,8 +24,8 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <label for="quantiteburt" class="form-label">Quantite à produire:</label>
-                  <input type="number" class="form-control" name="quantiteburt">
+                  <label for="quantitebrut" class="form-label">Quantite Matière première utilisée :</label>
+                  <input type="number" class="form-control" name="quantitebrut">
                 </div>
                 <div class="col-12">
                   <label for="quantite_produite" class="form-label">Quantite produite:</label>

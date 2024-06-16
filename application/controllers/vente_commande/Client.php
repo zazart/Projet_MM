@@ -13,7 +13,7 @@ class Client extends CI_Controller {
     }
 
     public function insert_client(){
-        $data["title"] = "Projet MM";
+        $data["title"] = "Insertion Client";
 		$data["contents"]="pages/client/insert_client";
 		$this->load->view("templates/template",$data);
     }
@@ -24,8 +24,22 @@ class Client extends CI_Controller {
             'email' => $this->input->post('email'),
             'adresse' => $this->input->post('adresse')
         );
-        $this->Client_model->insert_client($client_data);
-        redirect('client');
+        if ($this->Client_model->insert_client($client_data)) {
+            $clients = $this->Client_model->get_clients();
+            $response = array(
+                'success' => true,
+                'message' => 'Client ajouté avec succès.',
+                'clients' => $clients
+            );
+        } else {
+            $response = array(
+                'success' => false, 
+                'message' => 'Une erreur s\'est produite lors de l\'insertion.'
+            );
+        }
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));   
     }
 
     public function edit($id) {

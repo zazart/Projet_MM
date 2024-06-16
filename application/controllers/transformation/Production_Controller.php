@@ -27,34 +27,6 @@ class Production_Controller extends CI_Controller{
         // $this->load->view('transformation/insertion-statut', $data);
     }
 
-    public function validation_update_production($id_statut) {
-        $this->form_validation->set_rules('id_matierep', 'Matiere premiere', 'required');
-        $this->form_validation->set_rules('quantiteburt', 'Quantite à produire', 'required');
-        $this->form_validation->set_rules('quantite_produite', 'Quantite produite', 'required');
-        $this->form_validation->set_rules('date_prod', 'Date de production', 'required');
-
-        if ($this->form_validation->run() === FALSE) {
-            $data['statut'] = $this->Production_Model->get_machine($id_statut);
-            $this->load->view('transformation/insert-production', $data);
-        } else {
-            $date1 = $this->input->post('date_verification');
-            $date12 = date('Y-m-d', strtotime($date1));
-            $data = array(
-                'id_machine' => $this->input->post('id_machine'),
-                'date_verification' => $date12,
-                'statut' => $this->input->post('statut'),
-                'descri' => $this->input->post('descri')
-            );
-
-            if ($this->Statut_Model->update_statut($id_statut, $data)) {
-                redirect('transformation/statut_controller');
-            } else {
-                $data['statut'] = $this->Production_Model->get_machine($id_statut);
-                $this->load->view('transformation/insert-production', $data);
-            }
-        }
-    }
-
     public function validation_insert_production() {
         $this->form_validation->set_rules('id_matierep', 'Matiere premiere', 'required');
         $this->form_validation->set_rules('quantitebrut', 'Quantite Matière première utilisée', 'required');
@@ -104,6 +76,7 @@ class Production_Controller extends CI_Controller{
                 } 
 
                 $suffixe = 'huile de '. $nom_matierepremier;
+                echo("blbala");
                 //insertion dans stockproduit
                 //mampiditra ao amin'ny stockproduit
                 $produit_stockena = $this->Produit_Model->get_produit_by_nom($suffixe);

@@ -5,9 +5,9 @@
         <thead>
           <tr>
             <th scope="col">Nom produit</th>
-            <th scope="col">Date de production</th>
-            <th scope="col">Quantité Entrante</th>
-            <th scope="col">Quantité Sortante</th>
+            <th scope="col">Date stocake produit</th>
+            <th scope="col">Quantité Entrante(L)</th>
+            <th scope="col">Quantité Sortante(L)</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>

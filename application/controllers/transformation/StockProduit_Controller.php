@@ -3,6 +3,7 @@ class StockProduit_Controller extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('transformation/StockProduit_Model');
+        $this->load->model('transformation/Produit_Model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -22,27 +23,33 @@ class StockProduit_Controller extends CI_Controller{
 		$this->load->view("templates/template",$data);
     }
 
-    public function validation_update_mouvementstock($id_produit) {
-        $this->form_validation->set_rules('prix_unitaire', 'Prix unitaire', 'required');
+    public function validation_update_mouvementstock($id_stockproduitt) {
+        $this->form_validation->set_rules('id_produit', 'Nom Produit', 'required');
+        $this->form_validation->set_rules('quantietentrant', 'Quantite Entrant', 'required');
+        $this->form_validation->set_rules('quantietsortant', 'Quantite Sortant', 'required');
+        $this->form_validation->set_rules('datestock', 'Date Stockage', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $data['produit'] = $this->Produit_Model->get_produit($id_produit);
-            $data["title"] = "Produit";
-		    $data["contents"]="pages/Transformation/update-produit";
+            $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
+            $data['produits'] = $this->Produit_Model->get_all_produit();
+            $data["title"] = "Stock Produit";
+		    $data["contents"]="pages/Transformation/update-stockproduit";
             $this->load->view('templates/template', $data);
         } else {
-            $idp = $this->input->post('id_produit');
             $data = array(
-                'nom_produit' => $this->input->post('nom_produit'),
-                'prix_unitaire' => $this->input->post('prix_unitaire')
+                'id_produit' => $this->input->post('id_produit'),
+                'quantiteentrant' => $this->input->post('quantietentrant'),
+                'quantitesortant' => $this->input->post('quantietsortant'),
+                'datestockproduit' => $this->input->post('datestock')
             );
 
-            if ($this->Produit_Model->update_produit($id_produit, $data)) {
-                redirect('transformation/produit_controller');
+            if ($this->StockProduit_Model->update_stockproduit($id_stockproduitt, $data)) {
+                redirect('transformation/stockproduit_controller');
             } else {
-                $data['produit'] = $this->Produit_Model->get_produit($id_produit);
-                $data["title"] = "Produit";
-		        $data["contents"]="pages/Transformation/update-produit";
+                $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
+                $data['produits'] = $this->Produit_Model->get_all_produit();
+                $data["title"] = "Stock Produit";
+                $data["contents"]="pages/Transformation/update-stockproduit";
                 $this->load->view('templates/template', $data);
             }
         }

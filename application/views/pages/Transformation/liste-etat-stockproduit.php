@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th scope="col">Nom Produit</th>
-            <th scope="col">Quantité stock (kg)</th>
+            <th scope="col">Quantité stock (L)</th>
             <th scope="col">Date dernière production</th>
           </tr>
         </thead>

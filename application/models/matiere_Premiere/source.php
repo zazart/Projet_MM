@@ -12,20 +12,19 @@ class source extends CI_Model{
 
     function insertsource($lieu){
         $data = array(
-            "Lieu" => $lieu
+            "lieu" => $lieu
         );
-        $this->db->insert('Source',$data);
-        $this->session->set_flashdata('successfull','Source inserted');
-        redirect('MatierePremier/source');
+        $this->db->insert('source',$data);
+            redirect('Matiere_Premier/source');
     }
 
     function update_source($id,$lieu){
         $data = array(
-            'Lieu' => $lieu
+            'lieu' => $lieu
         );
         $this->db->where($id);
         $this->db->update('source',$data);
-        redirect('MatierePremier/source');
+        redirect('Matiere_Premier/source');
     }
 
     function get_source_data(){

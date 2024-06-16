@@ -12,31 +12,30 @@ class source_matiere_premier extends CI_Model{
 
     function insertsourcematierepremier($matierepremier,$date,$source){
         $data = array(
-            "MatierePremier"=>$matierepremier,
-            "DatePrelevement"=>$date,
-            "Source"=>$source
+            "id_2"=>$matierepremier,
+            "dateprelevement"=>$date,
+            "id_1"=>$source
         );
-        $this->db->insert('SourceMatierePremier',$data);
-        $this->session->set_flashdata('successfull','Source Matiere Premier inserted');
-        redirect('MatierePremier/sourcematierepremier');
+        $this->db->insert('sourcematierepremier',$data);
+        redirect('Matiere_Premier/sourcematierepremier');
     }
 
     function update_source_matiere_premier($id,$matierepremier,$date,$lieu){
         $data = array(
-            "MatierePremier"=>$matierepremier,
-            "DatePrelevement"=>$date,
-            "Source"=>$lieu
+            "id_2"=>$matierepremier,
+            "dateprelevement"=>$date,
+            "id_1"=>$lieu
         );
         $this->db->where('id',$id);
         $this->db->update('sourcematierepremier',$data);
-        redirect('MatierePremier/sourcematierepremier');
+        redirect('Matiere_Premier/sourcematierepremier');
     }
 
     function get_source_matiere_premiere_data(){
-        $this->db->select('sourcematierepremier.*,matierepremier.nom as nom, source.lieu as lieu');
+        $this->db->select('sourcematierepremier.*,matierpremier.nom as nom, source.lieu as lieu');
         $this->db->from('sourcematierepremier');
-        $this->db->join('matierepremier','sourcematierepremier.matierepremier = matierepremier.id','left');
-        $this->db->join('source','sourcematierepremier.source = source.id','left');
+        $this->db->join('source','sourcematierepremier.id_ 1= source.id');
+        $this->db->join('matierpremier','sourcematierepremier.id_2 = matierpremier.id');
 
         $query = $this->db->get();
         return $query->result_array();

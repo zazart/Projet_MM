@@ -12,30 +12,30 @@ class prix_matiere extends CI_Model{
     public function insertprixmatierepremier($idmatiere,$prix,$date){
 
         $data = array(
-            'MatierPremier'=>$idmatiere,
-            'Prix'=>$prix,
-            'DatePrix'=>$date
+            'id_1'=>$idmatiere,
+            'prix'=>$prix,
+            'dateprix'=>$date
         );
-        $this->db->insert('PrixMatierePremier',$data);
-        redirect('MatierePremier/prixmatierepremier');
+        $this->db->insert('prixmatierepremier',$data);
+        redirect('Matiere_Premier/prixmatierepremier');
     }
 
     public function update_prix_matiere($id,$idmatierepremier,$prix,$date) {
         $data = array(
-            'MatierPremier'=>$idmatierepremier,
-            'Prix'=>$prix,
-            'DatePrix'=>$date
+            'id_2'=>$idmatierepremier,
+            'prix'=>$prix,
+            'dateprix'=>$date
         );
 
         $this->db->where('id',$id);
         $this->db->update('prixmatierepremier',$data);
-        redirect('MatierePremier/prixmatierepremier');
+        redirect('Matiere_Premier/prixmatierepremier');
     }
 
     public function get_prix_matiere_data(){
-        $this->db->select('prixmatierepremier.*, matierepremier.Nom'); 
+        $this->db->select('prixmatierepremier.*, matierpremier.nom'); 
         $this->db->from('prixmatierepremier');
-        $this->db->join('matierepremier', 'prixmatierepremier.MatierPremier = matierepremier.id', 'left');
+        $this->db->join('matierpremier', 'prixmatierepremier.id_1 = matierpremier.id', 'left');
     
         $query = $this->db->get();
         return $query->result_array();

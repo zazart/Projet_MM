@@ -1,5 +1,11 @@
-<div class="card">
+<section class="section">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card">
             <div class="card-body">
+            <h5 class="card-title text-center">Liste des matières premières</h5>
+
+              <!-- Vertical Form -->
               <!-- Table with hoverable rows -->
               <table class="table table-hover">
                 <thead>
@@ -25,3 +31,6 @@
 
             </div>
           </div>
+          </div>
+      </div>
+    </section>

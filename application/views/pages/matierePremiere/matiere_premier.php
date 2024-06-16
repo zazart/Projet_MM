@@ -4,6 +4,8 @@
         <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
+            <h5 class="card-title text-center">insertion d'une nouvelle matière première</h5>
+
               <!-- Vertical Form -->
 
               <form class="row g-3" action="<?php echo site_url('Matiere_premier/create') ?>" method="post">

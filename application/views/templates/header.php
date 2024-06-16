@@ -124,31 +124,54 @@
           <i class="bi bi-minecart-loaded color_black"></i><span class="color_black">Matière première</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="matiere-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                                                    <!-- insertion de matiere premiere -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/matiere_premier_insert");?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière première</span>
             </a>
           </li>
+                                                    <!-- liste of matiere premiere -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/list_matiere");?>">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matière première</span>
             </a>
           </li>
+                                                  <!-- inesrtiond es pris des matieres premieres -->
           <li>
-            <a href="matiere-accordion.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion prix</span>
+            <a href="<?php  echo site_url("Matiere_premier/prixmatierepremier");?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion prix matière première</span>
             </a>
           </li>
+                                                 <!-- liste des matieres premieres avec leurs prix  list_prix_matiere-->
+            <li>
+              <a href="<?php  echo site_url("Matiere_premier/list_prix_matiere");?>">
+                <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste du prix des matières premières</span>
+              </a>
+          </li>
+                                                 <!-- insertion d une nouvelle source -->
           <li>
-            <a href="matiere-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source</span>
+            <a href="<?php  echo site_url("Matiere_premier/source");?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">insertion d une nouvelle source </span>
             </a>
           </li>
+                                                <!-- liste de tout les sources disponibles -->
           <li>
-            <a href="matiere-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source matière</span>
+            <a href="<?php  echo site_url("Matiere_premier/list_source");?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste de toute nos sources </span>
             </a>
           </li>
+                                                <!-- insertion de liste des source matiere premiere -->
+          <li>
+            <a href="<?php  echo site_url("Matiere_premier/sourcematierepremier");?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">insertion source matiere premiere</span>
+            </a>
+          </li>
+                                                <!-- liste de tout les sources par matiere premiere -->
+          <li>
+                <a href="<?php  echo site_url("Matiere_premier/list_source_matiere_premier");?>">
+                  <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste des  matieres premieres et leur sources</span>
+                </a>
+          </li>                                                
         </ul>
       </li><!-- Matière première -->
 

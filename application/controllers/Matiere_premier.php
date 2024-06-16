@@ -35,13 +35,15 @@ class Matiere_premier extends CI_Controller {
     }
 
     public function prixmatierepremier(){
-        $this->load->model('matiere');
+        $this->load->model('matiere_Premiere/matiere');
+        $data["title"]="insertion de prix des matières Premières";
+        $data["contents"]="pages/matierePremiere/prix_matiere_premier";
         $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->view('Users/prix_matiere_premier',$data);
+        $this->load->view("templates/template",$data);
     }
 
     public function create_prix(){
-        $this->load->model('prix_matiere');
+        $this->load->model('matiere_premiere/prix_matiere');
         $id = $this->prix_matiere->input->post('id');
         $idmatierepremier = $this->prix_matiere->input->post('nom');
         $prix = $this->prix_matiere->input->post('prix');
@@ -49,40 +51,43 @@ class Matiere_premier extends CI_Controller {
 
         if ($id) {
             $this->prix_matiere->update_prix_matiere($id,$idmatierepremier,$prix,$date);
-            $this->session->set_flashdata('success', 'Prix Matière mise à jour avec succès.');
         }else {
             $this->prix_matiere->insertprixmatierepremier($idmatierepremier,$prix,$date);
         }
     }
 
     public function source(){
-        $this->load->view('Users/source');
+        $data["contents"]="pages/matierePremiere/source_insert";
+        $data["title"]="insertion de nouvelle source";
+        $this->load->view('templates/template',$data);
     }
 
     public function create_source(){
-        $this->load->model('source');
+        $this->load->model('matiere_Premiere/source');
 
         $id = $this->source->input->post('id');
         $lieu = $this->source->input->post('lieu');
 
         if ($id) {
             $this->source->update_source($id,$lieu);
-            $this->session->set_flashdata('success', 'Source mise à jour avec succès.');
         }else {
             $this->source->insertsource($lieu);
         }
     }
 
     public function sourcematierepremier(){
-        $this->load->model('matiere');
+        $this->load->model('matiere_premiere/matiere');
+        $this->load->model('matiere_premiere/source');
+
+        $data["contents"]="pages/matierePremiere/source_matiere_premiere";
+        $data["title"]="Source matiere Premiere";
         $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->model('source');
         $data['source_data']=$this->source->get_source_data();
-        $this->load->view('Users/source_matiere_premier',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function create_source_matiere_premier() {
-        $this->load->model('source_matiere_premier');
+        $this->load->model('matiere_Premiere/source_matiere_premier');
         $id = $this->source_matiere_premier->input->post('id');
         $matierepremier = $this->source_matiere_premier->input->post('nom');
         $date = $this->source_matiere_premier->input->post('date');
@@ -90,7 +95,6 @@ class Matiere_premier extends CI_Controller {
 
         if ($id) {
             $this->source_matiere_premier->update_source_matiere_premier($id,$matierepremier,$date,$lieu);
-            $this->session->set_flashdata('success', 'Source Matiere Premier mise à jour avec succès.');
         }else {
             $this->source_matiere_premier->insertsourcematierepremier($matierepremier,$date,$lieu);
         }
@@ -119,63 +123,77 @@ class Matiere_premier extends CI_Controller {
     }
 
     public function edit_prix_matier_permier($id) {
-        $this->load->model('prix_matiere');
+        $this->load->model('matiere_Premiere/prix_matiere');
+        $this->load->model('matiere_Premiere/matiere');
+
+        $data["contents"]="pages/matierePremiere/prix_matiere_premier";
+        $data["title"]= "prix matiere premiere setter";
         $data['prix_matiere'] = $this->prix_matiere->get_prix_matiere($id);
-        $this->load->model('matiere');
         $data['matiere_data'] = $this->matiere->get_matiere_data();
-        $this->load->view('Users/prix_matiere_premier',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function drop_prix_matier_permier($id) {
-        $this->load->model('prix_matiere');
+        $this->load->model('matiere_Premiere/prix_matiere');
         $this->prix_matiere->delete_matiere($id);
-        redirect('MatierePremier/list_prix_matiere');
+        redirect('Matiere_Premier/list_prix_matiere');
     }
 
     public function list_prix_matiere() {
-        $this->load->model('prix_matiere');
+        $this->load->model('matiere_Premiere/prix_matiere');
+        $data["contents"]="pages/matierepremiere/list_prix_matiere_premier";
+        $data["title"]="lists du prix des matieres premieres";
         $data['prix_matiere_data']=$this->prix_matiere->get_prix_matiere_data();
-        $this->load->view('Users/list_prix_matiere_premier',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function list_source(){
-        $this->load->model('source');
+        $this->load->model('matiere_Premiere/source');
+        $data['contents']= 'pages/matierePremiere/list_source';
+        $data["title"]="List of source";
         $data['source']=$this->source->get_source_data();
-        $this->load->view('Users/list_source',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function edit_source($id) {
-        $this->load->model('source');
+        $this->load->model('matiere_Premiere/source');
+        $data["contents"]="pages/matierePremiere/source_insert";
+        $data["title"]="Setting source";
         $data['source']=$this->source->get_source($id);
-        $this->load->view('Users/source',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function drop_source($id) {
-        $this->load->model('source');
+        $this->load->model('matiere_Premiere/source');
         $this->source->delete_source($id);
-        redirect('MatierePremier/list_source');
+        redirect('Matiere_Premier/list_source');
     }
 
     public function list_source_matiere_premier() {
-        $this->load->model('source_matiere_premier');
+        $this->load->model('matiere_Premiere/source_matiere_premier');
+        $data["contents"]="pages/matierePremiere/list_source_matiere_premiere";
+        $data['title']="liste source des matiere premieres";
         $data['source_matiere_premier']=$this->source_matiere_premier->get_source_matiere_premiere_data();
-        $this->load->view('Users/list_source_matiere_premier',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function edit_source_matier_permier($id) {
-        $this->load->model('source_matiere_premier');
+        $this->load->model('matiere_Premiere/source_matiere_premier');
+        $this->load->model('matiere_Premiere/matiere');
+        $this->load->model('matiere_Premiere/source');
+        
+        $data['contents']="pages/matierePremiere/source_matiere_premiere";
+        $data["title"]="setting source matiere premiere";
         $data['source_matiere_premier_data']=$this->source_matiere_premier->get_source_matiere_premiere($id);
-        $this->load->model('matiere');
         $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->model('source');
         $data['source_data']=$this->source->get_source_data();
-        $this->load->view('Users/source_matiere_premier',$data);
+        $this->load->view('templates/template',$data);
     }
 
     public function drop_source_matier_permier($id) {
-        $this->load->model('source_matiere_premier');
+        $this->load->model('matiere_Premiere/source_matiere_premier');
         $this->source_matiere_premier->delete_source_matiere_premier($id);
-        redirect('MatierePremier/list_source_matiere_premier');
+        redirect('Matiere_Premier/list_source_matiere_premier');
     }
 
     public function stockmatierepremier(){

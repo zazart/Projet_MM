@@ -36,7 +36,6 @@ class Postes extends CI_Controller {
 
         $this->form_validation->set_rules('nom', 'Nom', 'required');
         $this->form_validation->set_rules('montant_salaire', 'Salaire', 'required');
-        $this->form_validation->set_rules('duree_travail', 'Durée de Travail', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
@@ -46,8 +45,7 @@ class Postes extends CI_Controller {
             $date_debut = date('Y-m-d'); // Définir sur la date actuelle
             $nom = $this->input->post('nom');
             $montant_salaire = $this->input->post('montant_salaire');
-            $duree_travail = $this->input->post('duree_travail');
-            $id_poste = $this->Poste_model->insert_poste($nom, $montant_salaire, $duree_travail);
+            $id_poste = $this->Poste_model->insert_poste($nom, $montant_salaire);
             // Insérer le salaire
             $data_salaire = array(
                 'id_poste' => $id_poste,
@@ -72,7 +70,6 @@ class Postes extends CI_Controller {
 
         $this->form_validation->set_rules('nom', 'Nom', 'required');
         $this->form_validation->set_rules('montant_salaire', 'Salaire', 'required');
-        $this->form_validation->set_rules('duree_travail', 'Durée de Travail', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
@@ -81,8 +78,7 @@ class Postes extends CI_Controller {
         } else {
             $nom = $this->input->post('nom');
             $montant_salaire = $this->input->post('montant_salaire');
-            $duree_travail = $this->input->post('duree_travail');
-            $this->Poste_model->update_poste($id_poste, $nom, $montant_salaire, $duree_travail);
+            $this->Poste_model->update_poste($id_poste, $nom, $montant_salaire);
             $date_debut = date('Y-m-d');
             // Insérer le salaire
             $data_salaire = array(

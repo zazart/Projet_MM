@@ -45,7 +45,7 @@
                   <div class="col-sm-12">
                     <select name="id_genre" class="form-select" aria-label="Default select example">
                         <?php foreach ($genres as $genre): ?>
-                            <option value="<?php echo $genre['id']; ?>" <?php echo ($employe['id_genre'] == $genre['id']) ? 'selected' : ''; ?>><?php echo $genre['description']; ?></option>
+                            <option value="<?php echo $genre['id_genre']; ?>" <?php echo ($employe['id_genre'] == $genre['id_genre']) ? 'selected' : ''; ?>><?php echo $genre['description']; ?></option>
                         <?php endforeach; ?>
                     </select>
                   </div>

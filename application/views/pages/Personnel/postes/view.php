@@ -24,11 +24,6 @@
                     <div class="col-lg-3 col-md-4 label ">Salaire</div>
                     <div class="col-lg-9 col-md-8"><?php echo $poste['montant_salaire']; ?></div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Durée de Travail</div>
-                    <div class="col-lg-9 col-md-8"><?php echo $poste['duree_travail']; ?></div>
-                  </div>
                 </div>
               </div><!-- End Bordered Tabs -->
 

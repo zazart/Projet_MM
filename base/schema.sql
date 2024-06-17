@@ -215,15 +215,6 @@ CREATE TABLE Employe(
    FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
 );
 
-CREATE TABLE Presence (
-   id_presence SERIAL PRIMARY KEY,
-   id_employe INTEGER NOT NULL,
-   date DATE NOT NULL,
-   heure_arrivee TIME NOT NULL,
-   heure_depart TIME NOT NULL,
-   FOREIGN KEY (id_employe) REFERENCES Employe(id_employe)
-);
-
 CREATE OR REPLACE VIEW V_ProductiviteParJour AS
 SELECT Presence.id_employe, Presence.date, 
        EXTRACT(HOUR FROM (LEAST(Presence.heure_depart, '23:59:59'::TIME) - GREATEST(Presence.heure_arrivee, '00:00:00'::TIME))) AS heures_reelles,

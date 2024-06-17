@@ -24,11 +24,6 @@
                   <label for="montant_salaire" class="form-label">Salaire :</label>
                   <input type="number" class="form-control" name="montant_salaire" id="montant_salaire" value="<?php echo $poste['montant_salaire']; ?>">
                 </div>
-                <div class="col-12">
-                  <label for="duree_travail" class="form-label">Durée de Travail :</label>
-                  <input type="time" class="form-control" name="duree_travail" id="duree_travail" value="<?php echo $poste['duree_travail']; ?>">
-                </div>
-
                 <div class="text-center">
                   <button type="submit" class="boutton boutton-secondary">Modifier le Poste</button>
                 </div>

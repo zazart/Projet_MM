@@ -7,7 +7,6 @@
         <tr>
             <th scope="col">Nom</th>
             <th scope="col">Salaire</th>
-            <th scope="col">Durée de Travail</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -16,7 +15,6 @@
         <tr>
             <td><?php echo $poste['nom']; ?></td>
             <td><?php echo $poste['montant_salaire']; ?></td>
-            <td><?php echo $poste['duree_travail']; ?></td>
             <td>
                 <a href="<?php echo site_url('Personnel/postes/view/'.$poste['id_poste']); ?>">Voir</a> |
                 <a href="<?php echo site_url('Personnel/postes/edit/'.$poste['id_poste']); ?>">Modifier</a> |

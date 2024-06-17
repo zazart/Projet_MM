@@ -12,7 +12,7 @@ class Genre_model extends CI_Model {
             return $query->result_array();
         }
 
-        $query = $this->db->get_where('genre', array('id' => $id));
+        $query = $this->db->get_where('genre', array('id_genre' => $id));
         return $query->row_array();
     }
 
@@ -29,12 +29,12 @@ class Genre_model extends CI_Model {
             'description' => $description
         );
 
-        $this->db->where('id', $id);
+        $this->db->where('id_genre', $id);
         return $this->db->update('genre', $data);
     }
 
     public function delete_genre($id) {
-        return $this->db->delete('genre', array('id' => $id));
+        return $this->db->delete('genre', array('id_genre' => $id));
     }
 }
 

@@ -15,21 +15,19 @@ class Poste_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function insert_poste($nom, $montant_salaire, $duree_travail) {
+    public function insert_poste($nom, $montant_salaire) {
         $data = array(
             'nom' => $nom,
-            'montant_salaire' => $montant_salaire,
-            'duree_travail' => $duree_travail
+            'montant_salaire' => $montant_salaire
         );
         $this->db->insert('poste', $data);
         return $this->db->insert_id();
     }
 
-    public function update_poste($id_poste, $nom, $montant_salaire, $duree_travail) {
+    public function update_poste($id_poste, $nom, $montant_salaire) {
         $data = array(
             'nom' => $nom,
-            'montant_salaire' => $montant_salaire,
-            'duree_travail' => $duree_travail
+            'montant_salaire' => $montant_salaire
         );
 
         $this->db->where('id_poste', $id_poste);

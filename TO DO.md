@@ -3,7 +3,7 @@
 - [ ] To do list Etat de collecte générale
 - [ ] Back Etat de Collecte générale
 - [ ] Front CRUD :
-	- [ ]  Paie
+	- [ ]  Paie {cm:2024-06-14}
 	- [ ]  Bonus {cm:2024-06-12}
     - [ ] Collecte de matière matière première  {cm:2024-06-12}
     - [ ] Collecteur {cm:2024-06-12}

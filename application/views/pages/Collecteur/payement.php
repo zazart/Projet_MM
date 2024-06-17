@@ -1,6 +1,6 @@
-    <section class="section">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
+<section class="section">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
@@ -13,7 +13,7 @@
                     <div class="col-sm-12">
                       <select class="form-select" aria-label="Default select example"  name="collecteur">
                         <?php foreach($collectors as $collector): ?>
-                          <option value="<?php echo $collector['id_employe']; ?>"><?php echo $collector['nom']; ?></option>
+                          <option value="<?php echo $collector['id_employe']; ?>"><?php echo $collector['noms']; ?></option>
                         <?php endforeach; ?>
                       </select>
                       <?php echo form_error('collecteur','<div class="text-danger"> ','</div>');  ?>
@@ -22,7 +22,7 @@
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Type :</label>
                   <div class="col-sm-12">
-                    <select class="form-select" aria-label="Default select example" name="type">
+                    <select class="form-select" aria-label="Default select example" name="type" id="type">
                       <option value="1">Salaire</option>
                       <option value="2">Bonus</option>
                     </select>
@@ -30,8 +30,8 @@
                   </div>
                 </div>
                 <!-- <div class="col-12">
-                  <label for="inputPassword4" class="form-label">Quantite :</label>
-                  <input type="number" class="form-control" id="inputNumber" placeholder="400.000" disabled>
+                  <label for="inputPassword4" class="form-label">Montant :</label>
+                  <input type="number" class="form-control" id="montant" placeholder="400.000" disabled>
                 </div> -->
                 <div class="text-align-right">
                   <a href="list_payement">Voir liste des paiements</a>
@@ -46,3 +46,4 @@
         </div>
       </div>
     </section>
+<script src="<?php echo base_url("assets/js/paiement.js")?>"></script>

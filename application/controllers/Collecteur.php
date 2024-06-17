@@ -79,8 +79,12 @@ class Collecteur extends CI_Controller {
     }
     
     public function state(){
+        $this->load->model("collecteur/etat_model", 'etat');
         $data["title"] = "Projet MM";
 		$data["contents"]="pages/Collecteur/state";
+        $prediction = array(2002,230,6000); /// prediction
+        $data['etat'] = $this->etat->etat_general(date("Y"), $prediction);
+        // var_dump($data['etat']);
 		$this->load->view("templates/template",$data);
     }
 }

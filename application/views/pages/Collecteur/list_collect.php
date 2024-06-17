@@ -17,12 +17,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($collects as  $b) { ?>
+                  <?php foreach($collects as  $b) { $n = $b['id_collects']; ?>
                     <tr>
                       <td><?php echo $b['dates'] ?></td>
                       <td><?php  echo $b['matiere']  ?></td>
                       <td><?php echo $b['qtt'] ?></td>
                       <td><?php  echo $b['collecteur']  ?></td>
+                      <td>
+                        <a href="<?php echo base_url("editCollect?id=$n") ; ?>">modify</a> 
+                      </td>
                     </tr>
                   <?php  } ?>
                 </tbody>

@@ -58,10 +58,13 @@ $route['saveBonus'] = 'collecteurs/BonusController/save';
 // Collecteur
 $route['listCollecteur'] = 'collecteurs/CollecteurController/find_all';
 $route['saveCollecteur'] = 'collecteurs/CollecteurController/save';
+$route['editCollecteur'] = 'collecteurs/CollecteurController/edit';
+$route['updateCollecteur'] = 'collecteurs/CollecteurController/update';
 // Collect
 $route['listCollect'] = 'collecteurs/CollectController/find_all';
 $route['saveCollect'] = 'collecteurs/CollectController/save';
 $route['updateCollect'] = 'collecteurs/CollectController/update';
+$route['editCollect'] = 'collecteurs/CollectController/edit';
 // Salaire
 $route['saveSalaire'] = 'collecteurs/ColSalaireController/save';
 $route['listColSalaire'] = 'collecteurs/ColSalaireController/find_all';

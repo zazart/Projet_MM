@@ -204,6 +204,15 @@ CREATE TABLE SourceMatierePremier(
    FOREIGN KEY(id_1) REFERENCES Source(id),
    FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
+CREATE TABLE paiementEmploye(
+   id_paiement_employe SERIAL,
+   dates DATE NOT NULL,
+   prix NUMERIC(16,2)   NOT NULL,
+   libelle VARCHAR(255)  NOT NULL,
+   id_employe INTEGER NOT NULL,
+   PRIMARY KEY(id_paiement_employe),
+   FOREIGN KEY(id_employe) REFERENCES Employe(id_employe)
+);
 
 CREATE TABLE Employe(
    id_employe SERIAL,

@@ -4,14 +4,19 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">Etat</h5>
 
+            <?php for ($i=0; $i < count($etat); $i++) { ?>
+              <h5 class="card-title text-center"><?php echo $etat[$i]['nom'] ?></h5>
+              
               <!-- Progress Bars with labels-->
               <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                <div class="progress-bar" role="progressbar" style="width: <?php echo intval($etat[$i]['pourcentage']); ?>%" aria-valuenow="<?php echo $etat[$i]['pourcentage'] ?>" aria-valuemin="0" aria-valuemax="100">
+                  <?php echo intval($etat[$i]['pourcentage']); ?>%
+                </div>
               </div>
-              </div><!-- End Progress Bars with labels -->
-
+              
+              <?php } ?>
+            </div><!-- End Progress Bars with labels -->
             </div>
           </div>
         </div>

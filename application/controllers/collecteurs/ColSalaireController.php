@@ -6,6 +6,9 @@ class ColSalaireController extends CI_Controller {
         parent::__construct();
         $this->load->model('collecteur/Col_Salaire_model');
     }
+    public function getSalaire(){
+        
+    }
     public function save(){
         $this->form_validation->set_rules('prix', 'prix', 'required|numeric|greater_than[0]',
             array('required' => 'Le champ est obligatoire',

@@ -10,8 +10,34 @@ class CollecteurController extends CI_Controller{
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($collecteur));
+    }    
+    public function edit (){
+        $id = $this->input->get('id');       
+        $data["collecteur"] = $this->Collecteur_model->find_by_id($id);
+        $data["title"] = "Projet MM";
+        $data["contents"]="pages/Collecteur/modify_collector";
+        $this->load->view("templates/template",$data);
     }
-    public function save(){
+    function update() {
+        $this->validation();
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit();
+        } else {
+            $id = $this->input->post("id");
+            $nom = $this->input->post('nom');
+            $contact = $this->input->post('contact');
+            $adresse = $this->input->post('adresse');
+            $date = $this->input->post('date');
+            $genre = $this->input->post('genre');
+            $this->Collecteur_model->update($id, $nom,$contact,$adresse, $date, $genre);
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('message' => 'success')));
+
+            redirect('collecteur/list_Collector');
+        }
+    }
+    public function validation () {
         $this->form_validation->set_rules('nom', 'nom', 'required',
             array('required' => 'Le champ est obligatoire'            )
         );
@@ -26,8 +52,11 @@ class CollecteurController extends CI_Controller{
             array('required' => 'Le champ est obligatoire'            )
         );
         $this->form_validation->set_rules('genre', 'genre', 'required',
-            array('required' => 'Le champ est obligatoire'            )
+            array('required' => 'Le champ est obligatoire')
         );
+    }
+    public function save(){
+        $this->validation();
         if ($this->form_validation->run() == FALSE) {
             $data["title"] = "Projet MM";
             $data["contents"]="pages/Collecteur/insert_collecteur";

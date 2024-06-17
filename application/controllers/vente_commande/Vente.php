@@ -18,6 +18,8 @@ class Vente extends CI_Controller {
     public function insert_vente(){
         $data["title"] = "Projet MM";
 		$data["contents"]="pages/vente/insert_vente";
+        $data["etat"] = "vente_commande";
+        $data["activer"] = "lien_vente";
 		$this->load->view("templates/template",$data);
     }
 

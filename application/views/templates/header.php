@@ -83,17 +83,17 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="<?php echo ($etat == "collecteur") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-bucket-fill color_black"></i><span class="color_black">Tâches collecteurs</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="<?php echo ($etat == "collecteur") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="<?php echo(site_url("collecteurs/collecteurController/insert_collector")); ?>"  <?php if ($activer == "lien_collecteur") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecteur</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="<?php echo(site_url("collecteurs/collectController/insert_collect")); ?>" <?php if ($activer == "lien_collect") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecte</span>
             </a>
           </li>
@@ -115,6 +115,11 @@
           <li>
             <a href="components-breadcrumbs.html">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-breadcrumbs.html">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste</span>
             </a>
           </li>
         </ul>
@@ -229,22 +234,22 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#vente-nav" data-bs-toggle="collapse" href="#">
+        <a class="<?php echo ($etat == "vente_commande") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#vente-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-graph-up-arrow color_black"></i><span class="color_black">Ventes & prise de commande</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
-        <ul id="vente-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="vente-nav" class="<?php echo ($etat == "vente_commande") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("vente_commande/vente/insert_vente")); ?>">
+            <a href="<?php echo(site_url("vente_commande/vente/insert_vente")); ?>" <?php if ($activer == "lien_vente") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Vente</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("vente_commande/client/insert_client")); ?>">
+            <a href="<?php echo(site_url("vente_commande/client/insert_client")); ?>" <?php if ($activer == "lien_client") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Client</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("vente_commande/commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("vente_commande/commande/insert_commande")); ?>" <?php if ($activer == "lien_commande") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
             </a>
           </li>

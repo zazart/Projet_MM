@@ -15,6 +15,8 @@ class Client extends CI_Controller {
     public function insert_client(){
         $data["title"] = "Insertion Client";
 		$data["contents"]="pages/client/insert_client";
+        $data["etat"] = "vente_commande";
+        $data["activer"] = "lien_client";
 		$this->load->view("templates/template",$data);
     }
 

@@ -22,6 +22,11 @@ insert  into genre values
 select  * from bonus;
 
 select  * from collecteur;
+SELECT c.Id_MatierPremier, m.nom ,SUM(c.qtt) AS total_quantity_2018
+FROM Collects c join matierpremier m on m.id_matierpremier = c.id_matierpremier 
+WHERE EXTRACT(YEAR FROM c.DateCollect) = 2024
+GROUP BY c.Id_MatierPremier, m.nom;
+
 
 select  * from collects;
 select  * from matierpremier ;

@@ -7,6 +7,8 @@ class Employes extends CI_Controller {
         $this->load->model('Personnel/Employe_model');
         $this->load->model('Personnel/Profil_model'); // Charger le modèle Profil
         $this->load->model('Personnel/TypeProfil_model'); // Charger le modèle TypeProfil
+        $this->load->model('Personnel/Genre_model'); 
+        $this->load->model('Personnel/Poste_model');
         $this->load->library('form_validation');
     }
 
@@ -127,20 +129,22 @@ class Employes extends CI_Controller {
         redirect('Personnel/employes');
     }
 
+
+    public function form() {
+        $data['title'] = 'Recherche des employés';
+
+        $data['contents']='pages/Personnel/employes/search';
+        $data['genres']=$this->Genre_model->get_genres();
+        $data['postes']=$this->Poste_model->get_postes();
+        $this->load->view('templates/template', $data);
+    }
+
     public function search() {
         // Récupérer les critères de recherche à partir du formulaire de recherche
         $criteria = array(
-            'nom' => $this->input->get('nom'),
-            'email' => $this->input->get('email'),
-            'telephone' => $this->input->get('telephone'),
-            'adresse' => $this->input->get('adresse'),
-            'id_genre' => $this->input->get('id_genre'),
-            'id_poste' => $this->input->get('id_poste'),
-            'embauche_before' => $this->input->get('embauche_before'),
-            'embauche_after' => $this->input->get('embauche_after'),
-            'debauche_before' => $this->input->get('debauche_before'),
-            'debauche_after' => $this->input->get('debauche_after'),
-            'debauche_is_null' => $this->input->get('debauche_is_null')
+            'nom' => $this->input->post('nom'),
+            'id_genre' => $this->input->post('id_genre'),
+            'id_poste' => $this->input->post('id_poste')
         );
 
         // Supprimer les critères vides
@@ -150,9 +154,10 @@ class Employes extends CI_Controller {
         $data['employes'] = $this->Employe_model->search_employes($criteria);
         $data['title'] = 'Recherche des employés';
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/employes/search', $data);
-        $this->load->view('templates/footer');
+        $data['contents']='pages/Personnel/employes/result-search';
+        $data['genres']=$this->Genre_model->get_genres();
+        $data['postes']=$this->Poste_model->get_postes();
+        $this->load->view('templates/template', $data);
     }
 }
 ?>

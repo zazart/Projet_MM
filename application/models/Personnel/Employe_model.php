@@ -38,39 +38,18 @@ class Employe_model extends CI_Model {
         $this->db->join('genre', 'employe.id_genre = genre.id_genre');
         $this->db->join('poste', 'employe.id_poste = poste.id_poste');
 
-        // Appliquer les critères de recherche
+         // Appliquer les critères de recherche
         if (!empty($criteria['nom'])) {
+            $this->db->group_start();  // Open bracket
             $this->db->like('employe.nom', $criteria['nom']);
-        }
-        if (!empty($criteria['email'])) {
-            $this->db->like('employe.email', $criteria['email']);
-        }
-        if (!empty($criteria['telephone'])) {
-            $this->db->like('employe.telephone', $criteria['telephone']);
-        }
-        if (!empty($criteria['adresse'])) {
-            $this->db->like('employe.adresse', $criteria['adresse']);
+            $this->db->or_like('employe.email', $criteria['nom']);
+            $this->db->group_end();  // Close bracket
         }
         if (!empty($criteria['id_genre'])) {
             $this->db->where('employe.id_genre', $criteria['id_genre']);
         }
         if (!empty($criteria['id_poste'])) {
             $this->db->where('employe.id_poste', $criteria['id_poste']);
-        }
-        if (!empty($criteria['embauche_before'])) {
-            $this->db->where('employe.embauche <', $criteria['embauche_before']);
-        }
-        if (!empty($criteria['embauche_after'])) {
-            $this->db->where('employe.embauche >', $criteria['embauche_after']);
-        }
-        if (!empty($criteria['debauche_before'])) {
-            $this->db->where('employe.debauche <', $criteria['debauche_before']);
-        }
-        if (!empty($criteria['debauche_after'])) {
-            $this->db->where('employe.debauche >', $criteria['debauche_after']);
-        }
-        if (isset($criteria['debauche_is_null'])) {
-            $this->db->where('employe.debauche IS NULL', null, false);
         }
 
         $query = $this->db->get();

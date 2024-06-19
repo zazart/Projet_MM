@@ -1,204 +1,156 @@
 CREATE TABLE Genre(
-   id SERIAL,
+   Id_Genre SERIAL,
    description VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(Id_Genre)
 );
 
 CREATE TABLE Bonus(
-   id SERIAL,
+   id_bonus SERIAL,
    dateDebut DATE NOT NULL,
    amount NUMERIC(18,2)   NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(id_bonus)
 );
 
 CREATE TABLE Client(
-   id SERIAL,
+   id_client SERIAL,
    nomGlobal VARCHAR(255)  NOT NULL,
    email VARCHAR(255) ,
    adresse VARCHAR(255) ,
-   PRIMARY KEY(id)
+   PRIMARY KEY(id_client)
+);
+
+CREATE TABLE Commande(
+   id_commande SERIAL,
+   datecommande TIMESTAMP NOT NULL,
+   id_client INTEGER NOT NULL,
+   PRIMARY KEY(id_commande),
+   FOREIGN KEY(id_client) REFERENCES Client(id_client)
 );
 
 CREATE TABLE Panier(
-   id SERIAL,
-   idProduit INTEGER NOT NULL,
+   id_panier SERIAL,
+   id_produit INTEGER NOT NULL,
    quantite INTEGER NOT NULL,
-   PRIMARY KEY(id)
-);
-
-CREATE TABLE StockProduit(
-   id SERIAL,
-   datestock DATE NOT NULL,
-   inQuantite INTEGER NOT NULL,
-   outQuantite INTEGER NOT NULL,
-   PRIMARY KEY(id)
+   id_commande INTEGER NOT NULL,
+   FOREIGN KEY(id_commande) REFERENCES Commande(id_commande),
+   PRIMARY KEY(id_panier)
 );
 
 CREATE TABLE vente(
-   id SERIAL,
+   id_vente SERIAL,
    livraison BOOLEAN NOT NULL,
-   prixTotal NUMERIC(16,2)   NOT NULL,
-   PRIMARY KEY(id)
+   date_vente DATE NOT NULL,
+   prixTotal NUMERIC(16,2)  NOT NULL,
+   id_commande INTEGER NOT NULL,
+   FOREIGN KEY(id_commande) REFERENCES Commande(id_commande),
+   PRIMARY KEY(id_vente)
 );
 
-CREATE TABLE MatierPremier(
-   id SERIAL,
+CREATE TABLE MatierePremier(
+   id_matierepremier SERIAL,
    Nom VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(id_matierepremier)
 );
 
 CREATE TABLE PrixMatierePremier(
-   id SERIAL,
+   id_prixMatierePremier SERIAL,
    prix NUMERIC(16,2)   NOT NULL,
    datePrix DATE,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   MatierPremier INTEGER NOT NULL,
+   PRIMARY KEY(id_prixMatierePremier),
+   FOREIGN KEY(MatierPremier) REFERENCES MatierePremier(id_matierepremier)
 );
 
 CREATE TABLE Source(
-   id SERIAL,
+   id_source SERIAL,
    lieu VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(id_source)
 );
 
 CREATE TABLE StockMatierPremier(
-   id SERIAL,
+   id_stockMatierPremier SERIAL,
    dates DATE,
    in_qtt INTEGER NOT NULL,
    out_qtt INTEGER NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES MatierPremier(id)
+   MatierePremier INTEGER NOT NULL,
+   PRIMARY KEY(id_stockMatierPremier),
+   FOREIGN KEY(MatierePremier) REFERENCES MatierePremier(id_matierepremier)
 );
 
-CREATE TABLE Production(
-   id SERIAL,
-   quantite INTEGER NOT NULL,
-   dateProduction DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES StockMatierPremier(id)
+CREATE TABLE Production (
+    id_production SERIAL PRIMARY KEY,
+    MatierePremier INT,
+    QuantiteProduit INT,
+    DateProduction DATE,
+    FOREIGN KEY (MatierePremier) REFERENCES MatierePremier(id_matierepremier)
 );
 
-CREATE TABLE Machine(
-   id SERIAL,
-   nom VARCHAR(255)  NOT NULL,
-   fonction VARCHAR(255)  NOT NULL,
-   dateAchat DATE NOT NULL,
-   PRIMARY KEY(id)
+
+create table machine(
+    id_machine serial primary key,
+    nom_machine varchar(255),
+    fonction varchar(255),
+    date_achat date
 );
 
-CREATE TABLE StatMachine(
-   id SERIAL,
-   dateVerification DATE NOT NULL,
-   state INTEGER NOT NULL,
-   description VARCHAR(255) ,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Machine(id)
+create table stat_machine(
+    id_stat serial primary key,
+    id_machine int,
+    date_verification date,
+    statut int,
+    descri varchar(255),
+    foreign key(id_machine) references machine(id_machine)
+);
+
+
+CREATE TABLE ModePaiement(
+   id_modePaiement SERIAL,
+   intitule VARCHAR(255)  NOT NULL,
+   PRIMARY KEY(id_modePaiement)
+);
+
+CREATE TABLE Produit(
+    id_produit SERIAL PRIMARY KEY,
+    nom_produit VARCHAR(255),
+    prix_unitaire DECIMAL(16,2)
+);
+
+CREATE TABLE StockProduit(
+    id_StockProduit SERIAL PRIMARY KEY,
+    DateStockProduit DATE,
+    QuantiteEntrant int,
+    QuantiteSortant int,
+    id_Produit int,
+    FOREIGN KEY(id_Produit) REFERENCES Produit(id_Produit) 
+);
+
+
+CREATE TABLE SourceMatierePremier(
+   id_SourceMatierePremier SERIAL,
+   datePrelevement DATE NOT NULL,
+   MatierPremier INTEGER NOT NULL,
+   Source INTEGER NOT NULL,
+   PRIMARY KEY(id_SourceMatierePremier),
+   FOREIGN KEY(MatierPremier) REFERENCES MatierePremier(id_matierepremier),
+   FOREIGN KEY(Source) REFERENCES Source(id_source)
 );
 
 CREATE TABLE Poste(
    id_poste SERIAL,
    nom VARCHAR(255)  NOT NULL,
    montant_salaire NUMERIC(16,2),
-   duree_travail TIME NOT NULL,
    PRIMARY KEY(id_poste)
 );
 
-CREATE TABLE TypeDepense(
-   id INTEGER,
-   intitule VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id)
+CREATE TABLE Salaire(
+   id_salaire SERIAL,
+   id_poste INTEGER NOT NULL,
+   date_debut DATE NOT NULL,
+   montant_salaire NUMERIC(16,2),
+   PRIMARY KEY(id_salaire),
+   FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
 );
 
-CREATE TABLE PCG(
-   compte INTEGER,
-   nom VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(compte)
-);
-
-CREATE TABLE ModePaiement(
-   id SERIAL,
-   intitule VARCHAR(255)  NOT NULL,
-   PRIMARY KEY(id)
-);
-
-CREATE TABLE Collecteur(
-   id SERIAL,
-   nom VARCHAR(255)  NOT NULL,
-   contact VARCHAR(255)  NOT NULL,
-   adresse VARCHAR(255)  NOT NULL,
-   dateDebuche DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Genre(id)
-);
-
-CREATE TABLE SalaireCollecteur(
-   id SERIAL,
-   prix NUMERIC(16,2)  ,
-   dates DATE,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
-);
-
-CREATE TABLE PaymentCollecteur(
-   id MONEY,
-   datePayments DATE NOT NULL,
-   prix NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
-);
-
-CREATE TABLE Collects(
-   id SERIAL,
-   DateCollect DATE NOT NULL,
-   matierPremier INTEGER NOT NULL,
-   qtt NUMERIC(15,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id),
-   FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
-);
-
-CREATE TABLE Commande(
-   id SERIAL,
-   dateCommande TIMESTAMP NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   id_3 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Client(id),
-   FOREIGN KEY(id_2) REFERENCES Panier(id),
-   FOREIGN KEY(id_3) REFERENCES vente(id)
-);
-
-CREATE TABLE Produit(
-   id SERIAL,
-   nom VARCHAR(255)  NOT NULL,
-   prixunitaire NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES StockProduit(id)
-);
-
-CREATE TABLE SourceMatierePremier(
-   id SERIAL,
-   datePrelevement DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Source(id),
-   FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
-);
 
 CREATE TABLE Employe(
    id_employe SERIAL,
@@ -211,45 +163,92 @@ CREATE TABLE Employe(
    id_genre INTEGER NOT NULL,
    id_poste INTEGER NOT NULL,
    PRIMARY KEY(id_employe),
-   FOREIGN KEY(id_genre) REFERENCES Genre(id),
+   FOREIGN KEY(id_genre) REFERENCES Genre(Id_Genre),
    FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
 );
 
-CREATE TABLE Presence (
-   id_presence SERIAL PRIMARY KEY,
+CREATE TABLE paiementEmploye(
+   id_paiement_employe SERIAL,
+   dates DATE NOT NULL,
+   prix NUMERIC(16,2)   NOT NULL,
+   libelle VARCHAR(255)  NOT NULL,
    id_employe INTEGER NOT NULL,
-   date DATE NOT NULL,
-   heure_arrivee TIME NOT NULL,
-   heure_depart TIME NOT NULL,
-   FOREIGN KEY (id_employe) REFERENCES Employe(id_employe)
+   PRIMARY KEY(id_paiement_employe),
+   FOREIGN KEY(id_employe) REFERENCES Employe(id_employe)
 );
 
-CREATE OR REPLACE VIEW V_ProductiviteParJour AS
-SELECT Presence.id_employe, Presence.date, 
-       EXTRACT(HOUR FROM (LEAST(Presence.heure_depart, '23:59:59'::TIME) - GREATEST(Presence.heure_arrivee, '00:00:00'::TIME))) AS heures_reelles,
-       EXTRACT(HOUR FROM Poste.duree_travail) AS heures_theoriques,
-       EXTRACT(HOUR FROM (LEAST(Presence.heure_depart, '23:59:59'::TIME) - GREATEST(Presence.heure_arrivee, '00:00:00'::TIME))) / EXTRACT(HOUR FROM Poste.duree_travail) AS productivite_jour
-FROM Presence 
-JOIN Employe ON Presence.id_employe = Employe.id_employe
-JOIN Poste ON Employe.id_poste = Poste.id_poste;
 
-CREATE TABLE Depense(
-   id SERIAL,
-   description VARCHAR(255)  NOT NULL,
-   montant NUMERIC(16,2)   NOT NULL,
-   dateDepense DATE NOT NULL,
-   justification VARCHAR(255)  NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES ModePaiement(id),
-   FOREIGN KEY(id_2) REFERENCES TypeDepense(id)
+CREATE TABLE Collects(
+   Id_Collects SERIAL,
+   DateCollect DATE NOT NULL,
+   qtt NUMERIC(15,2)   NOT NULL,
+   id_employe INTEGER NOT NULL,
+   Id_MatierePremier INTEGER NOT NULL,
+   PRIMARY KEY(Id_Collects),
+   FOREIGN KEY(id_employe) REFERENCES Employe(id_employe),
+   FOREIGN KEY(Id_MatierePremier) REFERENCES MatierePremier(id_matierepremier)
 );
 
 CREATE TABLE PanierProduit(
-   id INTEGER,
-   id_1 INTEGER,
-   PRIMARY KEY(id, id_1),
-   FOREIGN KEY(id) REFERENCES Panier(id),
-   FOREIGN KEY(id_1) REFERENCES Produit(id)
+   id_produit INTEGER,
+   id_panier INTEGER,
+   PRIMARY KEY(id_produit, id_panier),
+   FOREIGN KEY(id_panier) REFERENCES Panier(id_panier),
+   FOREIGN KEY(id_produit) REFERENCES Produit(id_produit)
 );
+
+CREATE TABLE TypeProfil(
+   id_typeProfil SERIAL PRIMARY KEY,
+   libelle VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Profil(
+   id_profil SERIAL PRIMARY KEY,
+   email VARCHAR(255) NOT NULL,
+   mot_de_passe VARCHAR(255) NOT NULL,
+   id_personnel int REFERENCES Employe(id_employe),
+   type_profil int REFERENCES TypeProfil(id_typeProfil)
+);
+
+insert into Genre(description) values 
+('Homme'),
+('Femme');
+
+
+-- Création de la table pcg
+CREATE TABLE pcg (
+    id_pcg SERIAL PRIMARY KEY,
+    intitule VARCHAR(255),
+    nom VARCHAR(255)
+);
+
+-- Création de la table sub_comptes
+CREATE TABLE sub_comptes (
+    id_sub_comptes SERIAL PRIMARY KEY,
+    intitule VARCHAR(255),
+    description TEXT,
+    idpcg INT,
+    FOREIGN KEY (idpcg) REFERENCES pcg(id_pcg)
+);
+
+-- Création de la table modeDepaiement
+CREATE TABLE modeDepaiement (
+    id_ModePaiment SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    descriptions VARCHAR(255)
+);
+
+
+-- Création de la table Depense
+CREATE TABLE Depense(
+   id_Depense SERIAL PRIMARY KEY,
+   description VARCHAR(255) NOT NULL,
+   montant NUMERIC(16,2) NOT NULL,
+   dateDepense DATE NOT NULL,
+   justificatif BYTEA,
+   id_ModePaiment INTEGER NOT NULL,
+   id_sub_comptes INTEGER NOT NULL,
+   FOREIGN KEY (id_ModePaiment) REFERENCES modeDepaiement(id_ModePaiment),
+   FOREIGN KEY (id_sub_comptes) REFERENCES sub_comptes(id_sub_comptes)
+);
+

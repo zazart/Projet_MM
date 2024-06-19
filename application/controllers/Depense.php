@@ -12,7 +12,7 @@ class Depense extends CI_Controller {
 
     // Access to the insertion form
     public function formulaire() {
-        $this->Depense_model->generatePcg();
+        // $this->Depense_model->generatePcg();
         $data["categories"] = $this->Depense_model->get_categories();
         // $data["categories"] = [];
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
@@ -29,8 +29,14 @@ class Depense extends CI_Controller {
     // Method to fetch subcomptes based on selected PCG
     public function get_subcomptes($pcg_id) {
         $subcomptes = $this->Depense_model->get_subcomptes_by_pcg($pcg_id);
-        header('Content-Type: application/json');
-        echo json_encode($subcomptes);  
+        $response = array(
+            'success' => true,
+            'message' => 'Recuperation des categorie par idPcg',
+            'categories' => $subcomptes
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
     
     public function listDepense(){
@@ -65,22 +71,25 @@ class Depense extends CI_Controller {
                 // redirect('depense/formulaire');
             }
         }
-
+        $response = array(
+            'success' => false
+        );
         if ($this->Depense_model->insert_depense($data)) {
             echo ("ok be");
+            $response = array(
+                'success' => true,
+                'message' => 'Client ajouté avec succès.',
+                'depenses' => $this->Depense_model->get_depense()
+            );
             // $this->session->set_flashdata('success', 'Dépense insérée avec succès.');
         } else {
             echo("tsia");
             // $this->session->set_flashdata('error', 'Échec de l\'insertion de la dépense.');
         }
-        $response = array(
-            'success' => true,
-            'message' => 'Client ajouté avec succès.',
-            'depenses' => $this->Depense_model->get_depense()
-        );
+        
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($response));   
+            ->set_output(json_encode($response));
     }
 
     // File upload handling

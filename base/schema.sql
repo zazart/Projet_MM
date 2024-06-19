@@ -173,7 +173,7 @@ CREATE TABLE paiementEmploye(
    prix NUMERIC(16,2)   NOT NULL,
    libelle VARCHAR(255)  NOT NULL,
    id_employe INTEGER NOT NULL,
-   PRIMARY KEY(id_paiement_employe),
+   PRIMARY KEY(id_paieme;nt_employe),
    FOREIGN KEY(id_employe) REFERENCES Employe(id_employe)
 );
 

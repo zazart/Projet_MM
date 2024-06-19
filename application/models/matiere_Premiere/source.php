@@ -22,7 +22,7 @@ class source extends CI_Model{
         $data = array(
             'lieu' => $lieu
         );
-        $this->db->where($id);
+        $this->db->where('id_source',$id);
         $this->db->update('source',$data);
         redirect('Matiere_Premier/source');
     }
@@ -33,12 +33,12 @@ class source extends CI_Model{
     }
 
     public function get_source($id){
-        $query = $this->db->get_where('source', array('id'=>$id));
+        $query = $this->db->get_where('source', array('id_source'=>$id));
         return $query->row_array();
     }
 
     public function delete_source($id) {
-        $this->db->delete('source',array('id'=>$id));
+        $this->db->delete('source',array('id_source'=>$id));
     }
 }
 

@@ -11,7 +11,7 @@
                 } ?></h5>
 <!-- Vertical Form -->
                 <form action="<?php  echo site_url("Matiere_premier/create_source")?>" method="post" class="row g-3">
-                    <input type="hidden" name="id" value="<?php echo isset($source['id']) ? $source['id'] : ''; ?>">
+                    <input type="hidden" name="id" value="<?php echo isset($source['id_source']) ? $source['id_source'] : ''; ?>">
                     <div class="col-12">
                         <label for="inputNanme4" class="form-label">Ajouter le lieu</label>
                          <input   id="lieu" type="text" class="form-control" name="lieu" value="<?php if (isset($source['lieu'])) { echo $source['lieu']; } ?>" required autofocus>								

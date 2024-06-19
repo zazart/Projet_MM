@@ -6,15 +6,15 @@
             <h5 class="card-title text-center">Prix des matières premières</h5>
 <!-- Vertical Form -->
                 <form class="row g-3" method="post" action="<?php echo site_url("Matiere_Premier/create_prix"); ?>">
-                <input type="hidden" name="id" value="<?php echo isset($prix_matiere['id']) ? $prix_matiere['id'] : ''; ?>">
+                <input type="hidden" name="id" value="<?php echo isset($prix_matiere['id_prixmatierepremier']) ? $prix_matiere['id_prixmatierepremier'] : ''; ?>">
                 <div class="col-12">
                 <label for="nom" class="form-label">Nom</label>
                         <div class="col-sm-12">
                             <select class="form-select" name="nom" id="nom" aria-label="Default select example" required>
                                     <option value="" selected disabled>Selectionnez le nom</option>
                                     <?php foreach ($matiere_data as $matiere): ?>
-                                        <option value="<?php echo $matiere['id']; ?>" 
-                                                    <?php echo (isset($prix_matiere['id_1']) && $prix_matiere['id_1'] == $matiere['id']) ? 'selected' : ''; ?>>
+                                        <option value="<?php echo $matiere['id_matierepremier']; ?>" 
+                                                    <?php echo (isset($prix_matiere['matierpremier']) && $prix_matiere['matierpremier'] == $matiere['id_matierepremier']) ? 'selected' : ''; ?>>
                                                     <?php echo $matiere['nom']; ?>
                                         </option>
                                     <?php endforeach; ?>

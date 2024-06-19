@@ -24,8 +24,8 @@
                             <td><?php echo $prix_matiere['nom']; ?></td>
                             <td><?php echo $prix_matiere['prix']; ?></td>
                             <td><?php echo $prix_matiere['dateprix']; ?></td>
-                            <td><a href="<?php echo site_url('Matiere_Premier/edit_prix_matier_permier/'.$prix_matiere['id']);?>">Edit</a></td>
-                            <td><a href="<?php echo site_url('Matiere_Premier/drop_prix_matier_permier/'.$prix_matiere['id']);?>">Delete</a></td>
+                            <td><a href="<?php echo site_url('Matiere_Premier/edit_prix_matier_permier/'.$prix_matiere['id_prixmatierepremier']);?>">Edit</a></td>
+                            <td><a href="<?php echo site_url('Matiere_Premier/drop_prix_matier_permier/'.$prix_matiere['id_prixmatierepremier']);?>">Delete</a></td>
                         </tr>
                   <?php endforeach; ?>
                 </tbody>

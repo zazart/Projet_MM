@@ -20,8 +20,8 @@
                 <?php foreach($source as $source): ?>
                 <tr>
                 <td><?php echo $source['lieu']; ?></td>
-                <td><a href="<?php echo site_url('Matiere_Premier/edit_source/'.$source['id']);?>">Edit</a></td>
-                <td><a href="<?php echo site_url('Matiere_Premier/drop_source/'.$source['id']);?>">Delete</a></td>
+                <td><a href="<?php echo site_url('Matiere_Premier/edit_source/'.$source['id_source']);?>">Edit</a></td>
+                <td><a href="<?php echo site_url('Matiere_Premier/drop_source/'.$source['id_source']);?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
                 </tbody>

@@ -12,7 +12,7 @@ class prix_matiere extends CI_Model{
     public function insertprixmatierepremier($idmatiere,$prix,$date){
 
         $data = array(
-            'id_matierpremier'=>$idmatiere,
+            'matierpremier'=>$idmatiere,
             'prix'=>$prix,
             'dateprix'=>$date
         );
@@ -22,20 +22,20 @@ class prix_matiere extends CI_Model{
 
     public function update_prix_matiere($id,$idmatierepremier,$prix,$date) {
         $data = array(
-            'id_matierpremier'=>$idmatierepremier,
+            'matierpremier'=>$idmatierepremier,
             'prix'=>$prix,
             'dateprix'=>$date
         );
 
-        $this->db->where('id',$id);
+        $this->db->where('id_prixmatierepremier',$id);
         $this->db->update('prixmatierepremier',$data);
         redirect('Matiere_Premier/prixmatierepremier');
     }
 
     public function get_prix_matiere_data(){
-        $this->db->select('prixmatierepremier.*, matierpremier.nom'); 
+        $this->db->select('prixmatierepremier.*, matierepremier.nom'); 
         $this->db->from('prixmatierepremier');
-        $this->db->join('matierpremier', 'prixmatierepremier.id_matierpremier = matierpremier.id', 'left');
+        $this->db->join('matierepremier', 'prixmatierepremier.matierpremier = matierepremier.id_matierepremier', 'left');
     
         $query = $this->db->get();
         return $query->result_array();
@@ -43,12 +43,12 @@ class prix_matiere extends CI_Model{
     
 
     public function get_prix_matiere($id){
-        $query = $this->db->get_where('prixmatierepremier', array('id'=>$id));
+        $query = $this->db->get_where('prixmatierepremier', array('id_prixmatierepremier'=>$id));
         return $query->row_array();
     }
 
     public function delete_matiere($id) {
-        $this->db->delete('prixmatierepremier',array('id'=>$id));
+        $this->db->delete('prixmatierepremier',array('id_prixmatierepremier'=>$id));
     }
 }
 

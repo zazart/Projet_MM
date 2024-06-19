@@ -9,7 +9,7 @@
               <!-- Vertical Form -->
 
               <form class="row g-3" action="<?php echo site_url('Matiere_premier/create') ?>" method="post">
-                <input type="hidden" name="id" value="<?php echo isset($matiere['id']) ? $matiere['id'] : ''; ?>">
+                <input type="hidden" name="id" value="<?php echo isset($matiere['id_matierepremier']) ? $matiere['id_matierepremier'] : ''; ?>">
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nom</label>
                   <input   id="inputName" type="text" class="form-control" name="matierepremier" value="<?php if (isset($matiere['nom'])) { echo $matiere['nom']; } ?>" required autofocus>								

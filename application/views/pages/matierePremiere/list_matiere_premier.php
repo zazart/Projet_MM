@@ -20,8 +20,8 @@
                     <?php foreach($matiere_data as $matiere): ?>
                         <tr>
                         <td><?php echo $matiere['nom']; ?></td>
-                        <td><a href="<?php echo site_url('Matiere_premier/edit_matier_permier/'.$matiere['id']);?>">Modifier</a></td>
-                        <td><a href="<?php echo site_url('Matiere_premier/drop_matier_permier/'.$matiere['id']);?>">Supprimer</a></td>
+                        <td><a href="<?php echo site_url('Matiere_premier/edit_matier_permier/'.$matiere['id_matierepremier']);?>">Modifier</a></td>
+                        <td><a href="<?php echo site_url('Matiere_premier/drop_matier_permier/'.$matiere['id_matierepremier']);?>">Supprimer</a></td>
                         </tr>
                     <?php endforeach; ?>
                   </tr>

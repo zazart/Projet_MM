@@ -196,86 +196,86 @@ class Matiere_premier extends CI_Controller {
         redirect('Matiere_Premier/list_source_matiere_premier');
     }
 
-    public function stockmatierepremier(){
-        $this->load->model('matiere');
-        $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->view('Users/stock',$data);
-    }
+    // public function stockmatierepremier(){
+    //     $this->load->model('matiere');
+    //     $data['matiere_data']=$this->matiere->get_matiere_data();
+    //     $this->load->view('Users/stock',$data);
+    // }
 
-    public function create_stock(){
-        $this->load->model('stock');
-        $id=$this->stock->input->post('id');
-        $nom=$this->stock->input->post('nom');
-        $date=$this->stock->input->post('date');
-        $in=$this->stock->input->post('inqtt');
-        $out=$this->stock->input->post('outqtt');
+    // public function create_stock(){
+    //     $this->load->model('stock');
+    //     $id=$this->stock->input->post('id');
+    //     $nom=$this->stock->input->post('nom');
+    //     $date=$this->stock->input->post('date');
+    //     $in=$this->stock->input->post('inqtt');
+    //     $out=$this->stock->input->post('outqtt');
 
-        if ($id) {
-            $this->stock->update_stock($id,$nom,$date,$in,$out);
-            $this->session->set_flashdata('success', 'Stock mise à jour avec succès.');
-        }else {
-            $this->stock->insertstock($nom,$date,$in,$out);
-        }
-    }
+    //     if ($id) {
+    //         $this->stock->update_stock($id,$nom,$date,$in,$out);
+    //         $this->session->set_flashdata('success', 'Stock mise à jour avec succès.');
+    //     }else {
+    //         $this->stock->insertstock($nom,$date,$in,$out);
+    //     }
+    // }
 
-    public function list_stock_matiere_premier(){
-        $this->load->model('stock');
-        $data['stock_data']=$this->stock->get_stock_data();
-        $this->load->view('Users/list_stock',$data);
-    }
+    // public function list_stock_matiere_premier(){
+    //     $this->load->model('stock');
+    //     $data['stock_data']=$this->stock->get_stock_data();
+    //     $this->load->view('Users/list_stock',$data);
+    // }
 
-    public function edit_stock($id){
-        $this->load->model('stock');
-        $data['stock_data']=$this->stock->get_stock($id);
-        $this->load->model('matiere');
-        $data['matiere_data']=$this->matiere->get_matiere_data();
-        $this->load->view('Users/stock',$data);
-    }
+    // public function edit_stock($id){
+    //     $this->load->model('stock');
+    //     $data['stock_data']=$this->stock->get_stock($id);
+    //     $this->load->model('matiere');
+    //     $data['matiere_data']=$this->matiere->get_matiere_data();
+    //     $this->load->view('Users/stock',$data);
+    // }
 
-    public function drop_stock($id){
-        $this->load->model('stock');
-        $this->stock->delete_stock($id);
-        redirect('MatierePremier/list_stock_matiere_premier');
-    }
+    // public function drop_stock($id){
+    //     $this->load->model('stock');
+    //     $this->stock->delete_stock($id);
+    //     redirect('MatierePremier/list_stock_matiere_premier');
+    // }
 
-    public function production(){
-        $this->load->model('stock');
-        $data['stock_data']=$this->stock->get_stock_data();
-        $this->load->view('Users/production',$data);
-    }
+    // public function production(){
+    //     $this->load->model('stock');
+    //     $data['stock_data']=$this->stock->get_stock_data();
+    //     $this->load->view('Users/production',$data);
+    // }
 
-    public function create_production(){
-        $this->load->model('production');
-        $id=$this->production->input->post('id');
-        $stock=$this->production->input->post('stock');
-        $qt=$this->production->input->post('quantite');
-        $date=$this->production->input->post('date');
+    // public function create_production(){
+    //     $this->load->model('production');
+    //     $id=$this->production->input->post('id');
+    //     $stock=$this->production->input->post('stock');
+    //     $qt=$this->production->input->post('quantite');
+    //     $date=$this->production->input->post('date');
 
-        if ($id) {
-            $this->production->update_production($id,$stock,$qt,$date);
-            $this->session->set_flashdata('success', 'Production mise à jour avec succès.');
-        }else {
-            $this->production->insertproduction($stock,$qt,$date);
-        }
-    } 
+    //     if ($id) {
+    //         $this->production->update_production($id,$stock,$qt,$date);
+    //         $this->session->set_flashdata('success', 'Production mise à jour avec succès.');
+    //     }else {
+    //         $this->production->insertproduction($stock,$qt,$date);
+    //     }
+    // } 
 
-    public function list_production(){
-        $this->load->model('production');
-        $data['production_data']=$this->production->get_produciton_data();
-        $this->load->view('Users/list_production',$data);
-    }
+    // public function list_production(){
+    //     $this->load->model('production');
+    //     $data['production_data']=$this->production->get_produciton_data();
+    //     $this->load->view('Users/list_production',$data);
+    // }
 
-    public function edit_production($id){
-        $this->load->model('production');
-        $data['production_data']=$this->production->get_production($id);
-        $this->load->model('stock');
-        $data['stock_data']=$this->stock->get_stock_data();
-        $this->load->view('Users/production',$data);
-    }
+    // public function edit_production($id){
+    //     $this->load->model('production');
+    //     $data['production_data']=$this->production->get_production($id);
+    //     $this->load->model('stock');
+    //     $data['stock_data']=$this->stock->get_stock_data();
+    //     $this->load->view('Users/production',$data);
+    // }
 
-    public function drop_production($id){
-        $this->load->model('production');
-        $this->production->delete_production($id);
-        redirect('MatierePremier/list_production');
-    }
+    // public function drop_production($id){
+    //     $this->load->model('production');
+    //     $this->production->delete_production($id);
+    //     redirect('MatierePremier/list_production');
+    // }
 }

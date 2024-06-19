@@ -21,10 +21,12 @@
 - [ ] To do list Statistique productivité personnels
 - [ ] Back Statistique productivité personnels
 - [ ] Front CRUD:
-	- [ ] Info personnels
+	- [ ok ] Info personnels
 	- [ ] Presence
 - [ ] Front Statistique productivité personnels
 - [ ] Intégration CRUD
+	- [ ok ] Info personnels
+	- [ ] Presence
 - [ ] Intégration Statistique productivité personnels
 ### Vente & prise de commande
 - [ ] To do list Prevision qté a vendre

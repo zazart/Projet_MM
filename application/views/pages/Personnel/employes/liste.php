@@ -26,8 +26,9 @@
             <td><?php echo $employe['genre_description']; ?></td>
             <td><?php echo $employe['poste_nom']; ?></td>
             <td>
-                <a href="<?php echo site_url('Personnel/employes/view/'.$employe['id_employe']); ?>">Voir</a> |
-                <a href="<?php echo site_url('Personnel/employes/edit/'.$employe['id_employe']); ?>">Modifier</a> 
+                <a href="<?php echo site_url('personnel/employes/view/'.$employe['id_employe']); ?>"><i class="bi bi-card-list color_black"></i></i></a> 
+                <a href="<?php echo site_url('personnel/employes/edit/'.$employe['id_employe']); ?>"><i class="bi bi-pencil-square color_light"></i></a>
+                <!-- <a href="<?php echo site_url('personnel/employes/delete/'.$employe['id_employe']); ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');"><i class="bi bi-trash3 color_black"></i></a> -->
             </td>
         </tr>
     <?php endforeach; ?>

@@ -5,17 +5,20 @@ class Depense extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Depense_model');
+        // $this->load->model('Depense_model');
         $this->load->helper(array('form', 'url'));
-        $this->load->library('session');
+        // $this->load->library('session');
     }
 
     // Access to the insertion form
     public function formulaire() {
-        $this->Depense_model->generatePcg();
-        $data["categories"] = $this->Depense_model->get_categories();
-        $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
-        $data["pcg"]= $this->Depense_model->get_pcg();
+        // $this->Depense_model->generatePcg();
+        // $data["categories"] = $this->Depense_model->get_categories();
+        $data["categories"] = [];
+        // $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
+        $data["modes_de_paiement"] = [];
+        // $data["pcg"]= $this->Depense_model->get_pcg();
+        $data["pcg"]= [];
         $data["contents"] = "pages/depenses/formulaire-depense";
         // Activation de lien
         $data['etat'] = 'depense';

@@ -34,7 +34,12 @@ class Depense extends CI_Controller {
     }
     
     public function listDepense(){
-        $data = $this->Depense_model->get_depense();
+        // $data['depenses'] = $this->Depense_model->get_depense();
+        $data["contents"] = "pages/depenses/liste-depense";
+        // Activation de lien
+        $data['etat'] = 'depense';
+        $data['activer'] = 'list_depense';
+        $this->load->view("templates/template", $data);
     }
 
 

@@ -264,7 +264,7 @@
         </a>
         <ul id="depense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(base_url("depense/formulaire"))?>">
+            <a href="<?php echo(base_url("depense/formulaire"))?>" <?php if ($activer == "formulaire_depense") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion dépenses</span>
             </a>
           </li>

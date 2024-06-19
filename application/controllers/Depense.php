@@ -17,6 +17,9 @@ class Depense extends CI_Controller {
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
         $data["pcg"]= $this->Depense_model->get_pcg();
         $data["contents"] = "pages/depenses/formulaire-depense";
+        // Activation de lien
+        $data['etat'] = 'depense';
+        $data['activer'] = 'formulaire_depense';
         $this->load->view("templates/template", $data);
     }
 

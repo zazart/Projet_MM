@@ -27,8 +27,16 @@ class CollecteurController extends CI_Controller{
 		$this->load->view("templates/template",$data);
     }
 
+    public function liste(){
+        $data["title"] = "Liste";
+        $data["etat"] = "collecteur";
+        $data["activer"] = "lien_liste";
+		$data["contents"]="pages/Collecteur/liste";
+		$this->load->view("templates/template",$data);
+    }
 
-    function update() {
+
+    public function update() {
         $this->validation();
         if ($this->form_validation->run() == FALSE) {
             $this->edit();
@@ -46,6 +54,16 @@ class CollecteurController extends CI_Controller{
 
             redirect('collecteur/list_Collector');
         }
+    }
+
+    public function redirection(){
+        $id = $this->input->post("id");
+        $data["title"] = "Modifier Collecteur";
+        $data["etat"] = "collecteur";
+        $data["activer"] = "lien_collecteur";
+		$data["contents"]="pages/Collecteur/modify_collector";
+        $data["collecteur"]=$this->Collecteur_model->find_by_id($id);
+		$this->load->view("templates/template",$data);
     }
 
 public function validation() {

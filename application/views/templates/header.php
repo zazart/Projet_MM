@@ -118,7 +118,7 @@
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
+            <a href="<?php echo(site_url("collecteurs/collecteurController/liste")); ?>" <?php if ($activer == "lien_liste") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste</span>
             </a>
           </li>

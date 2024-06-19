@@ -57,7 +57,7 @@ class Depense extends CI_Controller {
             'datedepense' =>  $this->input->post('dateDepense'),
             'justificatif' =>  $this->input->post('justification'),
             'id_modepaiment' => $this->input->post('id_ModePaiment'),
-            'id_categorie' => $this->input->post('id_sub_comptes')
+            'id_sub_comptes' => $this->input->post('id_Categorie')
         );
         // Handle file upload for justificatif
         if (!empty($_FILES['justificatif']['name'])) {
@@ -68,14 +68,14 @@ class Depense extends CI_Controller {
                 // Handle file upload error
                 // $this->session->set_flashdata('error', $upload['error']);
                
-                // redirect('depense/formulaire');
+                redirect('depense/formulaire');
             }
         }
         $response = array(
             'success' => false
         );
         if ($this->Depense_model->insert_depense($data)) {
-            echo ("ok be");
+            // echo ("ok be");
             $response = array(
                 'success' => true,
                 'message' => 'Client ajouté avec succès.',
@@ -83,7 +83,7 @@ class Depense extends CI_Controller {
             );
             // $this->session->set_flashdata('success', 'Dépense insérée avec succès.');
         } else {
-            echo("tsia");
+            // echo("tsia");
             // $this->session->set_flashdata('error', 'Échec de l\'insertion de la dépense.');
         }
         

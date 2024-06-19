@@ -16,9 +16,9 @@
             <td><?php echo $poste['nom']; ?></td>
             <td><?php echo $poste['montant_salaire']; ?></td>
             <td>
-                <a href="<?php echo site_url('Personnel/postes/view/'.$poste['id_poste']); ?>">Voir</a> |
-                <a href="<?php echo site_url('Personnel/postes/edit/'.$poste['id_poste']); ?>">Modifier</a> |
-                <a href="<?php echo site_url('Personnel/postes/delete/'.$poste['id_poste']); ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce poste ?');">Supprimer</a>
+                <a href="<?php echo site_url('personnel/postes/view/'.$poste['id_poste']); ?>">Voir</a> |
+                <a href="<?php echo site_url('personnel/postes/edit/'.$poste['id_poste']); ?>">Modifier</a> |
+                <a href="<?php echo site_url('personnel/postes/delete/'.$poste['id_poste']); ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce poste ?');">Supprimer</a>
             </td>
         </tr>
     <?php endforeach; ?>

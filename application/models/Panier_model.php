@@ -25,7 +25,7 @@ class Panier_model extends CI_Model {
     }
 
     public function get_by_commande($id_commande) {
-        $this->db->select("panier.*, produit.*");
+        $this->db->select("panier.*, produit.nom_produit, produit.prix_unitaire");
         $this->db->from("panier");
         $this->db->join("produit", "panier.id_produit = produit.id_produit");
         $query = $this->db->get();

@@ -50,14 +50,13 @@ class Regression {
         return $transposed;
     }
 
-    public function trainAndSave($X, $y, $filename) {
-        // $X = [];
-        // $y = [];
-        // foreach ($data as $row) {
-        //     $X[] = array_merge([1], array_slice($row, 0, -1));
-        //     $y[] = [$row[count($row) - 1]];
-        // }
-
+    public function trainAndSave($x, $y, $filename) {
+        // $x = [[1,2],[1,3]]
+        // $y = [[5],[3]]
+        $X = [];
+        foreach ($x as $row) {
+            $X[] = array_merge([1], $row);
+        }
         $X_T = $this->transpose($X);
 
         $X_T_X = $this->matrixMultiply($X_T, $X);

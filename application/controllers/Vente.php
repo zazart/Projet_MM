@@ -20,6 +20,8 @@ class Vente extends CI_Controller {
         $this->load->view('vente/vente_form', $data);
     }
 
+
+
     public function store() {
         $commande_id = $this->input->post('id_commande');
         $vente_data = array(
@@ -30,6 +32,15 @@ class Vente extends CI_Controller {
         );
         $this->Vente_model->insert_vente($vente_data);
         redirect('vente');
+    }
+
+    public function statistique() {
+        $this->load->view('vente/vente_statistique');
+    }
+
+    public function data_statistique() {
+        header('Content-Type: application/json');
+        echo json_encode($this->Vente_model->get_all());
     }
 }
 ?>

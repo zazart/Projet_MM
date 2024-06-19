@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="<?php echo base_url("vente/create") ?>" method="post">
+    <form action="<?php echo base_url("vente/store") ?>" method="post">
         <h1>Form vente</h1>
         <label for="commande-select">Commande</label>
-        <select id="commande-select">
+        <select id="commande-select" name="id_commande">
             <?php foreach ($commandes as $commande): ?>
                 <option value="<?php echo $commande['id_commande']; ?>"><?php echo $commande['nomglobal']; ?></option>
             <?php endforeach; ?>

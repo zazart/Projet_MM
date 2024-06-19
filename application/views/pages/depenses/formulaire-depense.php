@@ -9,14 +9,14 @@
                     <div class="col-12">
                         <label for="description" class="input-label">Description </label>
                         <input type="text" class="form-control" name="description" id="description" 
-                        
+                        require
                         >
                     </div>
                     <!-- Date -->
                     <div class="col-12">
                         <label for="dateDepense" class="input-label">Date de depense</label>
                         <input type="date" class="form-control" id="dateDepense" name="dateDepense" 
-                        
+                        require
                         >
                     </div>
                     <!-- Montant -->
@@ -28,7 +28,7 @@
                     <div class="col-12">
                         <label for="id_Pcg" class="input-label">PCG </label>
                         <select class="form-select" name="id_Pcg" id="id_Pcg" 
-                        
+                        require
                         >
                             <option value=""></option>
                             <?php foreach ($pcg as $item): ?>
@@ -40,7 +40,7 @@
                     <div class="col-12">
                         <label for="id_Categorie" class="input-label">Categorie </label>
                         <select class="form-select" name="id_Categorie" id="id_Categorie" 
-                        
+                        require
                         >
                             <option value=""></option>
                         </select>
@@ -49,7 +49,7 @@
                     <div class="col-12">
                         <label for="id_ModePaiment" class="input-label">Mode de paiement</label>
                         <select class="form-select" name="id_ModePaiment" id="id_ModePaiment" 
-                        
+                        require
                         >
                             <option value=""></option>
                             <?php foreach ($modes_de_paiement as $mode): ?>
@@ -86,22 +86,25 @@
       <div class="card" id="cache">
         <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
         <div class="card-body d-flex justify-content-center mt-3">
-          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des clients</button>
+          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des depenses</button>
         </div>
         <div class="modal fade" id="verticalycentered">
           <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                   <div class="modal-body">
-                    <h5 class="card-title">Listes des clients</h5>
-                    <p>Voici les listes de tous les clients dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
+                    <h5 class="card-title">Listes des depenses</h5>
+                    <p>Voici les listes de tous les depenses dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
                     <div id="valiny">
                     <table id="depenseData">
                       <thead>
                           <tr>
                               <th>Id</th>
-                              <th>Nom</th>
-                              <th>Email</th>
-                              <th>Adresse</th>
+                              <th>Description</th>
+                              <th>Montant</th>
+                              <th>Date de depense</th>
+                              <th>Justificatif</th>
+                              <th>Mode de paiement</th>
+                              <th>Sub comptes</th>
                           </tr>
                       </thead>
                     </table>
@@ -162,15 +165,15 @@
               setTimeout(function() {
                 document.getElementById('boite').style.display = 'none';
                 document.getElementById('cache').style.display = 'block'; 
-                var var_clients = response.clients;
-                const clientsArray = var_clients.map(client => Object.values(client));
+                var var_depenses = response.depenses;
+                const depensesArray = var_depenses.map(depense => Object.values(depense));
                 if ($.fn.DataTable.isDataTable('#depenseData')) {
                   $('#depenseData').DataTable().destroy();
                 }
                 var table = $('#depenseData').DataTable({
-                  data: clientsArray,
+                  data: depensesArray,
                   columns: [
-                    { title: 'ID' },
+                    { title: 'Id' },
                     { title: 'Description'},
                     { title: 'Montant' },
                     { title: 'Date de depense'},
@@ -192,15 +195,15 @@
                 // Événement click sur les images Modifier
                 $('#depenseData tbody').on('click', '.img-modifier', function() {
                     var id = $(this).data('id');
-                    console.log('Modifier client avec ID : ', id);
-                    // Ajoutez ici la logique pour modifier le client
+                    console.log('Modifier depense avec ID : ', id);
+                    // Ajoutez ici la logique pour modifier le depense
                 });
 
                 // Événement click sur les images Supprimer
                 $('#depenseData tbody').on('click', '.img-supprimer', function() {
                     var id = $(this).data('id');
-                    console.log('Supprimer client avec ID : ', id);
-                    // Ajoutez ici la logique pour supprimer le client
+                    console.log('Supprimer depense avec ID : ', id);
+                    // Ajoutez ici la logique pour supprimer le depense
                 });
               }, 2000);
             } else {

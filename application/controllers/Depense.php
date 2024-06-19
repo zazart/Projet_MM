@@ -5,20 +5,20 @@ class Depense extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        // $this->load->model('Depense_model');
+        $this->load->model('Depense_model');
         $this->load->helper(array('form', 'url'));
         // $this->load->library('session');
     }
 
     // Access to the insertion form
     public function formulaire() {
-        // $this->Depense_model->generatePcg();
-        // $data["categories"] = $this->Depense_model->get_categories();
-        $data["categories"] = [];
-        // $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
-        $data["modes_de_paiement"] = [];
-        // $data["pcg"]= $this->Depense_model->get_pcg();
-        $data["pcg"]= [];
+        $this->Depense_model->generatePcg();
+        $data["categories"] = $this->Depense_model->get_categories();
+        // $data["categories"] = [];
+        $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
+        // $data["modes_de_paiement"] = [];
+        $data["pcg"]= $this->Depense_model->get_pcg();
+        // $data["pcg"]= [];
         $data["contents"] = "pages/depenses/formulaire-depense";
         // Activation de lien
         $data['etat'] = 'depense';
@@ -34,7 +34,7 @@ class Depense extends CI_Controller {
     }
     
     public function listDepense(){
-        // $data['depenses'] = $this->Depense_model->get_depense();
+        $data['depenses'] = $this->Depense_model->get_depense();
         $data["contents"] = "pages/depenses/liste-depense";
         // Activation de lien
         $data['etat'] = 'depense';
@@ -60,21 +60,27 @@ class Depense extends CI_Controller {
                 $data['justificatif'] = file_get_contents($upload['file_path']);
             } else {
                 // Handle file upload error
-                $this->session->set_flashdata('error', $upload['error']);
+                // $this->session->set_flashdata('error', $upload['error']);
                
-                redirect('depense/formulaire');
+                // redirect('depense/formulaire');
             }
         }
 
         if ($this->Depense_model->insert_depense($data)) {
             echo ("ok be");
-            $this->session->set_flashdata('success', 'Dépense insérée avec succès.');
+            // $this->session->set_flashdata('success', 'Dépense insérée avec succès.');
         } else {
             echo("tsia");
-            $this->session->set_flashdata('error', 'Échec de l\'insertion de la dépense.');
+            // $this->session->set_flashdata('error', 'Échec de l\'insertion de la dépense.');
         }
-
-        redirect('depense/formulaire');
+        $response = array(
+            'success' => true,
+            'message' => 'Client ajouté avec succès.',
+            'depenses' => $this->Depense_model->get_depense()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));   
     }
 
     // File upload handling

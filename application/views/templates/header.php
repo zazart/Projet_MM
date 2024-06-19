@@ -174,13 +174,8 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure de travail</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+            <a href="<?php echo(site_url("Personnel/paiementemployes/create")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement employé</span>
             </a>
           </li>
         </ul>

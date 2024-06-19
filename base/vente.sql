@@ -1,5 +1,5 @@
 CREATE TABLE Client(
-   id SERIAL,
+   id_client SERIAL,
    nomGlobal VARCHAR(255)  NOT NULL,
    email VARCHAR(255) ,
    adresse VARCHAR(255) ,

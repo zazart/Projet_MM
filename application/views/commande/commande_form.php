@@ -43,7 +43,7 @@
         <label for="id_client">Client:</label>
         <select name="id_client" required>
             <?php foreach ($clients as $client): ?>
-                <option value="<?php echo $client['id']; ?>"><?php echo $client['nomglobal']; ?></option>
+                <option value="<?php echo $client['id_client']; ?>"><?php echo $client['nomglobal']; ?></option>
             <?php endforeach; ?>
         </select><br>
         <label for="">Date</label>

@@ -11,7 +11,7 @@
         <label for="commande-select">Commande</label>
         <select id="commande-select">
             <?php foreach ($commandes as $commande): ?>
-                <option value="<?php echo $commande['id']; ?>"><?php echo $commande['nomglobal']; ?></option>
+                <option value="<?php echo $commande['id_commande']; ?>"><?php echo $commande['nomglobal']; ?></option>
             <?php endforeach; ?>
         </select><br>
         <label for="livraison">Livraison:</label>

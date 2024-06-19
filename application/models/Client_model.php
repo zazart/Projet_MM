@@ -16,16 +16,16 @@ class Client_model extends CI_Model {
     }
 
     public function get_client_by_id($id) {
-        return $this->db->get_where('client', array('id' => $id))->row_array();
+        return $this->db->get_where('client', array('id_client' => $id))->row_array();
     }
 
     public function update_client($id, $data) {
-        $this->db->where('id', $id);
+        $this->db->where('id_client', $id);
         return $this->db->update('client', $data);
     }
 
     public function delete_client($id) {
-        $this->db->where('id', $id);
+        $this->db->where('id_client', $id);
         return $this->db->delete('client');
     }
 }

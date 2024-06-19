@@ -14,7 +14,7 @@
         </tr>
         <?php foreach ($paniers as $panier): ?>
         <tr>
-            <td><?php echo $panier['id']; ?></td>
+            <td><?php echo $panier['id_panier']; ?></td>
             <td><?php echo $panier['nom_produit']; ?></td>
             <td><?php echo $panier['quantite']; ?></td>
             <td><?php echo $panier['quantite'] * $panier["prix_unitaire"]; ?></td>

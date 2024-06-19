@@ -12,9 +12,9 @@ class Commande_model extends CI_Model {
     }
 
     public function get_commandes() {
-        $this->db->select('commande.*, client.id as id_client, client.nomglobal');
+        $this->db->select('commande.*, client.nomglobal');
         $this->db->from('commande');
-        $this->db->join('client', 'commande.id_client = client.id');
+        $this->db->join('client', 'commande.id_client = client.id_client');
         $query = $this->db->get();
         return $query->result_array();
     }

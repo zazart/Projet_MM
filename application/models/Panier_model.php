@@ -33,7 +33,7 @@ class Panier_model extends CI_Model {
     }
 
     public function delete_panier($id) {
-        $this->db->where('id', $id);
+        $this->db->where('id_panier', $id);
         return $this->db->delete('panier');
     }
 }

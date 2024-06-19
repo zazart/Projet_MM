@@ -4,7 +4,7 @@
         <div class="card ">
             <div class="card-body m-2">
                 <!-- Formulaire -->
-                <form action="create" method="post" class="row g-3" enctype="multipart/form-data">
+                <form id="depenseForm" class="row g-3" enctype="multipart/form-data">
                     <!-- Description -->
                     <div class="col-12">
                         <label for="description" class="input-label">Description </label>

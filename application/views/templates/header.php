@@ -259,7 +259,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
+        <a class="<?php echo ($etat == "depense") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="depense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

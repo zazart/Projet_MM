@@ -12,7 +12,7 @@ class prix_matiere extends CI_Model{
     public function insertprixmatierepremier($idmatiere,$prix,$date){
 
         $data = array(
-            'id_1'=>$idmatiere,
+            'id_matierpremier'=>$idmatiere,
             'prix'=>$prix,
             'dateprix'=>$date
         );
@@ -22,7 +22,7 @@ class prix_matiere extends CI_Model{
 
     public function update_prix_matiere($id,$idmatierepremier,$prix,$date) {
         $data = array(
-            'id_2'=>$idmatierepremier,
+            'id_matierpremier'=>$idmatierepremier,
             'prix'=>$prix,
             'dateprix'=>$date
         );
@@ -35,7 +35,7 @@ class prix_matiere extends CI_Model{
     public function get_prix_matiere_data(){
         $this->db->select('prixmatierepremier.*, matierpremier.nom'); 
         $this->db->from('prixmatierepremier');
-        $this->db->join('matierpremier', 'prixmatierepremier.id_1 = matierpremier.id', 'left');
+        $this->db->join('matierpremier', 'prixmatierepremier.id_matierpremier = matierpremier.id', 'left');
     
         $query = $this->db->get();
         return $query->result_array();

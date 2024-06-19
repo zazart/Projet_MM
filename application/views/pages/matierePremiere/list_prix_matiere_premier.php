@@ -29,7 +29,7 @@
                         </tr>
                   <?php endforeach; ?>
                 </tbody>
-              </table>
+              </table>  
               <!-- End Table with hoverable rows -->
 
             </div>

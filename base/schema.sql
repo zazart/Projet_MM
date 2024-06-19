@@ -1,7 +1,7 @@
 CREATE TABLE Genre(
-   id SERIAL,
+   Id_Genre SERIAL,
    description VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(Id_Genre)
 );
 
 CREATE TABLE Bonus(
@@ -21,8 +21,10 @@ CREATE TABLE Client(
 
 CREATE TABLE Panier(
    id SERIAL,
-   idProduit INTEGER NOT NULL,
+   id_produit INTEGER NOT NULL,
    quantite INTEGER NOT NULL,
+   id_commande INTEGER NOT NULL,
+   FOREIGN KEY(id_commande) REFERENCES Commande(id),
    PRIMARY KEY(id)
 );
 
@@ -37,11 +39,14 @@ CREATE TABLE StockProduit(
 CREATE TABLE vente(
    id SERIAL,
    livraison BOOLEAN NOT NULL,
-   prixTotal NUMERIC(16,2)   NOT NULL,
+   date_vente DATE NOT NULL,
+   prixTotal NUMERIC(16,2)  NOT NULL,
+   id_commande INTEGER NOT NULL,
+   FOREIGN KEY(id_commande) REFERENCES Commande(id),
    PRIMARY KEY(id)
 );
 
-CREATE TABLE matierpremier(
+CREATE TABLE MatierPremier(
    id SERIAL,
    Nom VARCHAR(255)  NOT NULL,
    PRIMARY KEY(id)
@@ -51,9 +56,9 @@ CREATE TABLE PrixMatierePremier(
    id SERIAL,
    prix NUMERIC(16,2)   NOT NULL,
    datePrix DATE,
-   id_1 INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES matierpremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(id)
 );
 
 CREATE TABLE Source(
@@ -67,9 +72,9 @@ CREATE TABLE StockMatierPremier(
    dates DATE,
    in_qtt INTEGER NOT NULL,
    out_qtt INTEGER NOT NULL,
-   id_1 INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES matierpremier(id)
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(id)
 );
 
 CREATE TABLE Production(
@@ -100,19 +105,19 @@ CREATE TABLE StatMachine(
 );
 
 CREATE TABLE Poste(
-   id SERIAL,
+   id_poste SERIAL,
    nom VARCHAR(255)  NOT NULL,
-   workDurrationDay TIME NOT NULL,
-   PRIMARY KEY(id)
+   montant_salaire NUMERIC(16,2),
+   PRIMARY KEY(id_poste)
 );
 
 CREATE TABLE Salaire(
-   id SERIAL,
-   dateDebut DATE NOT NULL,
-   prix NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Poste(id)
+   id_salaire SERIAL,
+   id_poste INTEGER NOT NULL,
+   date_debut DATE NOT NULL,
+   montant_salaire NUMERIC(16,2),
+   PRIMARY KEY(id_salaire),
+   FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
 );
 
 CREATE TABLE TypeDepense(
@@ -133,60 +138,24 @@ CREATE TABLE ModePaiement(
    PRIMARY KEY(id)
 );
 
-CREATE TABLE Collecteur(
-   id SERIAL,
-   nom VARCHAR(255)  NOT NULL,
-   contact VARCHAR(255)  NOT NULL,
-   adresse VARCHAR(255)  NOT NULL,
-   dateDebuche DATE NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Genre(id)
-);
-
-CREATE TABLE SalaireCollecteur(
-   id SERIAL,
-   prix NUMERIC(16,2)  ,
-   dates DATE,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
-);
-
-CREATE TABLE PaymentCollecteur(
-   id MONEY,
-   datePayments DATE NOT NULL,
-   prix NUMERIC(16,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   UNIQUE(id_1),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id)
-);
 
 CREATE TABLE Collects(
-   id SERIAL,
+   Id_Collects SERIAL,
    DateCollect DATE NOT NULL,
-   matierPremier INTEGER NOT NULL,
    qtt NUMERIC(15,2)   NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Collecteur(id),
-   FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
+   id_employe INTEGER NOT NULL,
+   Id_MatierPremier INTEGER NOT NULL,
+   PRIMARY KEY(Id_Collects),
+   FOREIGN KEY(id_employe) REFERENCES Employe(id_employe),
+   FOREIGN KEY(Id_MatierPremier) REFERENCES MatierPremier(Id_MatierPremier)
 );
 
 CREATE TABLE Commande(
    id SERIAL,
-   dateCommande TIMESTAMP NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   id_3 INTEGER NOT NULL,
+   datecommande TIMESTAMP NOT NULL,
+   id_client INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Client(id),
-   FOREIGN KEY(id_2) REFERENCES Panier(id),
-   FOREIGN KEY(id_3) REFERENCES vente(id)
+   FOREIGN KEY(id_client) REFERENCES Client(id)
 );
 
 CREATE TABLE Produit(
@@ -208,17 +177,29 @@ CREATE TABLE SourceMatierePremier(
    FOREIGN KEY(id_2) REFERENCES MatierPremier(id)
 );
 
-CREATE TABLE Employees(
-   id SERIAL,
-   debuche DATE NOT NULL,
+CREATE TABLE Employe(
+   id_employe SERIAL,
+   embauche DATE NOT NULL,
+   debauche DATE DEFAULT NULL,
+   nom VARCHAR(255)  NOT NULL,
    email VARCHAR(255)  NOT NULL,
-   numPhone VARCHAR(50)  NOT NULL,
-   addresse VARCHAR(255)  NOT NULL,
-   id_1 INTEGER NOT NULL,
-   id_2 INTEGER NOT NULL,
-   PRIMARY KEY(id),
-   FOREIGN KEY(id_1) REFERENCES Genre(id),
-   FOREIGN KEY(id_2) REFERENCES Poste(id)
+   telephone VARCHAR(50)  NOT NULL,
+   adresse VARCHAR(255)  NOT NULL,
+   id_genre INTEGER NOT NULL,
+   id_poste INTEGER NOT NULL,
+   PRIMARY KEY(id_employe),
+   FOREIGN KEY(id_genre) REFERENCES Genre(Id_Genre),
+   FOREIGN KEY(id_poste) REFERENCES Poste(id_poste)
+);
+
+CREATE TABLE paiementEmploye(
+   id_paiement_employe SERIAL,
+   dates DATE NOT NULL,
+   prix NUMERIC(16,2)   NOT NULL,
+   libelle VARCHAR(255)  NOT NULL,
+   id_employe INTEGER NOT NULL,
+   PRIMARY KEY(id_paiement_employe),
+   FOREIGN KEY(id_employe) REFERENCES Employe(id_employe)
 );
 
 CREATE TABLE Depense(
@@ -241,3 +222,31 @@ CREATE TABLE PanierProduit(
    FOREIGN KEY(id) REFERENCES Panier(id),
    FOREIGN KEY(id_1) REFERENCES Produit(id)
 );
+
+CREATE TABLE TypeProfil(
+   id SERIAL PRIMARY KEY,
+   libelle VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Profil(
+   id SERIAL PRIMARY KEY,
+   email VARCHAR(255) NOT NULL,
+   mot_de_passe VARCHAR(255) NOT NULL,
+   id_personnel int REFERENCES Employe(id_employe),
+   type_profil int REFERENCES TypeProfil(id)
+);
+
+insert into Genre(description) values 
+('Homme'),
+('Femme');
+
+insert into TypeProfil(libelle) values 
+('Admin'),
+('Collecteur'),
+('Responsable Matieres premieres'),
+('Transformation'),
+('Responsable production'),
+('Personnel'),
+('Responsable vente'),
+('Responsable depense'),
+('Responsable transformation');

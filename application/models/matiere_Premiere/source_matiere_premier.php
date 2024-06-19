@@ -32,11 +32,11 @@ class source_matiere_premier extends CI_Model{
     }
 
     function get_source_matiere_premiere_data(){
-        $this->db->select('sourcematierepremier.*,matierpremier.nom as nom, source.lieu as lieu');
-        $this->db->from('sourcematierepremier');
-        $this->db->join('source','sourcematierepremier.id_ 1= source.id');
-        $this->db->join('matierpremier','sourcematierepremier.id_2 = matierpremier.id');
-
+        $sql="CREATE OR replace view source_matierpremier as select sourcematierepremier.* , matierpremier.nom as nom from sourcematierepremier join matierpremier on sourcematierepremier.id_2=matierpremier.id";
+        $this->db->simple_query($sql);
+        $this->db->select('source_matierpremier.*, source.lieu as lieu');
+        $this->db->from('source_matierpremier');
+        $this->db->join('source','source_matierpremier.id_1=source.id');
         $query = $this->db->get();
         return $query->result_array();
     }

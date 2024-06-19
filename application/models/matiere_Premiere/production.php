@@ -36,10 +36,9 @@ class production extends CI_Model{
     public function get_produciton_data(){
         $this->db->select('Production.id as id, Production.Quantite as Quantite, Production.DateProduction as DateProduction, Stock.id as stock_id, Stock.Dates as stock_date, Stock.QuantiteEntrant, Stock.QuantiteSortant, MatierePremier.Nom as Nom');
         $this->db->from('Production');
-        $this->db->join('Stock', 'Production.Stock = Stock.id', 'left');
-        $this->db->join('MatierePremier', 'Stock.MatierePremier = MatierePremier.id', 'left');
-        $query = $this->db->get();
-
+        $this->db->join('Stock', 'Production.Stock = Stock.id');
+        $this->db->join('MatierePremier', 'Stock.MatierePremier = MatierePremier.id');
+        $query = $this->db->get();  
         return $query->result();
     }
 

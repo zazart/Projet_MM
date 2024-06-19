@@ -118,18 +118,105 @@
 
 <!-- SCRIPT DYNAMYSME FORMULAIRE -->
 <script>
-  document.getElementById('depenseForm').addEventListener('submit', function() {
-    localStorage.setItem('depenseSubmitted', 'true');
-  });
-
-  window.addEventListener('load', function() {
-    if (localStorage.getItem('depenseSubmitted') === 'true') {
-      document.getElementById('boite').style.display = 'block';
-      setTimeout(function() {
-        document.getElementById('boite').style.display = 'none';
-      }, 2000);
-      localStorage.removeItem('depenseSubmitted');
+  function creeXHR(){
+    var xhr; 
+    try {  
+        xhr = new ActiveXObject('Msxml2.XMLHTTP');   
     }
+    catch (e) {
+        try {   
+            xhr = new ActiveXObject('Microsoft.XMLHTTP'); 
+        }
+        catch (e2) {
+            try {  
+                xhr = new XMLHttpRequest();  
+            }
+            catch (e3) {
+                xhr = false;   
+            }
+        }
+    }
+    return xhr;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var depenseForm = document.getElementById('depenseForm');
+
+    depenseForm.addEventListener('submit', function(event) {
+        // Prevent the default action
+        event.preventDefault();
+        // Get the js data of the formulaire
+        var formData = new FormData(depenseForm);
+        // Create the XHR variable
+        var xhr = creeXHR();
+        // Create POST Request to insert
+        xhr.open('POST', '<?= base_url("depense/create")?>', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        // Change control of the request
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              document.getElementById('boite').style.display = 'block';
+              setTimeout(function() {
+                document.getElementById('boite').style.display = 'none';
+                document.getElementById('cache').style.display = 'block'; 
+                var var_clients = response.clients;
+                const clientsArray = var_clients.map(client => Object.values(client));
+                if ($.fn.DataTable.isDataTable('#clientsData')) {
+                  $('#clientsData').DataTable().destroy();
+                }
+                var table = $('#clientsData').DataTable({
+                  data: clientsArray,
+                  columns: [
+                    { title: 'ID' },
+                    { title: 'Nom' },
+                    { title: 'Email' },
+                    { title: 'Adresse' },
+                    {
+                      title: 'Actions',
+                      render: function(data, type, row, meta) {
+                          var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
+                          var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                          return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
+                                '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
+                      }
+                    }
+                  ]
+                });
+
+                // Événement click sur les images Modifier
+                $('#clientsData tbody').on('click', '.img-modifier', function() {
+                    var id = $(this).data('id');
+                    console.log('Modifier client avec ID : ', id);
+                    // Ajoutez ici la logique pour modifier le client
+                });
+
+                // Événement click sur les images Supprimer
+                $('#clientsData tbody').on('click', '.img-supprimer', function() {
+                    var id = $(this).data('id');
+                    console.log('Supprimer client avec ID : ', id);
+                    // Ajoutez ici la logique pour supprimer le client
+                });
+              }, 2000);
+            } else {
+              alert('Erreur lors de l\'insertion : ' + response.message);
+            }
+          } else {
+            console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
+            alert('Une erreur s\'est produite lors de la requête AJAX.');
+          }
+        }
+      };
+
+      xhr.onerror = function() {
+        console.error('Erreur réseau');
+        alert('Une erreur s\'est produite lors de la requête AJAX.');
+      };
+
+      xhr.send(formData);
+    });
   });
 </script>
 <!-- END FORMULAIRE DEPENSE -->

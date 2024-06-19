@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Employes extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('Employe_model');
+        $this->load->model('Personnel/Employe_model');
+        $this->load->model('Personnel/Profil_model'); // Charger le modèle Profil
+        $this->load->model('Personnel/TypeProfil_model'); // Charger le modèle TypeProfil
+        $this->load->library('form_validation');
     }
 
     public function index() {
@@ -36,10 +39,12 @@ class Employes extends CI_Controller {
         $data['title'] = 'Créer un nouvel Employé';
         $data['genres'] = $this->Employe_model->get_genres();
         $data['postes'] = $this->Employe_model->get_postes();
+        $data['types_profil'] = $this->TypeProfil_model->get_types_profil();
 
         $this->form_validation->set_rules('embauche', 'Date d\'Embauche', 'required');
         $this->form_validation->set_rules('nom', 'Nom', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('password', 'Mot de passe', 'required');
         $this->form_validation->set_rules('telephone', 'Numéro de Téléphone', 'required');
         $this->form_validation->set_rules('adresse', 'Adresse', 'required');
         $this->form_validation->set_rules('id_genre', 'Genre', 'required');
@@ -61,8 +66,16 @@ class Employes extends CI_Controller {
                 'id_genre' => $this->input->post('id_genre'),
                 'id_poste' => $this->input->post('id_poste')
             );
-            $this->Employe_model->insert_employe($data);
-            redirect('employes');
+            $id_employe = $this->Employe_model->insert_employe($data);
+            // Insérer dans la table Profil
+            $data_profil = array(
+                'email' => $this->input->post('email'),
+                'mot_de_passe' => password_hash($this->input->post('mot_de_passe'), PASSWORD_DEFAULT),
+                'id_personnel' => $id_employe,
+                'type_profil' => $this->input->post('type_profil')
+            );
+            $this->Profil_model->insert_profil($data_profil);
+            redirect('Personnel/employes');
         }
     }
 
@@ -104,13 +117,14 @@ class Employes extends CI_Controller {
                 'id_poste' => $this->input->post('id_poste')
             );
             $this->Employe_model->update_employe($id_employe, $data);
-            redirect('employes');
+            redirect('Personnel/employes');
         }
     }
 
     public function delete($id_employe) {
+        $this->Employe_model->delete_profil_employe_by_employe($id_employe);
         $this->Employe_model->delete_employe($id_employe);
-        redirect('employes');
+        redirect('Personnel/employes');
     }
 }
 ?>

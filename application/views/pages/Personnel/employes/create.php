@@ -15,15 +15,12 @@
                   </div>
               <?php endif; ?>
 
-              <?php echo form_open('employes/create', ['class' => 'row g-3']);?>
+              <?php echo form_open('Personnel/employes/create', ['class' => 'row g-3']);?>
                 <div class="col-12">
                   <label for="embauche" class="form-label">Date d'Embauche :</label>
                   <input type="date" class="form-control" name="embauche" id="embauche">
                 </div>
-                <div class="col-12">
-                  <label for="debauche" class="form-label">Date de Débauche :</label>
-                  <input type="date" class="form-control" name="debauche" id="debauche">
-                </div>
+            
                 <div class="col-12">
                   <label for="nom" class="form-label">Nom :</label>
                   <input type="text" class="form-control" name="nom" id="nom">
@@ -32,6 +29,12 @@
                   <label for="email" class="form-label">Email :</label>
                   <input type="email" class="form-control" name="email" id="email">
                 </div>
+
+                <div class="col-12">
+                  <label for="password" class="form-label">Mot de passe :</label>
+                  <input type="password" class="form-control" name="password" id="password">
+                </div>
+
                 <div class="col-12">
                   <label for="telephone" class="form-label">Téléphone :</label>
                   <input type="text" class="form-control" name="telephone" id="telephone">
@@ -45,7 +48,7 @@
                   <div class="col-sm-12">
                     <select name="id_genre" class="form-select" aria-label="Default select example">
                         <?php foreach ($genres as $genre): ?>
-                        <option value="<?php echo $genre['id']; ?>"><?php echo $genre['description']; ?></option>
+                        <option value="<?php echo $genre['id_genre']; ?>"><?php echo $genre['description']; ?></option>
                         <?php endforeach; ?>
                     </select>
                   </div>
@@ -56,6 +59,16 @@
                     <select name="id_poste" class="form-select" aria-label="Default select example">
                         <?php foreach ($postes as $poste): ?>
                         <option value="<?php echo $poste['id_poste']; ?>"><?php echo $poste['nom']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="types_profil" class="form-label">Profil :</label>
+                  <div class="col-sm-12">
+                    <select name="type_profil" class="form-select" aria-label="Default select example">
+                        <?php foreach ($types_profil as $profil): ?>
+                        <option value="<?php echo $profil['id']; ?>"><?php echo $profil['libelle']; ?></option>
                         <?php endforeach; ?>
                     </select>
                   </div>

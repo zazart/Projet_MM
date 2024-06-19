@@ -7,17 +7,25 @@ class Employe_model extends CI_Model {
 
     public function get_employes($id_employe = FALSE) {
         if ($id_employe === FALSE) {
+            $now = date('Y-m-d'); // Obtenir la date actuelle au format YYYY-MM-DD
+
             $this->db->select('employe.*, genre.description as genre_description, poste.nom as poste_nom');
             $this->db->from('employe');
-            $this->db->join('genre', 'employe.id_genre = genre.id');
+            $this->db->join('genre', 'employe.id_genre = genre.id_genre');
             $this->db->join('poste', 'employe.id_poste = poste.id_poste');
+            $this->db->where('employe.embauche <', $now);
+            $this->db->group_start();
+            $this->db->where('employe.debauche IS NULL');
+            $this->db->or_where('employe.debauche >', $now);
+            $this->db->group_end();
+
             $query = $this->db->get();
             return $query->result_array();
         }
 
         $this->db->select('employe.*, genre.description as genre_description, poste.nom as poste_nom');
         $this->db->from('employe');
-        $this->db->join('genre', 'employe.id_genre = genre.id');
+        $this->db->join('genre', 'employe.id_genre = genre.id_genre');
         $this->db->join('poste', 'employe.id_poste = poste.id_poste');
         $this->db->where('employe.id_employe', $id_employe);
         $query = $this->db->get();
@@ -25,7 +33,8 @@ class Employe_model extends CI_Model {
     }
 
     public function insert_employe($data) {
-        return $this->db->insert('employe', $data);
+        $this->db->insert('employe', $data);
+        return $this->db->insert_id();
     }
 
     public function update_employe($id_employe, $data) {
@@ -45,6 +54,11 @@ class Employe_model extends CI_Model {
     public function get_postes() {
         $query = $this->db->get('poste');
         return $query->result_array();
+    }
+
+    public function delete_profil_employe_by_employe($id_employe) {
+        $this->db->where('id_personnel', $id_employe);
+        $this->db->delete('profil');
     }
 }
 ?>

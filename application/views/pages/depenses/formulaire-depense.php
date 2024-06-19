@@ -95,7 +95,7 @@
                     <h5 class="card-title">Listes des clients</h5>
                     <p>Voici les listes de tous les clients dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
                     <div id="valiny">
-                    <table id="clientsData">
+                    <table id="depenseData">
                       <thead>
                           <tr>
                               <th>Id</th>
@@ -164,16 +164,19 @@
                 document.getElementById('cache').style.display = 'block'; 
                 var var_clients = response.clients;
                 const clientsArray = var_clients.map(client => Object.values(client));
-                if ($.fn.DataTable.isDataTable('#clientsData')) {
-                  $('#clientsData').DataTable().destroy();
+                if ($.fn.DataTable.isDataTable('#depenseData')) {
+                  $('#depenseData').DataTable().destroy();
                 }
-                var table = $('#clientsData').DataTable({
+                var table = $('#depenseData').DataTable({
                   data: clientsArray,
                   columns: [
                     { title: 'ID' },
-                    { title: 'Nom' },
-                    { title: 'Email' },
-                    { title: 'Adresse' },
+                    { title: 'Description'},
+                    { title: 'Montant' },
+                    { title: 'Date de depense'},
+                    { title: 'Justificatif'},
+                    { title: 'Mode de paiement'},
+                    { title: 'Sub comptes'},
                     {
                       title: 'Actions',
                       render: function(data, type, row, meta) {
@@ -187,14 +190,14 @@
                 });
 
                 // Événement click sur les images Modifier
-                $('#clientsData tbody').on('click', '.img-modifier', function() {
+                $('#depenseData tbody').on('click', '.img-modifier', function() {
                     var id = $(this).data('id');
                     console.log('Modifier client avec ID : ', id);
                     // Ajoutez ici la logique pour modifier le client
                 });
 
                 // Événement click sur les images Supprimer
-                $('#clientsData tbody').on('click', '.img-supprimer', function() {
+                $('#depenseData tbody').on('click', '.img-supprimer', function() {
                     var id = $(this).data('id');
                     console.log('Supprimer client avec ID : ', id);
                     // Ajoutez ici la logique pour supprimer le client

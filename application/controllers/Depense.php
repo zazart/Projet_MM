@@ -91,12 +91,18 @@ class Depense extends CI_Controller {
        // Access to the journal list
        public function journal() {
         $data["contents"] = "pages/depenses/journal";
+        // Activation de lien
+        $data['etat'] = 'depense';
+        $data['activer'] = 'lien_journal';
         $this->load->view("templates/template", $data);
     }
 
     // Access to the grand livre list
     public function grandLivre() {
         $data["contents"] = "pages/depenses/grand-livre";
+        // Activation de lien
+        $data['etat'] = 'depense';
+        $data['activer'] = 'lien_grandLivre';
         $this->load->view("templates/template", $data);
     }
 

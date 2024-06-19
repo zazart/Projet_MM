@@ -269,12 +269,12 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(base_url("depense/journal"))?>">
+            <a href="<?php echo(base_url("depense/journal"))?>" <?php if ($activer == "lien_journal") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Journal</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(base_url("depense/grandLivre"))?>">
+            <a href="<?php echo(base_url("depense/grandLivre"))?>" <?php if ($activer == "lien_grandLivre") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Grand livre</span>
             </a>
           </li>

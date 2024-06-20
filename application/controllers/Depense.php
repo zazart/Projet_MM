@@ -108,13 +108,8 @@ class Depense extends CI_Controller {
             return array('status' => false, 'error' => $this->upload->display_errors());
         }
     }
-       // Access to the journal list
-       public function journal() {
-        $data["contents"] = "pages/depenses/journal";
-        // Activation de lien
-        $data['etat'] = 'depense';
-        $data['activer'] = 'lien_journal';
-        $this->load->view("templates/template", $data);
+    public function journal() {
+        redirect("journal/index");
     }
 
     // Access to the grand livre list

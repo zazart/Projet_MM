@@ -123,7 +123,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- Collecteurs Nav -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#matiere-nav" data-bs-toggle="collapse" href="#">
@@ -155,37 +155,22 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
+        <a class="<?php echo ($etat == "personnel") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-fill color_black"></i><span class="color_black">Personnel</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
-        <ul id="personnel-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <ul id="personnel-nav" class="<?php echo ($etat == "personnel") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("Personnel/employes/create")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion employé</span>
+            <a href="<?php echo(site_url("Personnel/employes/insert_employes")); ?>" <?php if ($activer == "lien_employes_create") { echo 'class="active"';} ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Employé</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("Personnel/employes/index")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste d'employé</span>
+            <a href="<?php echo(site_url("Personnel/postes/create")); ?>" <?php if ($activer == "lien_postes_create") { echo 'class="active"';} ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Poste</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("Personnel/postes/create")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("Personnel/postes/index")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure de travail</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>">
+            <a href="<?php echo(site_url("commande/insert_commande")); ?>" <?php if ($activer == "") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
             </a>
           </li>
@@ -232,8 +217,7 @@
       </li><!-- Transformation -->
 
 
-
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="<?php echo ($etat == "vente_commande") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#vente-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-graph-up-arrow color_black"></i><span class="color_black">Ventes & prise de commande</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
@@ -254,7 +238,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- vente et prise de commande -->
+      </li>vente et prise de commande -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">

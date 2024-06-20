@@ -5,7 +5,6 @@
     <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
             <th scope="col">Numéro de Téléphone</th>
@@ -18,7 +17,6 @@
     <tbody>
     <?php foreach ($employes as $employe): ?>
         <tr>
-            <td><?php echo $employe['id_employe']; ?></td>
             <td><?php echo $employe['nom']; ?></td>
             <td><?php echo $employe['email']; ?></td>
             <td><?php echo $employe['telephone']; ?></td>

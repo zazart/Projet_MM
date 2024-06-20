@@ -14,9 +14,24 @@ class Employes extends CI_Controller {
         $data['employes'] = $this->Employe_model->get_employes();
         $data['title'] = 'Liste des Employés';
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/employes/liste', $data);
-        $this->load->view('templates/footer');
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_employes";
+        $data["contents"]="pages/Personnel/employes/liste";
+        $this->load->view("templates/template",$data);
+    }
+
+    public function get_liste() {
+        $employes = $this->Employe_model->get_employes();
+        $response = array(
+            'success' => true,
+            'message' => 'Employé ajouté avec succès.',
+            'employes' => $employes
+        );
+
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($response));
+        
     }
 
     public function view($id_employe) {
@@ -25,21 +40,28 @@ class Employes extends CI_Controller {
         if (empty($data['employe'])) {
             show_404();
         }
-
         $data['title'] = 'Détails de l\'Employé';
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/employes/view', $data);
-        $this->load->view('templates/footer');
+        $data["etat"] = "personnel";
+        $data["activer"] = "_";
+        $data["contents"]="pages/Personnel/employes/view";
+        $this->load->view("templates/template",$data);
+        
     }
 
-    public function create() {
-        $this->load->library('form_validation');
-
+    public function insert_employes() {            
         $data['title'] = 'Créer un nouvel Employé';
         $data['genres'] = $this->Employe_model->get_genres();
         $data['postes'] = $this->Employe_model->get_postes();
         $data['types_profil'] = $this->TypeProfil_model->get_types_profil();
+
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_employes_create";
+        $data['contents'] = 'pages/Personnel/employes/create';
+        $this->load->view('templates/template', $data);
+    }
+
+    public function create() {
 
         $this->form_validation->set_rules('embauche', 'Date d\'Embauche', 'required');
         $this->form_validation->set_rules('nom', 'Nom', 'required');
@@ -51,12 +73,29 @@ class Employes extends CI_Controller {
         $this->form_validation->set_rules('id_poste', 'Poste', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/Personnel/employes/create', $data);
-            $this->load->view('templates/footer');
+            $errors = array(
+                'embauche' => form_error('embauche'),
+                'nom' => form_error('nom'),
+                'email' => form_error('email'),
+                'password' => form_error('password'),
+                'telephone' => form_error('telephone'),
+                'adresse' => form_error('adresse'),
+                'id_genre' => form_error('id_genre'),
+                'id_poste' => form_error('id_poste'),
+                'type_profil' => form_error('type_profil')
+            );
+            $response = array(
+                'success' => false,
+                'errors' => $errors
+            );
+    
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
+
         } else {
             $debauche = $this->input->post('debauche');
-            $data = array(
+            $employes_data = array(
                 'embauche' => $this->input->post('embauche'),
                 'debauche' => $debauche ? $debauche : NULL,
                 'nom' => $this->input->post('nom'),
@@ -66,16 +105,25 @@ class Employes extends CI_Controller {
                 'id_genre' => $this->input->post('id_genre'),
                 'id_poste' => $this->input->post('id_poste')
             );
-            $id_employe = $this->Employe_model->insert_employe($data);
+            $id_employe = $this->Employe_model->insert_employe($employes_data);
+
+
             // Insérer dans la table Profil
-            $data_profil = array(
-                'email' => $this->input->post('email'),
-                'mot_de_passe' => password_hash($this->input->post('mot_de_passe'), PASSWORD_DEFAULT),
-                'id_personnel' => $id_employe,
-                'type_profil' => $this->input->post('type_profil')
+            $email = $this->input->post('email');
+            $mot_de_passe = $this->input->post('password');
+            $type_profil = $this->input->post('type_profil');
+
+            $this->Profil_model->insert_profil($email, $mot_de_passe, $id_employe, $type_profil); 
+
+            $response = array(
+                'success' => true,
+                'message' => 'Employé ajouté avec succès.'
             );
-            $this->Profil_model->insert_profil($data_profil);
-            redirect('Personnel/employes');
+
+    
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         }
     }
 
@@ -101,9 +149,10 @@ class Employes extends CI_Controller {
         $this->form_validation->set_rules('id_poste', 'Poste', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/Personnel/employes/edit', $data);
-            $this->load->view('templates/footer');
+            $data["etat"] = "personnel";
+            $data["activer"] = "lien_employes_edit";
+            $data["contents"]="pages/Personnel/employes/edit";
+            $this->load->view("templates/template",$data);
         } else {
             $debauche = $this->input->post('debauche');
             $data = array(

@@ -11,6 +11,8 @@ class Postes extends CI_Controller {
     public function index() {
         $data['postes'] = $this->Poste_model->get_postes();
         $data['title'] = 'Liste des Postes';
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_postes";
         $data['contents'] = 'pages/Personnel/postes/liste';
         $this->load->view('templates/template', $data);
     }
@@ -24,9 +26,10 @@ class Postes extends CI_Controller {
 
         $data['title'] = $data['poste']['nom'];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/Personnel/postes/view', $data);
-        $this->load->view('templates/footer');
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_postes_create";
+        $data['contents'] = 'pages/Personnel/postes/view';
+        $this->load->view('templates/template', $data);
     }
 
     public function create() {
@@ -38,9 +41,10 @@ class Postes extends CI_Controller {
         $this->form_validation->set_rules('montant_salaire', 'Salaire', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/Personnel/postes/create');
-            $this->load->view('templates/footer');
+            $data["etat"] = "personnel";
+            $data["activer"] = "lien_postes_create";
+            $data['contents'] = 'pages/Personnel/postes/create';
+            $this->load->view('templates/template', $data);
         } else {
             $date_debut = date('Y-m-d'); // Définir sur la date actuelle
             $nom = $this->input->post('nom');

@@ -29,6 +29,19 @@ class Journal extends CI_Controller {
         $this->load->view('templates/template', $data);
     }
 
+    public function getJournal(){
+        $month = intval($this->input->get('month')) ?: date('m');
+        $year = intval($this->input->get('year')) ?: date('Y');
+        $response = array(
+            'success' => true,
+            'message' => 'Recuperation des journal cible',
+            'journal' => $this->Journal_model->getJournal($month, $year)
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+
     public function previous()
     {
         $month = intval($this->input->get('month')) ?: date('m');

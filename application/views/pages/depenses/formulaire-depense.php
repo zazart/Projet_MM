@@ -85,7 +85,7 @@
                 <h5 class="card-title">Listes des depenses</h5>
                 <p>Voici les listes de tous les depenses dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
                 <div id="valiny">
-                  <table id="depenseData">
+                  <table id="depenseData" class="table">
                     <thead>
                       <tr>
                         <th>Id</th>

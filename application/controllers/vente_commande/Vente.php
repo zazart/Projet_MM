@@ -43,8 +43,10 @@ class Vente extends CI_Controller {
     }
 
     public function data_statistique() {
+        $debut = $this->input->get("debut");
+        $fin = $this->input->get("fin");
         header('Content-Type: application/json');
-        echo json_encode($this->Vente_model->get_all());
+        echo json_encode($this->Vente_model->get_all($debut, $fin));
     }
 }
 ?>

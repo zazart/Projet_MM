@@ -15,8 +15,16 @@ class Vente_model extends CI_Model {
         return $this->db->get('vente')->result_array();
     }
 
-    public function get_all() {
+    public function get_all($debut = null, $fin = null) {
         $year = 3 - date('Y');
+        $condition = "1 = 1 ";
+        if(isset($debut) && !empty($debut)) {
+            $condition .= " AND vente.date_vente > $debut";
+        }
+        if(isset($fin) && !empty($fin)) {
+            $condition .= " AND vente.date_vente < $fin";
+        }
+
         $sql = "
         SELECT 
             vente.id_vente,
@@ -25,17 +33,17 @@ class Vente_model extends CI_Model {
             date_part('month', vente.date_vente) AS month_vente,
             produit.id_produit,
             produit.nom_produit,
-            SUM(panier.quantite) AS quantite 
+            coalesce(SUM(panier.quantite), 0) AS quantite 
         FROM
             vente 
         JOIN 
             panier ON vente.id_commande=panier.id_commande 
         JOIN
             commande ON panier.id_commande = commande.id_commande  
-        JOIN
+        RIGHT JOIN
             produit ON panier.id_produit=produit.id_produit 
         WHERE 
-            date_part('year', vente.date_vente) > $year 
+            $condition 
         GROUP BY 
             vente.id_vente,date_part('year',vente.date_vente),date_part('month', vente.date_vente),produit.id_produit,produit.nom_produit 
         ORDER BY date_part('year', vente.date_vente) asc, date_part('month', vente.date_vente) asc
@@ -54,7 +62,7 @@ class Vente_model extends CI_Model {
             date_part('month', vente.date_vente) AS month_vente,
             produit.id_produit,
             produit.nom_produit,
-            SUM(panier.quantite) AS quantite 
+            coalesce(SUM(panier.quantite), 0) AS quantite 
         FROM
             vente 
         JOIN 

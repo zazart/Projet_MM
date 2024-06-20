@@ -73,10 +73,10 @@
   <?php endif; ?>
   <div class="row justify-content-center">
     <div class="col-lg-4">
-      <div class="card" id="cache">
+      <div class="card" id="">
         <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
         <div class="card-body d-flex justify-content-center mt-3">
-          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des depenses</button>
+          <button id="viewBtn" class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des depenses</button>
         </div>
         <div class="modal fade" id="verticalycentered">
           <div class="modal-dialog modal-dialog-centered">
@@ -85,7 +85,7 @@
                 <h5 class="card-title">Listes des depenses</h5>
                 <p>Voici les listes de tous les depenses dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
                 <div id="valiny">
-                  <table id="depenseData">
+                  <table id="depenseData" class="table">
                     <thead>
                       <tr>
                         <th>Id</th>
@@ -131,55 +131,13 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var depenseForm = document.getElementById('depenseForm');
-
-    depenseForm.addEventListener('submit', function(event) {
-      // Prevent the default action
-      event.preventDefault();
-      // Get the js data of the formulaire
-      var formData = new FormData(depenseForm);
-      // Create the XHR variable
-      var xhr = creeXHR();
-      // Create POST Request to insert
-      xhr.open('POST', '<?= base_url("depense/create") ?>', true);
-      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      // Change control of the request
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              document.getElementById('boite').style.display = 'block';
-              setTimeout(function() {
-                document.getElementById('boite').style.display = 'none';
-                document.getElementById('cache').style.display = 'block';
-                var var_depenses = response.depenses;
-                const depensesArray = var_depenses.map(depense => Object.values(depense));
-                if ($.fn.DataTable.isDataTable('#depenseData')) {
+    function viewDepenses(depensesArray){
+      if ($.fn.DataTable.isDataTable('#depenseData')) {
                   $('#depenseData').DataTable().destroy();
                 }
                 var table = $('#depenseData').DataTable({
                   data: depensesArray,
-                  columns: [{
-                      title: 'Id'
-                    },
-                    {
-                      title: 'Description'
-                    },
-                    {
-                      title: 'Montant'
-                    },
-                    {
-                      title: 'Date de depense'
-                    },
-                    {
-                      title: 'Justificatif'
-                    },
-                    {
-                      title: 'Mode de paiement'
-                    },
-                    {
-                      title: 'Sub comptes'
-                    },
+                  columns: [{title: 'Id'},{title: 'Description'},{title: 'Montant'},{title: 'Date de depense'},{title: 'Justificatif'},{title: 'Mode de paiement'},{title: 'Categories'},
                     {
                       title: 'Actions',
                       render: function(data, type, row, meta) {
@@ -205,6 +163,29 @@
                   console.log('Supprimer depense avec ID : ', id);
                   // Ajoutez ici la logique pour supprimer le depense
                 });
+    }
+    depenseForm.addEventListener('submit', function(event) {
+      // Prevent the default action
+      event.preventDefault();
+      // Get the js data of the formulaire
+      var formData = new FormData(depenseForm);
+      // Create the XHR variable
+      var xhr = creeXHR();
+      // Create POST Request to insert
+      xhr.open('POST', '<?= base_url("depense/create") ?>', true);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      // Change control of the request
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              document.getElementById('boite').style.display = 'block';
+              setTimeout(function() {
+                document.getElementById('boite').style.display = 'none';
+                var var_depenses = response.depenses;
+                const depensesArray = var_depenses.map(depense => Object.values(depense));
+                viewDepenses(depensesArray);
               }, 2000);
             } else {
               alert('Erreur lors de l\'insertion : ' + response.message);
@@ -256,8 +237,32 @@
       };
       xhr.send();
     });
-
+    // SCRIPT POUR AFFICHER LA LISTE DES DEPENSES
+    document.getElementById('viewBtn').addEventListener('click',function(e){
+      var xhr = creeXHR();
+      // Create POST Request to insert
+      xhr.open('GET', '<?= base_url("depense/getListDepenses") ?>',true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              var var_depenses = response.depenses;
+                const depensesArray = var_depenses.map(depense => Object.values(depense));
+                viewDepenses(depensesArray);
+            } else {
+              alert('Erreur lors de l\'insertion : ' + response.message);
+            }
+          } else {
+            console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
+            alert('Une erreur s\'est produite lors de la requête AJAX.');
+          }
+        }
+      };
+      xhr.send()
+    })
   });
+
 </script>
 
 <!-- END FORMULAIRE DEPENSE -->

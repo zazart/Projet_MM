@@ -47,6 +47,15 @@ class Depense extends CI_Controller {
         $data['activer'] = 'list_depense';
         $this->load->view("templates/template", $data);
     }
+    public function getListDepenses(){
+        $response = array(
+            'success' => true,
+            'depenses' => $this->Depense_model->get_depense()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
 
 
     // Handle the form submission and insert data into the Depense table
@@ -108,13 +117,8 @@ class Depense extends CI_Controller {
             return array('status' => false, 'error' => $this->upload->display_errors());
         }
     }
-       // Access to the journal list
-       public function journal() {
-        $data["contents"] = "pages/depenses/journal";
-        // Activation de lien
-        $data['etat'] = 'depense';
-        $data['activer'] = 'lien_journal';
-        $this->load->view("templates/template", $data);
+    public function journal() {
+        redirect("journal/index");
     }
 
     // Access to the grand livre list

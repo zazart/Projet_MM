@@ -175,5 +175,33 @@ class Employes extends CI_Controller {
         $this->Employe_model->delete_employe($id_employe);
         redirect('Personnel/employes');
     }
+
+    public function search() {
+        // Récupérer les critères de recherche à partir du formulaire de recherche
+        $criteria = array(
+            'nom' => $this->input->get('nom'),
+            'email' => $this->input->get('email'),
+            'telephone' => $this->input->get('telephone'),
+            'adresse' => $this->input->get('adresse'),
+            'id_genre' => $this->input->get('id_genre'),
+            'id_poste' => $this->input->get('id_poste'),
+            'embauche_before' => $this->input->get('embauche_before'),
+            'embauche_after' => $this->input->get('embauche_after'),
+            'debauche_before' => $this->input->get('debauche_before'),
+            'debauche_after' => $this->input->get('debauche_after'),
+            'debauche_is_null' => $this->input->get('debauche_is_null')
+        );
+
+        // Supprimer les critères vides
+        $criteria = array_filter($criteria);
+
+        // Récupérer les employés en fonction des critères de recherche
+        $data['employes'] = $this->Employe_model->search_employes($criteria);
+        $data['title'] = 'Recherche des employés';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/Personnel/employes/search', $data);
+        $this->load->view('templates/footer');
+    }
 }
 ?>

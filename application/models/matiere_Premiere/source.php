@@ -15,7 +15,6 @@ class source extends CI_Model{
             "lieu" => $lieu
         );
         $this->db->insert('source',$data);
-            redirect('Matiere_Premier/source');
     }
 
     function update_source($id,$lieu){
@@ -24,7 +23,6 @@ class source extends CI_Model{
         );
         $this->db->where('id_source',$id);
         $this->db->update('source',$data);
-        redirect('Matiere_Premier/source');
     }
 
     function get_source_data(){

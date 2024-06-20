@@ -77,11 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
-<<<<<<< HEAD
 	'password' => 'TBh00859',
-=======
-	'password' => 'Belouh',
->>>>>>> 67764103564e53af9f5256efaa504e32d732badd
 	'database' => 'flecs',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',

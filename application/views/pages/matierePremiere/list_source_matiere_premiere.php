@@ -24,8 +24,8 @@
                 <td><?php echo $source_matiere['nom']; ?></td>
                 <td><?php echo $source_matiere['dateprelevement']; ?></td>
                 <td><?php echo $source_matiere['lieu']; ?></td>
-                <td><a href="<?php echo site_url('Matiere_Premier/edit_source_matier_permier/'.$source_matiere['id']);?>">Edit</a></td>
-                <td><a href="<?php echo site_url('Matiere_Premier/drop_source_matier_permier/'.$source_matiere['id']);?>">Delete</a></td>
+                <td><a href="<?php echo site_url('Matiere_Premier/edit_source_matier_permier/'.$source_matiere['id_sourcematierepremier']);?>">Edit</a></td>
+                <td><a href="<?php echo site_url('Matiere_Premier/drop_source_matier_permier/'.$source_matiere['id_sourcematierepremier']);?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
                 </tbody>

@@ -17,7 +17,6 @@ class source_matiere_premier extends CI_Model{
             "source"=>$source
         );
         $this->db->insert('sourcematierepremier',$data);
-        redirect('Matiere_Premier/sourcematierepremier');
     }
 
     function update_source_matiere_premier($id,$matierepremier,$date,$lieu){
@@ -28,7 +27,6 @@ class source_matiere_premier extends CI_Model{
         );
         $this->db->where('id_sourcematierepremier',$id);
         $this->db->update('sourcematierepremier',$data);
-        redirect('Matiere_Premier/sourcematierepremier');
     }
 
     function get_source_matiere_premiere_data(){

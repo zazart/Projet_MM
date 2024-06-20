@@ -15,7 +15,6 @@ class matiere extends CI_Model{
             'nom' => $nom
         );
         $this->db->insert("matierepremier",$data);
-        redirect('Matiere_premier/matiere_premier_insert');
     }
 
     public function update_matiere($id,$nom){
@@ -24,7 +23,6 @@ class matiere extends CI_Model{
         );
         $this->db->where('id_matierepremier',$id);
         $this->db->update("matierepremier",$data);
-        redirect('Matiere_premier/matiere_premier_insert');
     }
 
     public function get_matiere_data(){

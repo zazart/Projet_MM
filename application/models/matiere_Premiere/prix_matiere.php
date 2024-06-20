@@ -17,7 +17,6 @@ class prix_matiere extends CI_Model{
             'dateprix'=>$date
         );
         $this->db->insert('prixmatierepremier',$data);
-        redirect('Matiere_Premier/prixmatierepremier');
     }
 
     public function update_prix_matiere($id,$idmatierepremier,$prix,$date) {
@@ -29,7 +28,6 @@ class prix_matiere extends CI_Model{
 
         $this->db->where('id_prixmatierepremier',$id);
         $this->db->update('prixmatierepremier',$data);
-        redirect('Matiere_Premier/prixmatierepremier');
     }
 
     public function get_prix_matiere_data(){

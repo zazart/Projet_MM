@@ -23,13 +23,11 @@
   <script src="<?php echo (base_url("assets/vendor/php-email-form/validate.js"))?>"></script>
 
   <!-- Template Main JS File -->
-<<<<<<< HEAD
-  <script src="<?php echo (base_url("assets/js/main.js"))?>"></script>
-=======
+
   <script src="<?php echo(base_url("assets/js/main.js"))?>"></script>
   <script src="<?php echo(base_url("assets/js/jquery.min.js"))?>"></script>
   <script src="<?php echo(base_url("assets/js/datatables.js"))?>"></script>
->>>>>>> 67764103564e53af9f5256efaa504e32d732badd
+
 
 </body>
 

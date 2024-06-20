@@ -47,6 +47,15 @@ class Depense extends CI_Controller {
         $data['activer'] = 'list_depense';
         $this->load->view("templates/template", $data);
     }
+    public function getListDepenses(){
+        $response = array(
+            'success' => true,
+            'depenses' => $this->Depense_model->get_depense()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
 
 
     // Handle the form submission and insert data into the Depense table

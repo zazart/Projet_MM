@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line Chart with Chart.js</title>
-    <script src="<?=base_url("/assets/js/chart.js")?>"></script>
-    <script src="<?=base_url("/assets/js/jquery-3.7.1.min.js")?>"></script>
-</head>
-<body>
+
+<section class="section">
     <canvas id="myChart" width="400" height="200"></canvas>
 
     <script>
-        var url = '<?=base_url("/vente/data_statistique")?>';
+    document.addEventListener('DOMContentLoaded', function() {
+        var url = '<?=base_url("vente_commande/vente/data_statistique")?>';
         $.getJSON(url, function(data) {
 
             const formatLabel = (year, month) => `${year}-${String(month).padStart(2, '0')}`;
@@ -83,7 +76,6 @@
             console.error("Request Failed: " + err);
         });
 
-
+    });
     </script>
-</body>
-</html>
+</section>

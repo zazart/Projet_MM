@@ -253,6 +253,11 @@
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
             </a>
           </li>
+          <li>
+            <a href="<?php echo(site_url("vente_commande/vente/statistique")); ?>" <?php if ($activer == "lien_statistique") { echo 'class="active"';} ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statisique</span>
+            </a>
+          </li>
         </ul>
       </li><!-- vente et prise de commande -->
 

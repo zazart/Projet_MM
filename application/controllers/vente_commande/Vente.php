@@ -35,7 +35,11 @@ class Vente extends CI_Controller {
         redirect('vente');
     }
     public function statistique() {
-        $this->load->view('pages/vente/vente_statistique');
+        $data["title"] = "Projet MM";
+		$data["contents"]='pages/vente/vente_statistique';
+        $data["etat"] = "vente_commande";
+        $data["activer"] = "lien_statistique";
+		$this->load->view("templates/template",$data);
     }
 
     public function data_statistique() {

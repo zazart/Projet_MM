@@ -142,6 +142,8 @@ class Employes extends CI_Controller {
     public function search() {
         // Récupérer les critères de recherche à partir du formulaire de recherche
         $criteria = array(
+            'debut_embauche' => $this->input->post('debut_embauche'),
+            'fin_embauche' => $this->input->post('fin_embauche'),
             'nom' => $this->input->post('nom'),
             'id_genre' => $this->input->post('id_genre'),
             'id_poste' => $this->input->post('id_poste')

@@ -45,6 +45,12 @@ class Employe_model extends CI_Model {
             $this->db->or_like('employe.email', $criteria['nom']);
             $this->db->group_end();  // Close bracket
         }
+        if (!empty($criteria['debut_embauche'])) {
+            $this->db->where('employe.embauche >', $criteria['debut_embauche']);
+        }
+        if (!empty($criteria['fin_embauche'])) {
+            $this->db->where('employe.embauche <', $criteria['fin_embauche']);
+        }
         if (!empty($criteria['id_genre'])) {
             $this->db->where('employe.id_genre', $criteria['id_genre']);
         }

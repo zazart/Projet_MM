@@ -10,7 +10,7 @@
               <form class="row g-3">
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Date :</label>
-                  <input type="text" class="form-control" id="inputName">
+                  <input type="date" class="form-control" id="inputName">
                 </div>
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Panier :</label>

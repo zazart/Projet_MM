@@ -38,14 +38,15 @@
   /*boutton-primary*/
     .boutton-primary {
         color: #e0ded2;
-        background-color:#011103;
-        border-color: #011103;
-    }
-  
-    .boutton-primary:hover {
-        color: #e0ded2;
         background-color: #042709d8;
         border-color: #042709d8;
+        border: none;
+    }
+    
+    .boutton-primary:hover {
+        color: #e0ded2;
+        background-color:#011103;
+        border-color: #011103;
     }
   
     .boutton-primary:focus, .boutton-primary.focus {
@@ -183,3 +184,45 @@
     }
   
   /*fin*/
+
+  /*Validation*/
+    #cache{
+        display: none; 
+    }
+
+  .boite{
+    position: absolute;
+    top: 35%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation-name: animValidation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    }
+
+    @keyframes animValidation {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, 50%);
+            display: block;
+        }
+        50% {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            display: block;
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, -100%);
+            display: none;
+        }
+    }
+  /*fin*/
+
+  /*Image pour les liste */
+    .card-img-top {
+        max-height: 10vh;
+        object-fit: cover;
+    }
+  /*Fin*/

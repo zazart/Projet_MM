@@ -9,25 +9,25 @@ class Employe_model extends CI_Model {
         if ($id_employe === FALSE) {
             $now = date('Y-m-d'); // Obtenir la date actuelle au format YYYY-MM-DD
 
-            $this->db->select('employe.*, genre.description as genre_description, poste.nom as poste_nom');
-            $this->db->from('employe');
-            $this->db->join('genre', 'employe.id_genre = genre.id_genre');
-            $this->db->join('poste', 'employe.id_poste = poste.id_poste');
-            $this->db->where('employe.embauche <', $now);
+            $this->db->select('e.id_employe,e.nom, e.email, e.telephone,e.adresse, genre.description as genre_description, poste.nom as poste_nom');
+            $this->db->from('employe as e');
+            $this->db->join('genre', 'e.id_genre = genre.id_genre');
+            $this->db->join('poste', 'e.id_poste = poste.id_poste');
+            $this->db->where('e.embauche <', $now);
             $this->db->group_start();
-            $this->db->where('employe.debauche IS NULL');
-            $this->db->or_where('employe.debauche >', $now);
+            $this->db->where('e.debauche IS NULL');
+            $this->db->or_where('e.debauche >', $now);
             $this->db->group_end();
 
             $query = $this->db->get();
             return $query->result_array();
         }
 
-        $this->db->select('employe.*, genre.description as genre_description, poste.nom as poste_nom');
-        $this->db->from('employe');
-        $this->db->join('genre', 'employe.id_genre = genre.id_genre');
-        $this->db->join('poste', 'employe.id_poste = poste.id_poste');
-        $this->db->where('employe.id_employe', $id_employe);
+        $this->db->select('e.id_employe,e.nom, e.email, e.telephone,e.adresse, genre.description as genre_description, poste.nom as poste_nom');
+        $this->db->from('employe as e');
+        $this->db->join('genre', 'e.id_genre = genre.id_genre');
+        $this->db->join('poste', 'e.id_poste = poste.id_poste');
+        $this->db->where('e.id_employe', $id_employe);
         $query = $this->db->get();
         return $query->row_array();
     }

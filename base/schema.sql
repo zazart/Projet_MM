@@ -238,13 +238,13 @@ insert into Genre(description) values
 ('Homme'),
 ('Femme');
 
--- insert into TypeProfil(libelle) values 
--- ('Admin'),
--- ('Collecteur'),
--- ('Responsable Matieres premieres'),
--- ('Transformation'),
--- ('Responsable production'),
--- ('Personnel'),
--- ('Responsable vente'),
--- ('Responsable depense'),
--- ('Responsable transformation');
+insert into TypeProfil(libelle) values 
+('Admin'),
+('Collecteur'),
+('Responsable Matieres premieres'),
+('Transformation'),
+('Responsable production'),
+('Personnel'),
+('Responsable vente'),
+('Responsable depense'),
+('Responsable transformation');

@@ -133,51 +133,35 @@
                                                     <!-- insertion de matiere premiere -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/matiere_premier_insert");?>"   <?php if ($activer == "matiere_premiere") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière première</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Matieres Premières</span>
             </a>
           </li>
                                                     <!-- liste of matiere premiere -->
-          <li>
-            <a href="<?php  echo site_url("Matiere_premier/list_matiere");?>" <?php if ($activer == "list_matiere_premier") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matière première</span>
-            </a>
-          </li>
+       
                                                   <!-- inesrtiond es pris des matieres premieres -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/prixmatierepremier");?>" <?php if ($activer == "prix_matiere_premier") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion prix matière première</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Prix</span>
             </a>
           </li>
                                                  <!-- liste des matieres premieres avec leurs prix  list_prix_matiere-->
-            <li>
-              <a href="<?php  echo site_url("Matiere_premier/list_prix_matiere");?>" <?php if ($activer == "list_prix_matiere_premier") { echo 'class="active"';} ?>>
-                <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste du prix des matières premières</span>
-              </a>
-          </li>
+           
                                                  <!-- insertion d une nouvelle source -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/source");?>" <?php if ($activer == "source_insert") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">insertion d une nouvelle source </span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Sources </span>
             </a>
           </li>
                                                 <!-- liste de tout les sources disponibles -->
-          <li>
-            <a href="<?php  echo site_url("Matiere_premier/list_source");?>" <?php if ($activer == "list_source") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste de toute nos sources </span>
-            </a>
-          </li>
+       
                                                 <!-- insertion de liste des source matiere premiere -->
           <li>
             <a href="<?php  echo site_url("Matiere_premier/sourcematierepremier");?>" <?php if ($activer == "source_matiere_premiere") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">insertion source matiere premiere</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Soures et matières premières</span>
             </a>
           </li>
                                                 <!-- liste de tout les sources par matiere premiere -->
-          <li>
-                <a href="<?php  echo site_url("Matiere_premier/list_source_matiere_premier");?>" <?php if ($activer == "list_source_matiere_premiere") { echo 'class="active"';} ?>>
-                  <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste des  matieres premieres et leur sources</span>
-                </a>
-          </li>                                                
+                                                  
         </ul>
       </li><!-- Matière première -->
 

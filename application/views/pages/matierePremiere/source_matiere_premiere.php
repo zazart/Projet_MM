@@ -62,6 +62,36 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+      <div class="card" >
+        <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+        <div class="card-body d-flex justify-content-center mt-3">
+          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des source de matieres premieres</button>
+        </div>
+        <div class="modal fade" id="verticalycentered">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-body">
+                    <h5 class="card-title">Listes des source des matieres premieres</h5>
+                    <p>Voici les listes de tous les sources des matieres premieres dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
+                    <div id="valiny">
+                    <table id="sourcematiereData">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              <th>Nom</th>
+                              <th>lieu</th>
+                              <th>date de modification</th>
+                          </tr>
+                      </thead>
+                    </table>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 </section>
 <script>
@@ -84,6 +114,70 @@
           }
           return xhr;
         }
+
+        var xhr2=creerXHR(); //
+            xhr2.open('POST','<?= site_url("Matiere_premier/list_source_matiere_premier")?>',true);
+            xhr2.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            xhr2.onreadystatechange=function(){
+              if(xhr2.readyState ===  XMLHttpRequest.DONE){
+                  if(xhr2.status === 200){
+                    var response=JSON.parse(xhr2.responseText);
+                    if(response.success){
+                      var var_matiere = response.source_matiere;
+                      const matiereArray = var_matiere.map(source_matiere => Object.values(source_matiere));
+                      if ($.fn.DataTable.isDataTable('#sourcematiereData')) {
+                        $('#sourcematiereData').DataTable().destroy();
+                      }
+                      var table = $('#sourcematiereData').DataTable({
+                        data: matiereArray,
+                        columns: [
+                          { title: 'nom' },
+                          { title: 'lieu' },
+                          {title: 'dateprelevement'},
+                          {
+                            title: 'Actions',
+                            render: function(data, type, row, meta) {
+                                var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
+                                var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                                return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
+                                      '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
+                            }
+                          }
+                        ]
+                      });
+
+                      // Événement click sur les images Modifier
+                      $('#sourcematiereData tbody').on('click', '.img-modifier', function() {
+                          var id = $(this).data('id');
+                          var url="<?php echo base_url("Matiere_premier/edit_source_matier_permier");?>/"+id;
+                          window.location.href = url;
+                          // Ajoutez ici la logique pour modifier le client
+                      });
+
+                      // Événement click sur les images Supprimer
+                      $('#sourcematiereData tbody').on('click', '.img-supprimer', function() {
+                          var id = $(this).data('id');
+                          var url="<?php echo base_url("Matiere_premier/drop_source_matier_permier")?>";
+                          $.post(url,{id:id},function(data){
+                            window.location.reload();
+                          });
+                          console.log('Supprimer client avec ID : ', id);
+                          // Ajoutez ici la logique pour supprimer le client
+                      });
+                    }
+                  }
+                  else {
+                    console.error('Erreur AJAX : ', xhr2.status, xhr2.statusText);
+                    alert('Une erreur s\'est produite lors de la requête AJAX.');
+                  }
+              }
+            };
+            xhr2.onerror = function() {
+            console.error('Erreur réseau');
+            alert('Une erreur s\'est produite lors de la requête AJAX.');
+            };
+            xhr2.send();
+
         document.addEventListener("DOMContentLoaded",function(){
           var sourcematiereform=document.getElementById("sourcematiereform");
 
@@ -101,6 +195,7 @@
                       document.getElementById('boite').style.display="block";
                       setTimeout(function(){
                         document.getElementById('boite').style.display="none";
+                        window.location.reload();
                       },2000);
                     }
                     else{

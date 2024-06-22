@@ -12,7 +12,7 @@
                 <input type="hidden" name="id" value="<?php echo isset($matiere['id_matierepremier']) ? $matiere['id_matierepremier'] : ''; ?>">
                
                 <div class="col-12">
-                  <label for="inputNanme4" class="form-label">Nom</label>
+                  <label for="matierepremier" class="form-label">Nom</label>
                   <input   id="inputName" type="text" class="form-control" name="matierepremier" value="<?php if (isset($matiere['nom'])) { echo $matiere['nom']; } ?>" required autofocus>			
                    <!-- div pour afficher les erreurs -->
                 <p class="text-danger" id="nomError"></p>					
@@ -28,6 +28,34 @@
             </div>
           </div>
         </div>
+      <div class="col-lg-4">
+      <div class="card" >
+        <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+        <div class="card-body d-flex justify-content-center mt-3">
+          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des matieres premiers</button>
+        </div>
+        <div class="modal fade" id="verticalycentered">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-body">
+                    <h5 class="card-title">Listes des matieres premieres</h5>
+                    <p>Voici les listes de tous les matieres premieres dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
+                    <div id="valiny">
+                    <table id="matiereData">
+                      <thead>
+                          <tr>
+                              <th>Id</th>
+                              <th>Nom</th>
+                          </tr>
+                      </thead>
+                    </table>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
       </div>
     </section>
     <script>
@@ -53,6 +81,72 @@
 
         document.addEventListener("DOMContentLoaded",function(){
           var matiereInsertForm=document.getElementById("matiereInsertForm");
+          var formdata=new FormData(matiereInsertForm);
+
+
+            var xhr2=creerXHR(); //
+            xhr2.open('POST','<?= site_url("Matiere_premier/list_matiere")?>',true);
+            xhr2.setRequestHeader("X-Requested-With","XMLHttpRequest");
+            xhr2.onreadystatechange=function(){
+              if(xhr2.readyState ===  XMLHttpRequest.DONE){
+                  if(xhr2.status === 200){
+                    var response=JSON.parse(xhr2.responseText);
+                    if(response.success){
+                      var var_matiere = response.matiere;
+                      const matiereArray = var_matiere.map(matiere => Object.values(matiere));
+                      if ($.fn.DataTable.isDataTable('#matiereData')) {
+                        $('#matiereData').DataTable().destroy();
+                      }
+                      var table = $('#matiereData').DataTable({
+                        data: matiereArray,
+                        columns: [
+                          { title: 'ID' },
+                          { title: 'Nom' },
+                          {
+                            title: 'Actions',
+                            render: function(data, type, row, meta) {
+                                var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
+                                var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                                return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
+                                      '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
+                            }
+                          }
+                        ]
+                      });
+
+                      // Événement click sur les images Modifier
+                      $('#matiereData tbody').on('click', '.img-modifier', function() {
+                          var id = $(this).data('id');
+                          var url="<?php echo base_url("Matiere_premier/edit_matier_permier");?>/"+id;
+                          window.location.href=url;
+                          // Ajoutez ici la logique pour modifier le client
+                      });
+
+                      // Événement click sur les images Supprimer
+                      $('#matiereData tbody').on('click', '.img-supprimer', function() {
+                        var id = $(this).data('id');
+
+                        var url="<?php echo site_url("Matiere_premier/drop_matier_permier")?>";
+                        $.post( url , {id : id}).done(function(data){
+                          window.location.reload();
+                        });
+                       
+                          // Ajoutez ici la logique pour supprimer le client
+                      });
+                    }
+                  }
+                  else {
+                    console.error('Erreur AJAX : ', xhr2.status, xhr2.statusText);
+                    alert('Une erreur s\'est produite lors de la requête AJAX.');
+                  }
+              }
+            };
+            xhr2.onerror = function() {
+            console.error('Erreur réseau');
+            alert('Une erreur s\'est produite lors de la requête AJAX.');
+            };
+            xhr2.send();
+
 
           matiereInsertForm.addEventListener('submit',function(event){
             event.preventDefault();
@@ -68,6 +162,7 @@
                       document.getElementById('boite').style.display="block";
                       setTimeout(function(){
                         document.getElementById('boite').style.display="none";
+                        window.location.reload();
                       },2000);
                     }
                     else{

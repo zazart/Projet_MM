@@ -36,6 +36,11 @@ class matiere extends CI_Model{
     }
 
     public function delete_matiere($id) {
+        $this->db->delete('collects',array('id_matierepremier'=>$id));
+        $this->db->delete('stockmatierpremier',array('matierepremier'=>$id));
+        $this->db->delete('production',array('matierepremier'=>$id));
+        $this->db->delete('prixmatierepremier',array('matierpremier'=>$id));
+        $this->db->delete('sourcematierepremier',array('matierpremier'=>$id));
         $this->db->delete('matierepremier',array('id_matierepremier'=>$id));
     }
 } 

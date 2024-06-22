@@ -36,6 +36,7 @@ class source extends CI_Model{
     }
 
     public function delete_source($id) {
+        $this->db->delete('sourcematierepremier',array("source"=>$id));
         $this->db->delete('source',array('id_source'=>$id));
     }
 }

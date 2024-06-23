@@ -25,9 +25,6 @@
                         <div class="text-center">
                             <button type="submit" class="boutton boutton-secondary">Inserer</button>
                         </div>
-                        <div class="boite" id="boite">
-                            <img src="<?php echo (base_url("assets/img/check.png")) ?>">
-                        </div>
                     </form><!-- Vertical Form -->
                 </div>
             </div>
@@ -36,8 +33,7 @@
             <div class="card">
                 <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
                 <div class="card-body d-flex justify-content-center mt-3">
-                    <button class="boutton boutton-primary" data-bs-toggle="modal"
-                        data-bs-target="#verticalycentered">Voir liste des clients</button>
+                    <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des clients</button>
                 </div>
                 <div class="modal fade" id="verticalycentered">
                     <div class="modal-dialog modal-dialog-centered">
@@ -68,146 +64,210 @@
 </section>
 
 <script>
-function creeXHR() {
-    var xhr;
-    try {
-        xhr = new ActiveXObject('Msxml2.XMLHTTP');
-    } catch (e) {
+    function creeXHR() {
+        var xhr;
         try {
-            xhr = new ActiveXObject('Microsoft.XMLHTTP');
-        } catch (e2) {
+            xhr = new ActiveXObject('Msxml2.XMLHTTP');
+        } catch (e) {
             try {
-                xhr = new XMLHttpRequest();
-            } catch (e3) {
-                xhr = false;
-            }
-        }
-    }
-    return xhr;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    var clientForm = document.getElementById('clientForm');
-    var xhr2 = creeXHR();
-    xhr2.open('POST', '<?= base_url("vente_commande/client/getliste_client") ?>', true);
-    xhr2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr2.onreadystatechange = function() {
-        if (xhr2.readyState === XMLHttpRequest.DONE) {
-            if (xhr2.status === 200) {
-                var response = JSON.parse(xhr2.responseText);
-                if (response.success) {
-                    var var_clients = response.clients;
-                    const clientsArray = var_clients.map(client => Object.values(
-                        client));
-                    if ($.fn.DataTable.isDataTable('#clientsData')) {
-                        $('#clientsData').DataTable().destroy();
-                    }
-                    var table = $('#clientsData').DataTable({
-                        data: clientsArray,
-                        columns: [{
-                                title: 'ID'
-                            },
-                            {
-                                title: 'Nom'
-                            },
-                            {
-                                title: 'Email'
-                            },
-                            {
-                                title: 'Adresse'
-                            },
-                            {
-                                title: 'Actions',
-                                render: function(data, type, row,
-                                    meta) {
-                                    var editImgSrc =
-                                        '<?php echo base_url('assets/img/modifier.png'); ?>';
-                                    var deleteImgSrc =
-                                        '<?php echo base_url('assets/img/corbeille.png'); ?>';
-                                    return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' +
-                                        editImgSrc + '" data-id="' +
-                                        row[0] +
-                                        '" alt="Modifier">' +
-                                        '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' +
-                                        deleteImgSrc +
-                                        '" data-id="' + row[0] +
-                                        '" alt="Supprimer">';
-                                }
-                            }
-                        ]
-                    });
-
-                    // Événement click sur les images Modifier
-                    $('#clientsData tbody').on('click', '.img-modifier',
-                        function() {
-                            var id = $(this).data('id');
-                            console.log('Modifier client avec ID : ', id);
-                            // Ajoutez ici la logique pour modifier le client
-                        });
-
-                    // Événement click sur les images Supprimer
-                    $('#clientsData tbody').on('click', '.img-supprimer',
-                        function() {
-                            var id = $(this).data('id');
-                            console.log('Supprimer client avec ID : ', id);
-                            // Ajoutez ici la logique pour supprimer le client
-                        });
-                } else {
-                    alert('Erreur lors de l\'insertion : ' + response.message);
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (e2) {
+                try {
+                    xhr = new XMLHttpRequest();
+                } catch (e3) {
+                    xhr = false;
                 }
-            } else {
-                console.error('Erreur AJAX : ', xhr2.status, xhr2.statusText);
-                alert('Une erreur s\'est produite lors de la requête AJAX.');
             }
         }
-    };
+        return xhr;
+    }
 
-    xhr2.onerror = function() {
-        console.error('Erreur réseau');
-        alert('Une erreur s\'est produite lors de la requête AJAX.');
-    };
-
-    xhr2.send();
-
-
-    clientForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        var formData = new FormData(clientForm);
-        var xhr = creeXHR();
-        xhr.open('POST', '<?= base_url("vente_commande/client/store") ?>', true);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
+    document.addEventListener('DOMContentLoaded', function() {
+        var clientForm = document.getElementById('clientForm');
+        var xhr2 = creeXHR();
+        xhr2.open('POST', '<?= base_url("vente_commande/client/getliste_client") ?>', true);
+        xhr2.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr2.onreadystatechange = function() {
+            if (xhr2.readyState === XMLHttpRequest.DONE) {
+                if (xhr2.status === 200) {
+                    var response = JSON.parse(xhr2.responseText);
                     if (response.success) {
-                        document.getElementById('boite').style.display = 'block';
-                        setTimeout(function() {
-                            document.getElementById('boite').style.display = 'none';
-                            window.location.reload();
-                        }, 2000);
+                        var var_clients = response.clients;
+                        const clientsArray = var_clients.map(client => Object.values(
+                            client));
+                        if ($.fn.DataTable.isDataTable('#clientsData')) {
+                            $('#clientsData').DataTable().destroy();
+                        }
+                        var table = $('#clientsData').DataTable({
+                            data: clientsArray,
+                            columns: [{
+                                    title: 'ID'
+                                },
+                                {
+                                    title: 'Nom'
+                                },
+                                {
+                                    title: 'Email'
+                                },
+                                {
+                                    title: 'Adresse'
+                                },
+                                {
+                                    title: 'Actions',
+                                    render: function(data, type, row,
+                                        meta) {
+                                        var editImgSrc =
+                                            '<?php echo base_url('assets/img/modifier.png'); ?>';
+                                        var deleteImgSrc =
+                                            '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                                        return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' +
+                                            editImgSrc + '" data-id="' +
+                                            row[0] +
+                                            '" alt="Modifier">' +
+                                            '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' +
+                                            deleteImgSrc +
+                                            '" data-id="' + row[0] +
+                                            '" alt="Supprimer">';
+                                    }
+                                }
+                            ]
+                        });
+
+                        // Événement click sur les images Modifier
+                        $('#clientsData tbody').on('click', '.img-modifier',
+                            function() {
+                                var id = $(this).data('id');
+                                window.location.href =
+                                    '<?= base_url("vente_commande/client/update_client") ?>' + "/" + id;
+                                // Ajoutez ici la logique pour modifier le client
+                            });
+
+                        // Événement click sur les images Supprimer
+                        $('#clientsData tbody').on('click', '.img-supprimer',
+                            function() {
+                                var id = $(this).data('id');
+                                // Ajoutez ici la logique pour supprimer le client
+                                swal({
+                                    title: 'Confirmation de la suppression',
+                                    text: 'Voulez vous vraiment supprimer ce client',
+                                    icon: 'warning',
+                                    buttons: true,
+                                    dangerMode: true,
+                                }).then((isOkay) => {
+                                    if (isOkay) {
+                                        var xhrSupprimer = new XMLHttpRequest();
+
+                                        xhrSupprimer.open('POST',
+                                            '<?= base_url("vente_commande/client/delete") ?>',
+                                            true);
+                                        xhrSupprimer.setRequestHeader('X-Requested-With',
+                                            'XMLHttpRequest');
+                                        xhrSupprimer.setRequestHeader('Content-Type',
+                                            'application/x-www-form-urlencoded');
+
+                                        xhrSupprimer.onreadystatechange = function() {
+                                            if (xhrSupprimer.readyState == 4 && xhrSupprimer
+                                                .status == 200) {
+                                                var response = JSON.parse(xhrSupprimer
+                                                    .responseText);
+                                                if (response.success) {
+                                                    swal({
+                                                        title: 'Succès',
+                                                        text: 'Client supprimé avec succès.',
+                                                        icon: 'success',
+                                                        buttons: 'OK'
+                                                    }).then((isOkay) => {
+                                                        if (isOkay) {
+                                                            window.location
+                                                                .reload(); // Actualise la page après la confirmation
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                            if (xhrSupprimer
+                                                .status == 500) {
+                                                swal({
+                                                    title: 'Erreur',
+                                                    text: 'Ce client ne peut pas etre supprimer',
+                                                    icon: 'error',
+                                                    buttons: 'OK'
+                                                }).then((isOkay) => {
+                                                    if (isOkay) {
+                                                        window.location
+                                                            .reload(); // Actualise la page après la confirmation
+                                                    }
+                                                });
+                                            }
+                                        };
+
+                                        xhrSupprimer.send('id=' + encodeURIComponent(
+                                            id
+                                        )); // Envoie l'ID du client en tant que paramètre POST
+                                    }
+                                });
+                            });
                     } else {
-                        // Gérer les erreurs de validation et afficher les messages d'erreur
-                        document.getElementById('nomGlobalError').innerHTML = response.errors
-                            .nomGlobal || '';
-                        document.getElementById('emailError').innerHTML = response.errors.email ||
-                            '';
-                        document.getElementById('adresseError').innerHTML = response.errors
-                            .adresse || '';
+                        alert('Erreur lors de l\'insertion : ' + response.message);
                     }
                 } else {
-                    console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
+                    console.error('Erreur AJAX : ', xhr2.status, xhr2.statusText);
                     alert('Une erreur s\'est produite lors de la requête AJAX.');
                 }
             }
         };
 
-        xhr.onerror = function() {
+        xhr2.onerror = function() {
             console.error('Erreur réseau');
             alert('Une erreur s\'est produite lors de la requête AJAX.');
         };
 
-        xhr.send(formData);
+        xhr2.send();
+
+
+        clientForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(clientForm);
+            var xhr = creeXHR();
+            xhr.open('POST', '<?= base_url("vente_commande/client/store") ?>', true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            swal({
+                                title: 'Succès',
+                                text: 'Client ajouté avec succès.',
+                                icon: 'success',
+                                buttons: 'OK'
+                            }).then((isOkay) => {
+                                if (isOkay) {
+                                    window.location
+                                        .reload(); // Actualise la page après la confirmation
+                                }
+                            });
+                        } else {
+                            // Gérer les erreurs de validation et afficher les messages d'erreur
+                            document.getElementById('nomGlobalError').innerHTML = response.errors
+                                .nomGlobal || '';
+                            document.getElementById('emailError').innerHTML = response.errors.email ||
+                                '';
+                            document.getElementById('adresseError').innerHTML = response.errors
+                                .adresse || '';
+                        }
+                    } else {
+                        console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
+                        alert('Une erreur s\'est produite lors de la requête AJAX.');
+                    }
+                }
+            };
+
+            xhr.onerror = function() {
+                console.error('Erreur réseau');
+                alert('Une erreur s\'est produite lors de la requête AJAX.');
+            };
+
+            xhr.send(formData);
+        });
     });
-});
 </script>

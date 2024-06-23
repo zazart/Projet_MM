@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title><?php echo($title)?></title>
+  <title><?php echo ($title) ?></title>
 
 
   <!-- Favicons -->
@@ -14,20 +14,22 @@
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <script src="<?php echo (base_url("assets/js/sweetAlert.min.js")) ?>"></script>
+
 
   <!-- Vendor CSS Files -->
-  <link href="<?php echo(base_url("assets/vendor/bootstrap/css/bootstrap.min.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/bootstrap-icons/bootstrap-icons.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/boxicons/css/boxicons.min.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/quill/quill.snow.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/quill/quill.bubble.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/remixicon/remixicon.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/vendor/simple-datatables/style.css"))?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/bootstrap/css/bootstrap.min.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/bootstrap-icons/bootstrap-icons.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/boxicons/css/boxicons.min.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/quill/quill.snow.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/quill/quill.bubble.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/remixicon/remixicon.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/vendor/simple-datatables/style.css")) ?>" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="<?php echo(base_url("assets/css/style.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/css/datatables.css"))?>" rel="stylesheet">
-  <link href="<?php echo(base_url("assets/css/itu.css"))?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/css/style.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/css/datatables.css")) ?>" rel="stylesheet">
+  <link href="<?php echo (base_url("assets/css/itu.css")) ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -49,7 +51,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="<?php echo(base_url("assets/img/profile-img.jpg"))?>" alt="Profile" class="rounded-circle">
+            <img src="<?php echo (base_url("assets/img/profile-img.jpg")) ?>" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2 color_black">JC.Alex</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -84,42 +86,35 @@
 
       <li class="nav-item">
         <a class="<?php echo ($etat == "collecteur") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-bucket-fill color_black"></i><span class="color_black">Tâches collecteurs</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+          <i class="bi bi-bucket-fill color_black"></i><span class="color_black">Tâches collecteurs</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="components-nav" class="<?php echo ($etat == "collecteur") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("collecteurs/collecteurController/insert_collector")); ?>"  <?php if ($activer == "lien_collecteur") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecteur</span>
+            <a href="<?php echo (site_url("collecteurs/collecteurController/insert_collector")); ?>" <?php if ($activer == "lien_collecteur") {
+                                                                                                        echo 'class="active"';
+                                                                                                      } ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">
+                Collecteur</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("collecteurs/collectController/insert_collect")); ?>" <?php if ($activer == "lien_collect") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Collecte</span>
+            <a href="<?php echo (site_url("collecteurs/collectController/insert_collect")); ?>" <?php if ($activer == "lien_collect") {
+                                                                                                  echo 'class="active"';
+                                                                                                } ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">
+                Collecte</span>
             </a>
           </li>
           <li>
-            <a href="components-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion Salaire</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion bonus</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement</span>
+            <a href="<?php echo (site_url("collecteurs/bonusController/insert_bonus")); ?>" <?php if ($activer == "lien_bonus") {
+                                                                                              echo 'class="active"';
+                                                                                            } ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Bonus</span>
             </a>
           </li>
           <li>
             <a href="components-breadcrumbs.html">
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("collecteurs/collecteurController/liste")); ?>" <?php if ($activer == "lien_liste") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste</span>
             </a>
           </li>
         </ul>
@@ -132,7 +127,8 @@
         <ul id="matiere-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="matiere-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière première</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière
+                première</span>
             </a>
           </li>
           <li>
@@ -142,12 +138,14 @@
           </li>
           <li>
             <a href="matiere-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
+                source</span>
             </a>
           </li>
           <li>
             <a href="matiere-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source matière</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source
+                matière</span>
             </a>
           </li>
         </ul>
@@ -161,7 +159,8 @@
         <ul id="personnel-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="personnel-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion personnel</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
+                personnel</span>
             </a>
           </li>
           <li>
@@ -181,7 +180,8 @@
           </li>
           <li>
             <a href="personnel-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure de travail</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure
+                de travail</span>
             </a>
           </li>
           <li>
@@ -200,22 +200,26 @@
         <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="transformation-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matériaux</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
+                matériaux</span>
             </a>
           </li>
           <li>
             <a href="transformation-accordion.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état matériaux</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état
+                matériaux</span>
             </a>
           </li>
           <li>
             <a href="transformation-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
+                production</span>
             </a>
           </li>
           <li>
             <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de saison</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de
+                saison</span>
             </a>
           </li>
           <li>
@@ -225,7 +229,8 @@
           </li>
           <li>
             <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état matériels</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état
+                matériels</span>
             </a>
           </li>
         </ul>
@@ -235,21 +240,28 @@
 
       <li class="nav-item">
         <a class="<?php echo ($etat == "vente_commande") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#vente-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-graph-up-arrow color_black"></i><span class="color_black">Ventes & prise de commande</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+          <i class="bi bi-graph-up-arrow color_black"></i><span class="color_black">Ventes & prise de
+            commande</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="vente-nav" class="<?php echo ($etat == "vente_commande") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("vente_commande/vente/insert_vente")); ?>" <?php if ($activer == "lien_vente") { echo 'class="active"';} ?>>
+            <a href="<?php echo (site_url("vente_commande/vente/insert_vente")); ?>" <?php if ($activer == "lien_vente") {
+                                                                                        echo 'class="active"';
+                                                                                      } ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Vente</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("vente_commande/client/insert_client")); ?>" <?php if ($activer == "lien_client") { echo 'class="active"';} ?>>
+            <a href="<?php echo (site_url("vente_commande/client/insert_client")); ?>" <?php if ($activer == "lien_client") {
+                                                                                          echo 'class="active"';
+                                                                                        } ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Client</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("vente_commande/commande/insert_commande")); ?>" <?php if ($activer == "lien_commande") { echo 'class="active"';} ?>>
+            <a href="<?php echo (site_url("vente_commande/commande/insert_commande")); ?>" <?php if ($activer == "lien_commande") {
+                                                                                              echo 'class="active"';
+                                                                                            } ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
             </a>
           </li>
@@ -258,12 +270,13 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i class="bi bi-chevron-down ms-auto color_black"></i>
+          <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="depense-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="depense-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion dépenses</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
+                dépenses</span>
             </a>
           </li>
           <li>
@@ -285,4 +298,3 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-    

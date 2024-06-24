@@ -183,7 +183,7 @@
                           var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
                           var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
                           return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
-                                '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
+                            '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
                       }
                     }
                   ]
@@ -229,10 +229,17 @@
           if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
-              document.getElementById('boite').style.display = 'block';
-              setTimeout(function() {
-                document.getElementById('boite').style.display = 'none';
-              }, 2000);
+              swal({
+                title: 'Succès',
+                text: 'Employé ajouté avec succès.',
+                icon: 'success',
+                buttons: 'OK'
+              }).then((isOkay) => {
+                if (isOkay) {
+                    window.location
+                        .reload();
+                }
+              });
             } else {
               // Gérer les erreurs de validation et afficher les messages d'erreur
               document.getElementById('embaucheError').innerHTML = response.errors.embauche || '';

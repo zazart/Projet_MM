@@ -33,7 +33,7 @@ function creeXHR() {
               }
               var table = $('#journalData').DataTable({
                 data: journalArray,
-                columns: [{title: 'Date'},{title: 'Numéro de Compte'},{title: 'Libellé'},{title: 'Débit'},{title: 'Crédit'},
+                columns: [{title: 'Date'},{title: 'Numéro de Compte'},{title: 'Libellé'},{title: 'Débit'},{title: 'Crédit'},{title:'Tiers'}
                 ]
               });
 

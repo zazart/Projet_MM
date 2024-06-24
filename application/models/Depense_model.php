@@ -87,6 +87,18 @@ class Depense_model extends CI_Model {
             return true;
         }
 
+    public function update_depense($id, $data) {
+            $this->db->where('id', $id);
+            return $this->db->update('depense', $data);
+    }
+    
+    // Function to delete a depense
+    public function delete_depense($id) {
+            $this->db->where('id', $id);
+            return $this->db->delete('depense');
+    }
+
+    
 
 }
 ?>

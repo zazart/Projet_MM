@@ -15,7 +15,7 @@
         </tr>
         <?php foreach ($ventes as $vente): ?>
         <tr>
-            <td><?php echo $vente['id']; ?></td>
+            <td><?php echo $vente['id_vente']; ?></td>
             <td><?php echo $vente['livraison'] ? 'Oui' : 'Non'; ?></td>
             <td><?php echo $vente['prixtotal']; ?></td>
             <td><?php echo $vente['id_commande']; ?></td>

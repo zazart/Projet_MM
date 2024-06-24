@@ -12,7 +12,7 @@ class Vente extends CI_Controller {
 
     public function index() {
         $data['ventes'] = $this->Vente_model->get_ventes();
-        $this->load->view('vente/vente_list', $data);
+        $this->load->view('pages/vente/vente_list', $data);
     }
 
     public function insert_vente(){
@@ -33,6 +33,20 @@ class Vente extends CI_Controller {
         );
         $this->Vente_model->insert_vente($vente_data);
         redirect('vente');
+    }
+    public function statistique() {
+        $data["title"] = "Projet MM";
+		$data["contents"]='pages/vente/vente_statistique';
+        $data["etat"] = "vente_commande";
+        $data["activer"] = "lien_statistique";
+		$this->load->view("templates/template",$data);
+    }
+
+    public function data_statistique() {
+        $debut = $this->input->get("debut");
+        $fin = $this->input->get("fin");
+        header('Content-Type: application/json');
+        echo json_encode($this->Vente_model->get_all($debut, $fin));
     }
 }
 ?>

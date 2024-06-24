@@ -43,7 +43,7 @@
         <label for="id_client">Client:</label>
         <select name="id_client" required>
             <?php foreach ($clients as $client): ?>
-                <option value="<?php echo $client['id']; ?>"><?php echo $client['nomglobal']; ?></option>
+                <option value="<?php echo $client['id_client']; ?>"><?php echo $client['nomglobal']; ?></option>
             <?php endforeach; ?>
         </select><br>
         <label for="">Date</label>
@@ -51,7 +51,7 @@
         <h2>Ajouter des Produits</h2>
         <select id="product-select">
             <?php foreach ($produits as $produit): ?>
-                <option value="<?php echo $produit['id']; ?>"><?php echo $produit['nom']; ?></option>
+                <option value="<?php echo $produit['id_produit']; ?>"><?php echo $produit['nom']; ?></option>
             <?php endforeach; ?>
         </select>
         <input type="number" id="quantity" placeholder="Quantité">

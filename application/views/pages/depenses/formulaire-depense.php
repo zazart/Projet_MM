@@ -77,7 +77,7 @@
   <?php endif; ?>
     <div class="col-lg-4">
       <div class="card" id="">
-        <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
+        <img src="<?php echo (base_url("assets/img/expenses.jpg")) ?>" class="card-img-top">
         <div class="card-body d-flex justify-content-center mt-3">
           <button id="viewBtn" class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des depenses</button>
         </div>

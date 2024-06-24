@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Modifier un Client</h1>
-    <form method="post" action="<?php echo base_url('client/update/' . $client['id']); ?>">
+    <form method="post" action="<?php echo base_url('client/update/' . $client['id_client']); ?>">
         <label for="nomGlobal">Nom:</label>
         <input type="text" name="nomGlobal" value="<?php echo $client['nomglobal']; ?>" required><br>
 

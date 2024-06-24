@@ -18,80 +18,85 @@
                             <div class="col-12">
                                             <div class="col-sm-12">
                                                 <label for="nom" class="form-label">Nom matière premiere</label>
-                                                <select class="form-select" name="nom" id="nom" aria-label="Default select example" required>
+                                                <select class="form-select" name="nom" id="nom" aria-label="Default select example" >
                                                         <option value="" selected disabled>Selectionnez le nom</option>
                                                         <?php foreach ($matiere_data as $matiere): ?>
-                                                            <option value="<?php echo $matiere['id_matierepremier']; ?>" 
-                                                                    <?php echo (isset($source_matiere_premier_data['matierpremier']) && $source_matiere_premier_data['matierpremier'] == $matiere['id_matierepremier']) ? 'selected' : ''; ?>>
+                                                            <option value="<?php echo $matiere['id_matierepremier']; ?>"
+                                                            <?php echo ( isset($source_matiere_premier_data['matierpremier']) &&  $source_matiere_premier_data['matierpremier'] == $matiere['id_matierepremier']) ? 'selected' : ''?>> 
                                                                     <?php echo $matiere['nom']; ?>
                                                             </option>
-                                                        <?php endforeach; ?>
+                                                        <?php  endforeach; ?>
                                                 </select>
                                                     <p class="text-danger" id="nomError"></p>					
 
                                             </div>
                                             <div class="col-12">
                                                 <label for="inputNanme4" class="form-label">Date prelevement</label>
-                                                <input type="Date" class="form-control" id="date"  name="date" value="<?php if (isset($source_matiere_premier_data['dateprelevement'])) { echo $source_matiere_premier_data['dateprelevement']; } ?>" required autofocus>
+                                                <input type="Date" class="form-control" id="date"  name="date" value="<?php if (isset($source_matiere_premier_data['dateprelevement'])) { echo $source_matiere_premier_data['dateprelevement']; } ?>"  autofocus>
                                                 <p class="text-danger" id="dateError"></p>					
                                                 
                                             </div>  
 
                                             <div class="col-sm-12">
                                                 <label for="nom" class="form-label">Source</label>
-                                                <select class="form-select" name="source" id="nom" aria-label="Default select example" required>
+                                                <select class="form-select" name="source" id="nom" aria-label="Default select example" >
                                                         <option value="" selected disabled>Selectionnez la source</option>
-                                                        <?php foreach ($source_data as $source): ?>
-											                <option value="<?php echo $source['id_source']; ?>" 
-											                    <?php echo (isset($source_matiere_premier_data['source']) && $source_matiere_premier_data['source'] == $source['id_source']) ? 'selected' : ''; ?>>
-											                    <?php echo $source['lieu']; ?>
-											                </option>
+                                                        <?php foreach ($source_data as $source): ?>                                                          
+                                                            <option value="<?php echo $source['id_source']; ?>" <?php echo (isset($source_matiere_premier_data['source']) && $source_matiere_premier_data['source'] == $source['id_source']) ? 'selected' : '' ?>> 
+											                                                <?php echo $source['lieu']; ?>
+											                                      </option>
                                                         <?php endforeach; ?>
                                                 </select>
                                                 <p class="text-danger" id="sourceError"></p>					
                                             </div>
                                 </div>
 								<div class="text-center">
-                                        <button type="submit" class="boutton boutton-secondary">OK</button>
+                                        <button type="submit" class="boutton boutton-secondary">
+                                              <?php if(isset($source_matiere_premier_data['matierpremier'])){
+                                                echo "modifier";
+                                            } else{
+                                                echo "inserer";
+                                            } ?>
+                                        </button>
                                 </div>
-                                <div class="boite" id="boite">
-                                    <img src="<?php echo(base_url("assets/img/check.png"))?>">
-                                </div>  
                                     </form>
 <!-- Vertical Form -->
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-      <div class="card" >
-        <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
-        <div class="card-body d-flex justify-content-center mt-3">
-          <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des source de matieres premieres</button>
-        </div>
-        <div class="modal fade" id="verticalycentered">
-          <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                  <div class="modal-body">
-                    <h5 class="card-title">Listes des source des matieres premieres</h5>
-                    <p>Voici les listes de tous les sources des matieres premieres dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
-                    <div id="valiny">
-                    <table id="sourcematiereData">
-                      <thead>
-                          <tr>
-                              <th></th>
-                              <th>Nom</th>
-                              <th>lieu</th>
-                              <th>date de modification</th>
-                          </tr>
-                      </thead>
-                    </table>
-                    </div>
+        <?php if (!isset($source_matiere_premier_data['matierpremier'])){ ?>
+            <div class="col-lg-4">
+              <div class="card" >
+                <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+                <div class="card-body d-flex justify-content-center mt-3">
+                  <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des source de matieres premieres</button>
+                </div>
+                <div class="modal fade" id="verticalycentered">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <div class="modal-body">
+                            <h5 class="card-title">Listes des source des matieres premieres</h5>
+                            <p>Voici les listes de tous les sources des matieres premieres dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
+                            <div id="valiny">
+                            <table id="sourcematiereData">
+                              <thead>
+                                  <tr>
+                                      <th></th>
+                                      <th>Nom</th>
+                                      <th>lieu</th>
+                                      <th>date de modification</th>
+                                  </tr>
+                              </thead>
+                            </table>
+                            </div>
+                          </div>
+                      </div>
                   </div>
+                </div>
               </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </div>  
+        <?php } ?>
+        
     </div>
 </section>
 <script>
@@ -156,11 +161,31 @@
 
                       // Événement click sur les images Supprimer
                       $('#sourcematiereData tbody').on('click', '.img-supprimer', function() {
-                          var id = $(this).data('id');
-                          var url="<?php echo base_url("Matiere_premier/drop_source_matier_permier")?>";
-                          $.post(url,{id:id},function(data){
-                            window.location.reload();
-                          });
+                        var id = $(this).data('id');
+                        swal({
+                          title: 'Confirmation de la suppression',
+                          text:'Voulez vous vraiment le supprimer?',
+                          icon:'warning',
+                          buttons:true,
+                          dangerMode:true,
+                        }).then((isOkay)=>{
+                          if(isOkay) {
+                            var url="<?php echo base_url("Matiere_premier/drop_source_matier_permier")?>";
+                            $.post(url,{id:id},function(data){
+                              swal({
+                                        title: 'Succes',
+                                        text:'Supprimée avec succès.',
+                                        icon:'success',
+                                        button:'OK'
+                                      }).then((isOkay)=>{
+                                        if(isOkay){
+                                          window.location.reload();
+                                        }
+                                });                                                          
+                            });
+                          }
+                        });
+                          
                           console.log('Supprimer client avec ID : ', id);
                           // Ajoutez ici la logique pour supprimer le client
                       });
@@ -192,11 +217,16 @@
                   if(xhr.status === 200){
                     var response=JSON.parse(xhr.responseText);
                     if(response.success){
-                      document.getElementById('boite').style.display="block";
-                      setTimeout(function(){
-                        document.getElementById('boite').style.display="none";
-                        window.location.reload();
-                      },2000);
+                      swal({
+                        title: 'Succes',
+                        text:'Source des matières premières ajouté avec succes.',
+                        icon:'success',
+                        button:'OK'
+                      }).then((isOkay)=>{
+                        if(isOkay){
+                          window.location.href="<?php echo base_url("Matiere_premier/sourcematierepremier");?>";
+                        }
+                      });
                     }
                     else{
                       document.getElementById("nomError").innerHTML=response.errors.nom ||'';

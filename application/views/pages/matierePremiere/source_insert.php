@@ -14,21 +14,25 @@
                     <input type="hidden" name="id" value="<?php echo isset($source['id_source']) ? $source['id_source'] : ''; ?>">
                     <div class="col-12">
                         <label for="inputNanme4" class="form-label">Ajouter le lieu</label>
-                         <input   id="lieu" type="text" class="form-control" name="lieu" value="<?php if (isset($source['lieu'])) { echo $source['lieu']; } ?>" required autofocus>								
+                         <input   id="lieu" type="text" class="form-control" name="lieu" value="<?php if (isset($source['lieu'])) { echo $source['lieu']; } ?>" autofocus>								
                         </div>
                     <div class="text-center">
-                        <button type="submit" class="boutton boutton-secondary">Inserer</button>
+                        <button type="submit" class="boutton boutton-secondary">
+                        <?php if(isset($source['lieu'])){
+                                          echo "modifier";
+                                      } else{
+                                          echo "inserer";
+                                      } ?>
+                        </button>
                         <p class="text-danger" id="sourceError"></p>					
-                    </div>
-                    <div class="boite" id="boite">
-                        <img src="<?php echo(base_url("assets/img/check.png"))?>">
                     </div>
                 </form>
 <!-- Vertical Form -->
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <?php if(!isset($source['lieu'])){ ?>
+          <div class="col-lg-4">
       <div class="card" >
         <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
         <div class="card-body d-flex justify-content-center mt-3">
@@ -55,7 +59,10 @@
           </div>
         </div>
       </div>
-    </div>
+        </div>
+
+        <?php } ?>
+
     </div>
 </section>
 <script>
@@ -119,11 +126,32 @@
 
                       // Événement click sur les images Supprimer
                       $('#sourceData tbody').on('click', '.img-supprimer', function() {
+                         
                           var id = $(this).data('id');
-                          var url="<?php echo base_url('Matiere_premier/drop_source')?>";
-                          $.post(url,{id:id},function(data){
-                              window.location.reload();
-                          });
+                        swal({
+                          title: 'Confirmation de la suppression',
+                          text:'Voulez vous vraiment le supprimer?',
+                          icon:'warning',
+                          buttons:true,
+                          dangerMode:true,
+                        }).then((isOkay)=>{
+                                if(isOkay) {
+                                  var url="<?php echo base_url('Matiere_premier/drop_source')?>";
+                                  $.post(url,{id:id},function(data){
+                                    swal({
+                                        title: 'Succes',
+                                        text:'source supprimée avec succès.',
+                                        icon:'success',
+                                        button:'OK'
+                                      }).then((isOkay)=>{
+                                        if(isOkay){
+                                          window.location.reload();
+                                        }
+                                      });
+                                });
+
+                                }
+                        });
                           // Ajoutez ici la logique pour supprimer le client
                       });
                     }
@@ -147,6 +175,7 @@
 
           SourceInsert.addEventListener('submit',function(event){
             event.preventDefault();
+            console.log("SourceInsertldhfishk");
             var formdata=new FormData(SourceInsert);
             var xhr=creerXHR(); //
             xhr.open('POST','<?= site_url("Matiere_premier/create_source")?>',true);
@@ -156,11 +185,16 @@
                   if(xhr.status === 200){
                     var response=JSON.parse(xhr.responseText);
                     if(response.success){
-                      document.getElementById('boite').style.display="block";
-                      setTimeout(function(){
-                        document.getElementById('boite').style.display="none";
-                        window.location.reload();
-                      },2000);
+                      swal({
+                        title: 'Succes',
+                        text:'source ajouté avec succes.',
+                        icon:'success',
+                        button:'OK'
+                      }).then((isOkay)=>{
+                        if(isOkay){
+                          window.location.href="<?php echo base_url("Matiere_premier/source");?>";
+                        }
+                      });
                     }
                     else{
                       document.getElementById("sourceError").innerHTML=response.errors.source ||'';

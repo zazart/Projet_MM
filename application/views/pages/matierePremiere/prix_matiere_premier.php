@@ -3,7 +3,14 @@
       <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
-            <h5 class="card-title text-center">Prix des matières premières</h5>
+            <h5 class="card-title text-center"></h5>
+            <?php if (isset($prix_matiere['id_prixmatierepremier'])) { ?>
+                <h5 class="card-title text-center">Modification du prix des matières premières</h5>
+            <?php } 
+            else{?>
+                <h5 class="card-title text-center">insertion du prix des matières premières</h5>
+            <?php }
+            ?>
 <!-- Vertical Form -->
                 <form class="row g-3"   id="prixInsertForm">
                 <input type="hidden" name="id" value="<?php echo isset($prix_matiere['id_prixmatierepremier']) ? $prix_matiere['id_prixmatierepremier'] : ''; ?>">
@@ -12,12 +19,11 @@
                         <div class="col-sm-12">
                             <select class="form-select" name="nom" id="nom" aria-label="Default select example" required>
                                     <option value="" selected disabled>Selectionnez le nom</option>
-                                    <?php foreach ($matiere_data as $matiere): ?>
-                                        <option value="<?php echo $matiere['id_matierepremier']; ?>" 
-                                                    <?php echo (isset($prix_matiere['matierpremier']) && $prix_matiere['matierpremier'] == $matiere['id_matierepremier']) ? 'selected' : ''; ?>>
+                                    <?php  foreach ($matiere_data as $matiere): ?>
+                                        <option value="<?php echo $matiere['id_matierepremier']; ?>" <?php echo (isset($prix_matiere['matierpremier']) && $prix_matiere['matierpremier'] == $matiere['id_matierepremier']) ? 'selected' : ''?>>
                                                     <?php echo $matiere['nom']; ?>
                                         </option>
-                                    <?php endforeach; ?>
+                                    <?php  endforeach; ?>
                             <p class="text-danger" id="nomError"></p>					
 
                             </select>
@@ -34,17 +40,21 @@
                                 <p class="text-danger" id="dateError"></p>					
                 </div>
                 <div class="text-center">
-                                <button type="submit" class="boutton boutton-secondary">OK</button>
-                </div>
-                <div class="boite" id="boite">
-                  <img src="<?php echo(base_url("assets/img/check.png"))?>">
+                                <button type="submit" class="boutton boutton-secondary">
+                                      <?php if(isset($prix_matiere['id_prixmatierepremier'])){
+                                          echo "modifier";
+                                      } else{
+                                          echo "inserer";
+                                      } ?>
+                                </button>
                 </div>
             </form>
 <!-- Vertical Form -->
         </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <?php if(!isset($prix_matiere['id_prixmatierepremier'])){ ?>
+      <div class="col-lg-4">
       <div class="card" >
         <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
         <div class="card-body d-flex justify-content-center mt-3">
@@ -60,7 +70,7 @@
                     <table id="prixdata">
                       <thead>
                           <tr>
-                              <th>Nom</th>
+                            <th>id</th>
                               <th>Prix</th>
                               <th>Date de modification</th>
                           </tr>
@@ -73,6 +83,8 @@
         </div>
       </div>
     </div>
+    <?php } ?>
+    
     </div>
 </section>
 <script>
@@ -112,9 +124,11 @@
                       var table = $('#prixdata').DataTable({
                         data: prixArray,
                         columns: [
-                          { title: 'nom' },
+                          { title: 'id' },
                           {title:'prix'},
                           {title:'dateprix'},
+                          {},
+                          {title:'nom'},
                           {
                             title: 'Actions',
                             render: function(data, type, row, meta) {
@@ -138,13 +152,31 @@
 
                       // Événement click sur les images Supprimer
                       $('#prixdata tbody').on('click', '.img-supprimer', function() {
-                          var id = $(this).data('id');
-                          var url="<?php echo base_url("Matiere_premier/drop_prix_matier_premie")?>";
-                          $.post(url,{id:id},function(data){
-                            window.locatio.reload();
-                          });
-                          console.log('Supprimer client avec ID : ', id);
-                        
+                        var id = $(this).data('id');
+                        swal({
+                          title: 'Confirmation de la suppression',
+                          text:'Voulez vous vraiment le supprimer?',
+                          icon:'warning',
+                          buttons:true,
+                          dangerMode:true,
+                        }).then((isOkay)=>{
+                                if(isOkay) {
+                                  var url="<?php echo base_url("Matiere_premier/drop_prix_matier_permier")?>";
+                                  $.post(url,{id:id},function(data){
+                                    swal({
+                                        title: 'Succes',
+                                        text:'Prix matière première supprimé avec succès.',
+                                        icon:'success',
+                                        button:'OK'
+                                      }).then((isOkay)=>{
+                                        if(isOkay){
+                                          window.location.reload();
+                                        }
+                                      });
+                                  });
+                                }
+                        });
+                          
                           // Ajoutez ici la logique pour supprimer le client
                       });
                     }
@@ -175,11 +207,16 @@
                   if(xhr.status === 200){
                     var response=JSON.parse(xhr.responseText);
                     if(response.success){
-                      document.getElementById('boite').style.display="block";
-                      setTimeout(function(){
-                        document.getElementById('boite').style.display="none";
-                        window.location.reload();
-                      },2000);
+                      swal({
+                        title: 'Succes',
+                        text:'Prix matière première ajouté avec succes.',
+                        icon:'success',
+                        button:'OK'
+                      }).then((isOkay)=>{
+                        if(isOkay){
+                          window.location.href="<?php echo base_url("Matiere_premier/prixmatierepremier");?>";
+                        }
+                      });
                     }
                     else{
                       document.getElementById("nomError").innerHTML=response.errors.nom ||'';

@@ -31,9 +31,9 @@ class prix_matiere extends CI_Model{
     }
 
     public function get_prix_matiere_data(){
-        $this->db->select('prixmatierepremier.*, matierepremier.nom'); 
+        $this->db->select('prixmatierepremier.*,matierepremier.nom as nom'); 
         $this->db->from('prixmatierepremier');
-        $this->db->join('matierepremier', 'prixmatierepremier.matierpremier = matierepremier.id_matierepremier', 'left');
+        $this->db->join('matierepremier', 'prixmatierepremier.matierpremier = matierepremier.id_matierepremier');
     
         $query = $this->db->get();
         return $query->result_array();

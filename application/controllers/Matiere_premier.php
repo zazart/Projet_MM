@@ -269,7 +269,7 @@ class Matiere_premier extends CI_Controller {
         $id=$this->input->post("id");
         $this->load->model('matiere_Premiere/prix_matiere');
         $this->prix_matiere->delete_matiere($id);
-        
+        echo json_encode(array('id' => $id));
     }
 
     public function list_prix_matiere() {

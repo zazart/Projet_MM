@@ -1,6 +1,8 @@
 CREATE TABLE Genre(
    Id_Genre SERIAL,
+   Id_Genre SERIAL,
    description VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(Id_Genre)
    PRIMARY KEY(Id_Genre)
 );
 
@@ -195,6 +197,12 @@ CREATE TABLE PanierProduit(
    PRIMARY KEY(id_produit, id_panier),
    FOREIGN KEY(id_panier) REFERENCES Panier(id_panier),
    FOREIGN KEY(id_produit) REFERENCES Produit(id_produit)
+CREATE TABLE PanierProduit(
+   id_produit INTEGER,
+   id_panier INTEGER,
+   PRIMARY KEY(id_produit, id_panier),
+   FOREIGN KEY(id_panier) REFERENCES Panier(id_panier),
+   FOREIGN KEY(id_produit) REFERENCES Produit(id_produit)
 );
 
 CREATE TABLE TypeProfil(
@@ -244,7 +252,15 @@ CREATE TABLE Depense(
    id_Depense SERIAL PRIMARY KEY,
    description VARCHAR(255) NOT NULL,
    montant NUMERIC(16,2) NOT NULL,
+   id_Depense SERIAL PRIMARY KEY,
+   description VARCHAR(255) NOT NULL,
+   montant NUMERIC(16,2) NOT NULL,
    dateDepense DATE NOT NULL,
+   justificatif BYTEA,
+   id_ModePaiment INTEGER NOT NULL,
+   id_sub_comptes INTEGER NOT NULL,
+   FOREIGN KEY (id_ModePaiment) REFERENCES modeDepaiement(id_ModePaiment),
+   FOREIGN KEY (id_sub_comptes) REFERENCES sub_comptes(id_sub_comptes)
    justificatif BYTEA,
    id_ModePaiment INTEGER NOT NULL,
    id_sub_comptes INTEGER NOT NULL,

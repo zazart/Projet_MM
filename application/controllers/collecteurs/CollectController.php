@@ -10,6 +10,39 @@ class CollectController extends CI_Controller
         $this->load->model("collecteur/Collecteur_model");
     }
 
+    public function form() {
+        $data["title"] = "Recherche Collecte";
+
+        $data['collecteurs'] = $this->Collecteur_model->get_collecteur();
+        $data["matierepremiers"] = $this->Collect_model->get_matiere_premiere();
+
+        $criteria = array(
+            'id_employe' => $this->input->get('id_employe'),
+            'date_start' => $this->input->get('date_start'),
+            'date_end' => $this->input->get('date_end'),
+            'Id_MatierePremier' => $this->input->get('Id_MatierePremier')
+        );
+
+        $data['collects'] = $this->Collect_model->search_collects($criteria);
+        $data["contents"] = "pages/Collecteur/search";
+        $this->load->view("templates/template", $data);
+    }
+
+    public function search() {
+        $data["title"] = "Résultat de Collecte";
+
+        $criteria = array(
+            'id_employe' => $this->input->post('id_employe'),
+            'date_start' => $this->input->post('date_start'),
+            'date_end' => $this->input->post('date_end'),
+            'Id_MatierePremier' => $this->input->post('Id_MatierePremier')
+        );
+
+        $data['collects'] = $this->Collect_model->search_collects($criteria);
+        $data["contents"] = "pages/Collecteur/result-search";
+        $this->load->view("templates/template", $data);
+    }
+
     public function insert_collect()
     {
         $data["title"] = "Insertion Collect";

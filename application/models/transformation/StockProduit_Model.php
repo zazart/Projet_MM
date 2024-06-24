@@ -16,7 +16,7 @@
             sp.quantiteentrant, sp.quantitesortant,
             sp.id_stockproduit 
             from stockproduit as sp join produit as p
-            on sp.id_produit = p.id_produit;";
+            on sp.id_produit = p.id_produit";
             $query = $this->db->query($sql);
 
             return $query->result_array();

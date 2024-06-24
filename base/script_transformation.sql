@@ -76,11 +76,11 @@ CREATE TABLE StockProduit(
     FOREIGN KEY(id_Produit) REFERENCES Produit(id_Produit) 
 );
 
-insert into stat_machhine(id_machine,date_verification,statut,descri) values('2','2024-06-09','9','Tsara');
-insert into stat_machhine(id_machine,date_verification,statut,descri) values('2','2024-06-10','7','Tsara tsara ihany');
+insert into stat_machine(id_machine,date_verification,statut,descri) values('2','2024-06-09','9','Tsara');
+insert into stat_machine(id_machine,date_verification,statut,descri) values('2','2024-06-10','7','Tsara tsara ihany');
 
-insert into stat_machhine(id_machine,date_verification,statut,descri) values('3','2024-06-09','9','Tsara');
-insert into stat_machhine(id_machine,date_verification,statut,descri) values('3','2024-06-10','7','Tsara tsara ihany');
+insert into stat_machine(id_machine,date_verification,statut,descri) values('3','2024-06-09','9','Tsara');
+insert into stat_machine(id_machine,date_verification,statut,descri) values('3','2024-06-10','7','Tsara tsara ihany');
 
 select * from machine;
 select * from machine where date_achat <= '2024-10-10';
@@ -100,7 +100,7 @@ insert into sourcematierePremier(matierepremier, dateprelevement,source) VALUES
 ('2','2024-05-05','2'),
 ('3','2024-05-05','2');
 
-insert into stockmatierPremier(matierepremier,dates,quantiteentrant, quantitesortant) VALUES
+insert into stockmatierePremier(matierepremier,dates,quantiteentrant, quantitesortant) VALUES
 ('1','2024-06-10','100','0'),
 ('2','2024-06-10','100','0'),
 ('3','2024-06-10','100','0');

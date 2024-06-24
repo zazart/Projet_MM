@@ -104,6 +104,24 @@ class Production_Controller extends CI_Controller{
         redirect('transformation/production_controller');
     }
 
+
+    public function data_production() {
+        $year = $this->input->get("year");
+        $data = $this->Production_Model->get_all_production_saison($year);
+        $this->output
+        ->set_status_header(200)
+        ->set_content_type('application/json; charset=utf-8')
+        ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+        ->_display();
+        exit;
+    }
+
+    public function statistique() {
+        $data["title"] = "Statistique | Production";
+        $data["contents"]="pages/Transformation/statistique-production";
+        $this->load->view("templates/template",$data);
+    }
+
     //liste production
     //update production
     //supprimer 

@@ -1,6 +1,6 @@
 <!-- START FORMULAIRE DEPENSE -->
 <section class="row">
-  <div class="mx-auto col-10 p-2">
+  <div class="mx-auto col-lg-8 p-2">
     <div class="card ">
       <div class="card-body m-2">
         <!-- Formulaire -->
@@ -35,6 +35,10 @@
             <label for="id_Categorie" class="input-label">Categorie </label>
             <select class="form-select" name="id_Categorie" id="id_Categorie" required>
               <option value=""></option>
+              <?php foreach ($categories as $item) : ?>
+                <option value="<?php echo $item['id_sub_comptes']; ?>"><?php echo $item['description']; ?></option>
+              <?php endforeach; ?>
+            </select>
             </select>
           </div>
           <!-- Mode de paiement -->
@@ -71,7 +75,6 @@
       </ul>
     </div>
   <?php endif; ?>
-  <div class="row justify-content-center">
     <div class="col-lg-4">
       <div class="card" id="">
         <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
@@ -105,7 +108,6 @@
         </div>
       </div>
     </div>
-  </div>
 </section>
 <script src="<?php echo base_url('assets/js/depenses/depenses.js'); ?>"></script>
 
@@ -180,13 +182,17 @@
           if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             if (response.success) {
-              document.getElementById('boite').style.display = 'block';
-              setTimeout(function() {
-                document.getElementById('boite').style.display = 'none';
-                var var_depenses = response.depenses;
-                const depensesArray = var_depenses.map(depense => Object.values(depense));
-                viewDepenses(depensesArray);
-              }, 2000);
+              swal({
+                title: 'Succès',
+                text: 'Dépense ajouté avec succès.',
+                icon: 'success',
+                buttons: 'OK'
+              }).then((isOkay) => {
+                if (isOkay) {
+                  window.location
+                  .reload();
+                }
+              });
             } else {
               alert('Erreur lors de l\'insertion : ' + response.message);
             }

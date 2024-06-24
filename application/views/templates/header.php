@@ -280,12 +280,7 @@
         <ul id="depense-nav" class="<?php echo ($etat == "depense") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
           <li>
             <a href="<?php echo(base_url("depense/formulaire"))?>" <?php if ($activer == "formulaire_depense") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion dépenses</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(base_url("depense/listDepense"))?>" <?php if ($activer == "list_depense") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste des dépenses</span>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Dépenses</span>
             </a>
           </li>
           <li>

@@ -170,8 +170,8 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("commande/insert_commande")); ?>" <?php if ($activer == "") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+            <a href="<?php echo(site_url("Personnel/paiementemployes/create")); ?>" <?php if ($activer == "lien_payement") { echo 'class="active"';} ?>>
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement employé</span>
             </a>
           </li>
         </ul>

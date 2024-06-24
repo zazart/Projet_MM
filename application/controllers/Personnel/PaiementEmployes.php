@@ -18,6 +18,8 @@ class PaiementEmployes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             // Si la validation échoue, afficher le formulaire à nouveau
+            $data["etat"] = "personnel";
+            $data["activer"] = "lien_payement";
             $data['contents'] = 'pages/Personnel/paiementEmployes/create';
             $this->load->view('templates/template', $data);
         } else {

@@ -10,6 +10,7 @@ class Depense extends CI_Controller {
         // $this->load->library('session');
     }
 
+    
     // Access to the insertion form
     public function formulaire() {
         //$this->Depense_model->generatePcg();

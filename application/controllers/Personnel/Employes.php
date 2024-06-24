@@ -168,7 +168,15 @@ class Employes extends CI_Controller {
                 'id_poste' => $this->input->post('id_poste')
             );
             $this->Employe_model->update_employe($id_employe, $data);
-            redirect('Personnel/employes');
+            
+            $response = array(
+                'success' => true,
+                'message' => 'Employé modifié avec succès.',
+            );
+
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         }
     }
 

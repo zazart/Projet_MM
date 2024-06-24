@@ -9,7 +9,7 @@ class Employe_model extends CI_Model {
         if ($id_employe === FALSE) {
             $now = date('Y-m-d'); // Obtenir la date actuelle au format YYYY-MM-DD
 
-            $this->db->select('e.id_employe,e.nom, e.email, e.telephone,e.adresse, genre.description as genre_description, poste.nom as poste_nom');
+            $this->db->select('e.id_employe,  e.nom,e.email, e.telephone, poste.nom as poste_nom');
             $this->db->from('employe as e');
             $this->db->join('genre', 'e.id_genre = genre.id_genre');
             $this->db->join('poste', 'e.id_poste = poste.id_poste');
@@ -23,7 +23,7 @@ class Employe_model extends CI_Model {
             return $query->result_array();
         }
 
-        $this->db->select('e.id_employe,e.nom, e.email, e.telephone,e.adresse, genre.description as genre_description, poste.nom as poste_nom');
+        $this->db->select('e.id_employe, e.embauche, e.debauche, e.nom, e.email, e.telephone,e.adresse, genre.description as genre_description, poste.nom as poste_nom');
         $this->db->from('employe as e');
         $this->db->join('genre', 'e.id_genre = genre.id_genre');
         $this->db->join('poste', 'e.id_poste = poste.id_poste');

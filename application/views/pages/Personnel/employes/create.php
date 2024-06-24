@@ -84,37 +84,49 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="card">
-          <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
-          <div class="card-body d-flex justify-content-center mt-3">
-            <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des employes</button>
-          </div>
-          <div class="modal fade" id="verticalycentered">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                      <h5 class="card-title">Listes des employés</h5>
-                      <p>Listes de tous les employés dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
-                      <div id="valiny">
-                      <table id="employesData">
-                        <thead>
-                          <tr>
-                              <th>Nom</th>
-                              <th>Email</th>
-                              <th>Numéro de Téléphone</th>
-                              <th>Adresse</th>
-                              <th>Genre</th>
-                              <th>Poste</th>
-                              <th>Actions</th>
-                          </tr>
-                        </thead>
-                      </table>
-                      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+              <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+              <div class="card-body d-flex justify-content-center mt-3">
+                <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des employes</button>
+              </div>
+              <div class="modal fade" id="verticalycentered">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                          <h5 class="card-title">Listes des employés</h5>
+                          <p>Listes de tous les employés dans le <span class="color_secondary">projet MM </span>avec ses informations:</p>
+                          <div id="valiny">
+                          <table id="employesData">
+                            <thead>
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Nom</th>
+                                  <th>Email</th>
+                                  <th>Numéro de Téléphone</th>
+                                  <th>Poste</th>
+                                  <th>Actions</th>
+                              </tr>
+                            </thead>
+                          </table>
+                          </div>
+                        </div>
                     </div>
                 </div>
+              </div>
             </div>
           </div>
-        </div>
+        </div>  
+        <div class="col-lg-12">
+          <div class="card">
+              <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+              <div class="card-body d-flex justify-content-center mt-3">
+                <button class="boutton boutton-primary" >Recherche</button>
+              </div>
+            </div>
+          </div>
+        </div>        
       </div>
   </div>
 
@@ -164,18 +176,13 @@
                 if ($.fn.DataTable.isDataTable('#employesData')) {
                   $('#employesData').DataTable().destroy();
                 }
-                var tabWithoutId = employesArray.map(function(row) {
-                    return row.slice(1);
-                });
-                console.log(tabWithoutId);
                 var table = $('#employesData').DataTable({
-                  data: tabWithoutId,
+                  data: employesArray,
                   columns: [
+                    { title: 'Id' },
                     { title: 'Nom' },
                     { title: 'Email' },
                     { title: 'Numéro de Téléphone' },
-                    { title: 'Adresse' },
-                    { title: 'Genre' },
                     { title: 'Poste' },
                     {
                       title: 'Actions',
@@ -191,9 +198,10 @@
 
                 // Événement click sur les images Modifier
                 $('#employesData tbody').on('click', '.img-modifier', function() {
-                    var id = $(this).data('id');
-                    console.log('Modifier employe avec ID : ', id);
-                    // Ajoutez ici la logique pour modifier le employe
+                  var id = $(this).data('id');
+                    window.location.href =
+                      '<?= base_url("personnel/employes/edit/") ?>' +
+                      "/" + id;
                 });
 
                 // Événement click sur les images Supprimer
@@ -218,7 +226,8 @@
       xhr_.send();
 
 
-    employesForm.addEventListener('submit', function(event) {
+  
+      employesForm.addEventListener('submit', function(event) {
       event.preventDefault();
       var formData = new FormData(employesForm);
       var xhr = creeXHR();

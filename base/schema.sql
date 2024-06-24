@@ -1,8 +1,6 @@
 CREATE TABLE Genre(
    Id_Genre SERIAL,
-   Id_Genre SERIAL,
    description VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(Id_Genre)
    PRIMARY KEY(Id_Genre)
 );
 
@@ -191,13 +189,6 @@ CREATE TABLE Collects(
    FOREIGN KEY(Id_MatierePremier) REFERENCES MatierePremier(id_matierepremier)
 );
 
-CREATE TABLE PanierProduit(
-   id_produit INTEGER,
-   id_panier INTEGER,
-   PRIMARY KEY(id_produit, id_panier),
-   FOREIGN KEY(id_panier) REFERENCES Panier(id_panier),
-   FOREIGN KEY(id_produit) REFERENCES Produit(id_produit)
-);
 CREATE TABLE PanierProduit(
    id_produit INTEGER,
    id_panier INTEGER,

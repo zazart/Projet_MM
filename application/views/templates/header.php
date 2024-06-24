@@ -129,37 +129,44 @@
             </li><!-- Collecteurs Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#matiere-nav" data-bs-toggle="collapse" href="#">
+                <a class="<?php echo ($etat == "matierePremiere") ? 'nav-link' : 'nav-link collapsed'; ?>"
+                    data-bs-target="#matiere-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-minecart-loaded color_black"></i><span class="color_black">Matière première</span><i
                         class="bi bi-chevron-down ms-auto color_black"></i>
                 </a>
                 <ul id="matiere-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="matiere-alerts.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion matière
-                                première</span>
+                        <a href="<?php echo site_url("Matiere_premier/matiere_premier_insert"); ?>" <?php if ($activer == "matiere_premiere") {
+                                                                                          echo 'class="active"';
+                                                                                        } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Matieres
+                                Premières</span>
                         </a>
                     </li>
                     <li>
-                        <a href="matiere-accordion.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion prix</span>
+                        <a href="<?php echo site_url("Matiere_premier/prixmatierepremier"); ?>" <?php if ($activer == "prix_matiere_premier") {
+                                                                                      echo 'class="active"';
+                                                                                    } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Prix</span>
                         </a>
                     </li>
                     <li>
-                        <a href="matiere-badges.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
-                                source</span>
+                        <a href="<?php echo site_url("Matiere_premier/source"); ?>" <?php if ($activer == "source_insert") {
+                                                                          echo 'class="active"';
+                                                                        } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Sources </span>
                         </a>
                     </li>
                     <li>
-                        <a href="matiere-breadcrumbs.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion source
-                                matière</span>
+                        <a href="<?php echo site_url("Matiere_premier/sourcematierepremier"); ?>" <?php if ($activer == "source_matiere_premiere") {
+                                                                                        echo 'class="active"';
+                                                                                      } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Soures et matières
+                                premières</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- Matière première -->
-
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">

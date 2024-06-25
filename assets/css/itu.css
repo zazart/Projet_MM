@@ -226,3 +226,15 @@
         object-fit: cover;
     }
   /*Fin*/
+
+  /*Styliser le card*/
+    .custom-card-bg {
+        width: 98%;
+        margin-left: 10px;
+        background-color: #fff6f6; /* Exemple de couleur personnalisée (tomate) */
+        color: white; /* Couleur du texte */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px; /* Arrondir les coins de la carte pour un effet plus doux */
+        padding: 20px; /* Ajouter du padding pour une meilleure présentation */
+    }
+/*Fin*/

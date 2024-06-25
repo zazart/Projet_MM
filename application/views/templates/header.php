@@ -196,38 +196,53 @@
         </a>
         <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="transformation-alerts.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
-                matériaux</span>
+            <a href="<?php echo(site_url("transformation/machine_controller/view_insertion_machine")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion machine</span>
             </a>
           </li>
           <li>
-            <a href="transformation-accordion.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état
-                matériaux</span>
+            <a href="<?php echo(site_url("transformation/machine_controller")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Machines du MM</span>
             </a>
           </li>
           <li>
-            <a href="transformation-badges.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
-                production</span>
+            <a href="<?php echo(site_url("transformation/statut_controller/view_insertion_statut")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état machine</span>
             </a>
           </li>
           <li>
-            <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de
-                saison</span>
+            <a href="<?php echo(site_url("transformation/statut_controller")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat machines</span>
             </a>
           </li>
           <li>
-            <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste matériaux</span>
+            <a href="<?php echo(site_url("transformation/production_controller/view_insertion_production")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
             </a>
           </li>
           <li>
-            <a href="transformation-breadcrumbs.html">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste état
-                matériels</span>
+            <a href="<?php echo(site_url("transformation/production_controller")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Détails production</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo(site_url("transformation/produit_controller")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Produits Disponibles</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo(site_url("transformation/stockproduit_controller")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Mouvement Stock Produit</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo(site_url("transformation/stockproduit_controller/view_stockproduit_actuel")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat stock produits</span>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo(site_url("transformation/production_controller/statistique")); ?>">
+              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de saison</span>
             </a>
           </li>
         </ul>

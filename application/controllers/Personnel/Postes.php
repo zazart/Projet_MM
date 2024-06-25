@@ -17,6 +17,21 @@ class Postes extends CI_Controller {
         $this->load->view('templates/template', $data);
     }
 
+
+    public function get_liste() {
+        $employes = $this->Poste_model->get_postes();
+        $response = array(
+            'success' => true,
+            'message' => 'Employé ajouté avec succès.',
+            'employes' => $employes
+        );
+
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($response));
+        
+    }
+
     public function view($id_poste) {
         $data['poste'] = $this->Poste_model->get_postes($id_poste);
 
@@ -32,19 +47,32 @@ class Postes extends CI_Controller {
         $this->load->view('templates/template', $data);
     }
 
-    public function create() {
-        $this->load->library('form_validation');
-
+    public function insert_postes() {            
         $data['title'] = 'Créer un nouveau poste';
+        // $data['types_profil'] = $this->TypeProfil_model->get_types_profil();
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_postes_create";
+        $data['contents'] = 'pages/Personnel/postes/create';
+        $this->load->view('templates/template', $data);
+    }
 
+    public function create() {
         $this->form_validation->set_rules('nom', 'Nom', 'required');
         $this->form_validation->set_rules('montant_salaire', 'Salaire', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $data["etat"] = "personnel";
-            $data["activer"] = "lien_postes_create";
-            $data['contents'] = 'pages/Personnel/postes/create';
-            $this->load->view('templates/template', $data);
+            $errors = array(
+                'nom' => form_error('nom'),
+                'montant_salaire' => form_error('montant_salaire')
+            );
+            $response = array(
+                'success' => false,
+                'errors' => $errors
+            );
+    
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         } else {
             $date_debut = date('Y-m-d'); // Définir sur la date actuelle
             $nom = $this->input->post('nom');
@@ -57,7 +85,15 @@ class Postes extends CI_Controller {
                 'montant_salaire' => $this->input->post('montant_salaire')
             );
             $this->Poste_model->insert_salaire($data_salaire);
-            redirect('/Personnel/postes');
+            $response = array(
+                'success' => true,
+                'message' => 'Poste ajouté avec succès.'
+            );
+
+    
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         }
     }
 

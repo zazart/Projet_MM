@@ -164,7 +164,7 @@
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("Personnel/postes/create")); ?>" <?php if ($activer == "lien_postes_create") { echo 'class="active"';} ?>>
+            <a href="<?php echo(site_url("Personnel/postes/insert_postes")); ?>" <?php if ($activer == "lien_postes_create") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Poste</span>
             </a>
           </li>

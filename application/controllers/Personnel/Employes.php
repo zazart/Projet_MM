@@ -26,7 +26,6 @@ class Employes extends CI_Controller {
         $employes = $this->Employe_model->get_employes();
         $response = array(
             'success' => true,
-            'message' => 'Employé ajouté avec succès.',
             'employes' => $employes
         );
 
@@ -190,6 +189,8 @@ class Employes extends CI_Controller {
     public function form() {
         $data['title'] = 'Recherche des employés';
 
+        $data["etat"] = "personnel";
+        $data["activer"] = "lien_employes_create";
         $data['contents']='pages/Personnel/employes/search';
         $data['genres']=$this->Genre_model->get_genres();
         $data['postes']=$this->Poste_model->get_postes();
@@ -206,17 +207,28 @@ class Employes extends CI_Controller {
             'id_poste' => $this->input->post('id_poste')
         );
 
-        // Supprimer les critères vides
+        // // Supprimer les critères vides
         $criteria = array_filter($criteria);
 
-        // Récupérer les employés en fonction des critères de recherche
-        $data['employes'] = $this->Employe_model->search_employes($criteria);
-        $data['title'] = 'Recherche des employés';
+        // // Récupérer les employés en fonction des critères de recherche
+        // $data['employes'] = $this->Employe_model->search_employes($criteria);
+        // $data['title'] = 'Recherche des employés';
 
-        $data['contents']='pages/Personnel/employes/result-search';
-        $data['genres']=$this->Genre_model->get_genres();
-        $data['postes']=$this->Poste_model->get_postes();
-        $this->load->view('templates/template', $data);
+        // $data['contents']='pages/Personnel/employes/result-search';
+        // $data['genres']=$this->Genre_model->get_genres();
+        // $data['postes']=$this->Poste_model->get_postes();
+        // $this->load->view('templates/template', $data);
+
+        $employes = $this -> Employe_model->search_employes($criteria);
+        $response = array(
+            'success' => true,
+            'message' => 'Employé ajouté avec succès.',
+            'employes' => $employes
+        );
+
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($response));
     }
 }
 ?>

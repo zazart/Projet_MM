@@ -122,7 +122,7 @@
           <div class="card">
               <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
               <div class="card-body d-flex justify-content-center mt-3">
-                <button class="boutton boutton-primary" >Recherche</button>
+                <a href="<?php echo(site_url("Personnel/employes/form")); ?>"><button  class="boutton boutton-primary" >Recherche</button></a>
               </div>
             </div>
           </div>
@@ -196,7 +196,6 @@
                   ]
                 });
 
-                // Événement click sur les images Modifier
                 $('#employesData tbody').on('click', '.img-modifier', function() {
                   var id = $(this).data('id');
                     window.location.href =
@@ -206,9 +205,10 @@
 
                 // Événement click sur les images Supprimer
                 $('#employesData tbody').on('click', '.img-supprimer', function() {
-                    var id = $(this).data('id');
-                    console.log('Supprimer employe avec ID : ', id);
-                    // Ajoutez ici la logique pour supprimer le employe
+                  var id = $(this).data('id');
+                    window.location.href =
+                      '<?= base_url("personnel/employes/view/") ?>' +
+                      "/" + id;
                 });
             }
           } else {

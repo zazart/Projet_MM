@@ -1,4 +1,4 @@
-<!-- application/views/employes/search_results.php -->
+<!-- application/views/employes/search_results.php -->search
 <h2><?php echo $title; ?></h2>
 
 <?php if (empty($employes)): ?>

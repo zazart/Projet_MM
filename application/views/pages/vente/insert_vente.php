@@ -29,9 +29,6 @@
                         <div class="text-center">
                             <button type="submit" class="boutton boutton-secondary">Inserer</button>
                         </div>
-                        <div class="boite" class="boite" id="boite">
-                            <img src="<?php echo (base_url("assets/img/check.png")) ?>">
-                        </div>
                     </form><!-- Vertical Form -->
 
                 </div>

@@ -1,27 +1,49 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Vente_model extends CI_Model {
-    public function __construct() {
+class Vente_model extends CI_Model
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    public function insert_vente($data) {
+    public function insert_vente($data)
+    {
         return $this->db->insert('vente', $data);
     }
 
-    public function get_ventes() {
+    public function get_vente_by_id($id)
+    {
+        return $this->db->get_where('vente', array('id_vente' => $id))->row_array();
+    }
+
+    public function delete_vente($id)
+    {
+        $this->db->where('id_vente', $id);
+        return $this->db->delete('vente');
+    }
+
+    public function update_vente($id, $data)
+    {
+        $this->db->where('id_vente', $id);
+        return $this->db->update('vente', $data);
+    }
+
+    public function get_ventes()
+    {
         return $this->db->get('vente')->result_array();
     }
 
-    public function get_all($debut = null, $fin = null) {
+    public function get_all($debut = null, $fin = null)
+    {
         $year = 3 - date('Y');
         $condition = "1 = 1 ";
-        if(isset($debut) && !empty($debut)) {
+        if (isset($debut) && !empty($debut)) {
             $condition .= " AND vente.date_vente > $debut";
         }
-        if(isset($fin) && !empty($fin)) {
+        if (isset($fin) && !empty($fin)) {
             $condition .= " AND vente.date_vente < $fin";
         }
 
@@ -52,7 +74,8 @@ class Vente_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_last_year() {
+    public function get_last_year()
+    {
         $year = date('Y');
         $sql = "
         SELECT 
@@ -80,4 +103,3 @@ class Vente_model extends CI_Model {
         return $query->result_array();
     }
 }
-?>

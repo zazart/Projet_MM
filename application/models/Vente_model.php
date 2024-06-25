@@ -25,14 +25,14 @@ class Vente_model extends CI_Model {
             date_part('month', vente.date_vente) AS month_vente,
             produit.id_produit,
             produit.nom_produit,
-            SUM(panier.quantite) AS quantite 
+            coalesce(SUM(panier.quantite),0) AS quantite 
         FROM
             vente 
         JOIN 
             panier ON vente.id_commande=panier.id_commande 
         JOIN
             commande ON panier.id_commande = commande.id_commande  
-        JOIN
+        RIGHT JOIN
             produit ON panier.id_produit=produit.id_produit 
         WHERE 
             date_part('year', vente.date_vente) > $year 
@@ -54,14 +54,14 @@ class Vente_model extends CI_Model {
             date_part('month', vente.date_vente) AS month_vente,
             produit.id_produit,
             produit.nom_produit,
-            SUM(panier.quantite) AS quantite 
+            coalesce(SUM(panier.quantite),0) AS quantite 
         FROM
             vente 
         JOIN 
             panier ON vente.id_commande=panier.id_commande 
         JOIN
             commande ON panier.id_commande = commande.id_commande  
-        JOIN
+        RIGHT JOIN
             produit ON panier.id_produit=produit.id_produit 
         WHERE 
             date_part('year', vente.date_vente) < $year 

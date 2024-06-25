@@ -22,7 +22,7 @@
         <!-- Bouton de téléchargement PDF -->
         <div class="row mt-3">
             <div class="col-12 d-flex justify-content-center">
-                <a id="pdfBtn" href="<?php echo base_url('journal/generatePdf?month=' . $month . '&year=' . $year); ?>" class="btn btn-primary">Télécharger PDF</a>
+                <a id="pdfBtn" href="<?php echo base_url('journal/generatePdf?month=' . $month . '&year=' . $year); ?>" class="btn boutton-secondary">Télécharger PDF</a>
             </div>
         </div>
     </div>

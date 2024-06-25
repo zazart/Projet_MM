@@ -139,7 +139,14 @@
                 }
                 var table = $('#depenseData').DataTable({
                   data: depensesArray,
-                  columns: [{title: 'Id'},{title: 'Description'},{title: 'Montant'},{title: 'Date de depense'},{title: 'Justificatif'},{title: 'Mode de paiement'},{title: 'Categories'},
+                  columns: [
+                    {title: 'Id'},
+                    {title: 'Description'},
+                    {title: 'Montant'},
+                    {title: 'Date de depense'},
+                    {title: 'Justificatif'},
+                    {title: 'Mode de paiement'},
+                    {title: 'Categories'},
                     {
                       title: 'Actions',
                       render: function(data, type, row, meta) {
@@ -155,15 +162,71 @@
                 // Événement click sur les images Modifier
                 $('#depenseData tbody').on('click', '.img-modifier', function() {
                   var id = $(this).data('id');
-                  console.log('Modifier depense avec ID : ', id);
-                  // Ajoutez ici la logique pour modifier le depense
+                  window.location.href =
+                    '<?= base_url("depense/update_depense") ?>' +
+                    "/" + id;
                 });
 
                 // Événement click sur les images Supprimer
                 $('#depenseData tbody').on('click', '.img-supprimer', function() {
                   var id = $(this).data('id');
-                  console.log('Supprimer depense avec ID : ', id);
-                  // Ajoutez ici la logique pour supprimer le depense
+                  swal({
+                      title: 'Confirmation de la suppression',
+                      text: 'Voulez vous vraiment supprimer cette depense',
+                      icon: 'warning',
+                      buttons: true,
+                      dangerMode: true,
+                  }).then((isOkay) => {
+                      if (isOkay) {
+                          var xhrSupprimer = new XMLHttpRequest();
+
+                          xhrSupprimer.open('POST',
+                              '<?= base_url("depense/delete") ?>',
+                              true);
+                          xhrSupprimer.setRequestHeader('X-Requested-With',
+                              'XMLHttpRequest');
+                          xhrSupprimer.setRequestHeader('Content-Type',
+                              'application/x-www-form-urlencoded');
+                          xhrSupprimer.onreadystatechange = function() {
+                              if (xhrSupprimer.readyState == 4 && xhrSupprimer
+                                  .status == 200) {
+                                  var response = JSON.parse(xhrSupprimer
+                                      .responseText);
+                                  if (response.success) {
+                                      swal({
+                                          title: 'Succès',
+                                          text: 'Collecteur supprimé avec succès.',
+                                          icon: 'success',
+                                          buttons: 'OK'
+                                      }).then((isOkay) => {
+                                          if (isOkay) {
+                                              window.location
+                                                  .reload();
+                                          }
+                                      });
+                                  }
+                              }
+                              if (xhrSupprimer
+                                  .status == 500) {
+                                  swal({
+                                      title: 'Erreur',
+                                      text: 'Cette depense ne peut pas etre supprimer',
+                                      icon: 'error',
+                                      buttons: 'OK'
+                                  }).then((isOkay) => {
+                                      if (isOkay) {
+                                          window.location
+                                              .reload(); // Actualise la page après la confirmation
+                                      }
+                                  });
+                              }
+                          };
+
+                          xhrSupprimer.send('id=' + encodeURIComponent(
+                              id
+                          )); // Envoie l'ID du client en tant que paramètre POST
+                      }
+                  });
                 });
     }
     depenseForm.addEventListener('submit', function(event) {

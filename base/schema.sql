@@ -252,3 +252,18 @@ CREATE TABLE Depense(
    FOREIGN KEY (id_sub_comptes) REFERENCES sub_comptes(id_sub_comptes)
 );
 
+create or REPLACE view v_depense as 
+select 
+   Depense.* ,
+   sub_comptes.idpcg as id_pcg ,
+   sub_comptes.description nom_categorie,
+   pcg.nom as nom_pcg ,
+   modeDepaiement.nom as nom_mode
+from Depense 
+join sub_comptes on Depense.id_sub_comptes = sub_comptes.id_sub_comptes
+join pcg on pcg.id_pcg = sub_comptes.idpcg
+join modeDepaiement on modeDepaiement.id_ModePaiment = Depense.id_ModePaiment;
+
+create or REPLACE view v_depense_info as 
+select id_depense ,  description , montant , dateDepense , justificatif , nom_mode , nom_categorie
+from v_depense;

@@ -139,6 +139,10 @@ class CI_DB_postgre_driver extends CI_DB {
 		$this->dsn = rtrim($this->dsn);
 	}
 
+	public $compress;
+    public $stricton;
+    public $failover;
+
 	// --------------------------------------------------------------------
 
 	/**

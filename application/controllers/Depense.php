@@ -100,10 +100,10 @@ class Depense extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
-    public function delete()
+    public function delete_depense()
     {
         $id = $this->input->post('id');
-        $this->Depense_Model->delete_depense($id);
+        $this->Depense_Model->get_depense();
         $response = array(
             'success' => true,
             'message' => 'Depense supprimer avec succès.'

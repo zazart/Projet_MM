@@ -10,7 +10,6 @@ class StockProduit_Controller extends CI_Controller{
     }
 
     public function index() {
-        $data['mouvementstocks'] = $this->StockProduit_Model->get_all_stockproduit2();
         $data["title"] = "Stock Produit";
         $data["etat"]="transformation";
         $data["activer"]="mouvement_stock";
@@ -19,12 +18,29 @@ class StockProduit_Controller extends CI_Controller{
     }
 
     public function view_stockproduit_actuel() {
-        $data['stockactuels'] = $this->StockProduit_Model->get_stockproduit_actuel();
         $data["title"] = "Stock Produit";
         $data["etat"]="transformation";
         $data["activer"]="etat_stock";
 		$data["contents"]="pages/Transformation/liste-etat-stockproduit";
 		$this->load->view("templates/template",$data);
+    }
+    public function  getStockProsuits(){
+        $response = array (
+            'success'   =>      true,
+            'produits'  =>     $this->StockProduit_Model->get_stockproduit_actuel()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+    public function  getStockProsuitsMouvements(){
+        $response = array (
+            'success'   =>      true,
+            'produits'  =>     $this->StockProduit_Model->get_all_stockproduit2()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 
     public function validation_update_mouvementstock($id_stockproduitt) {
@@ -63,10 +79,16 @@ class StockProduit_Controller extends CI_Controller{
         }
     }
 
-    public function validation_delete_mouvementstock($id){
+    public function validation_delete_mouvementstock(){
+        $id = $this->input->post('id');
         $this->StockProduit_Model->delete_stockproduit($id);
-
-        redirect('transformation/stockproduit_controller');
+        $response = array(
+            'success' => true,
+            'message' => 'Mouvement de stock supprimer avec succès.'
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }
 ?>

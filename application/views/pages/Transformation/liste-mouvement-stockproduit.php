@@ -1,30 +1,38 @@
 <section class="section">
   <div class="card-body">
     <h5 class="card-title text-center">Mouvement de Stock produit</h5>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Nom produit</th>
-            <th scope="col">Date stocake produit</th>
-            <th scope="col">Quantité Entrante(L)</th>
-            <th scope="col">Quantité Sortante(L)</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($mouvementstocks as $mouvementstock): ?>
-          <tr>
-              <th scope="row"><?php echo $mouvementstock['nom_produit']; ?></th>
-              <th scope="row"><?php echo $mouvementstock['datestockproduit']; ?></th>
-              <td><?php echo $mouvementstock['quantiteentrant']; ?></td>
-              <td><?php echo $mouvementstock['quantitesortant']; ?></td>
-              <td>
-                  <a href="<?php echo site_url('transformation/stockproduit_controller/validation_update_mouvementstock/' . $mouvementstock['id_stockproduit']); ?>">Modifier</a>
-                  <a href="<?php echo site_url('transformation/stockproduit_controller/validation_delete_mouvementstock/' . $mouvementstock['id_stockproduit']); ?>">Supprimer</a>
-              </td>
-          </tr>
-          <?php endforeach; ?>
-        </tbody> 
+      <table class="table table-hover" id="produitTable">
       </table>
   </div>
 </section>
+<script>
+   document.addEventListener('DOMContentLoaded', function(){
+    let xhr = creeXHR();
+    xhr.open('GET', '<?= base_url("transformation/stockproduit_controller/getStockProsuitsMouvements") ?>', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              var var_data = response.produits;
+              const produitsArray = var_data.map(produit => Object.values(produit));
+              viewTableData(
+                "produitTable",
+                [{title:"Id"},{title:'Nom Produit'},{title:'Date stocake produit'},
+                  {title:'Quantité Entrante(L)'},{title : 'Quantité Sortante(L)'}
+                ],
+                produitsArray,
+                'transformation/stockproduit_controller/validation_update_mouvementstock',
+                'transformation/stockproduit_controller/validation_delete_mouvementstock')
+            } else {
+              alert('Erreur lors de l\'insertion : ' + response.message);
+            }
+          } else {
+            console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
+            alert('Une erreur s\'est produite lors de la requête AJAX.');
+          }
+        }
+      };
+      xhr.send()
+   })
+</script>

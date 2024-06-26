@@ -251,8 +251,7 @@ insert into TypeProfil(libelle) values
 
 
 DELETE FROM poste;
-DELETE FROM employe;
-
+DELETE FROM employe
 
 SELECT pg_get_serial_sequence('Poste', 'id_poste');  -- Pour la table 'Poste'
 SELECT pg_get_serial_sequence('Employe', 'id_employe');  -- Pour la table 'Employe'

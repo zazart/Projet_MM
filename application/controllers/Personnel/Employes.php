@@ -207,16 +207,7 @@ class Employes extends CI_Controller {
         );
 
         // // Supprimer les critères vides
-        $criteria = array_filter($criteria);
-
-        // // Récupérer les employés en fonction des critères de recherche
-        // $data['employes'] = $this->Employe_model->search_employes($criteria);
-        // $data['title'] = 'Recherche des employés';
-
-        // $data['contents']='pages/Personnel/employes/result-search';
-        // $data['genres']=$this->Genre_model->get_genres();
-        // $data['postes']=$this->Poste_model->get_postes();
-        // $this->load->view('templates/template', $data);
+        $criteria = array_filter($criteria);ù
 
         $employes = $this -> Employe_model->search_employes($criteria);
         $response = array(

@@ -18,6 +18,8 @@ class PaiementEmployes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             // Si la validation échoue, afficher le formulaire à nouveau
+            $data['title'] = 'Paiement employés';
+
             $data["etat"] = "personnel";
             $data["activer"] = "lien_payement";
             $data['contents'] = 'pages/Personnel/paiementEmployes/create';
@@ -35,7 +37,14 @@ class PaiementEmployes extends CI_Controller {
 
             $this->PaiementEmploye_model->insert_paiement_employe($data);
 
-            redirect('Personnel/paiementemployes/create');
+            $response = array(
+                'success' => true,
+                'message' => 'Paiement effectué avec succès.',
+            );
+
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         }
     }
 }

@@ -12,6 +12,8 @@ class Produit_Controller extends CI_Controller{
     public function index() {
         $data['produits'] = $this->Produit_Model->get_all_produit();
         $data["title"] = "Produit";
+        $data["etat"]="transformation";
+        $data["activer"]="produit_dispo";
 		$data["contents"]="pages/Transformation/liste-produit";
 		$this->load->view("templates/template",$data);
     }
@@ -22,6 +24,8 @@ class Produit_Controller extends CI_Controller{
         if ($this->form_validation->run() === FALSE) {
             $data['produit'] = $this->Produit_Model->get_produit($id_produit);
             $data["title"] = "Produit";
+            $data["etat"]="transformation";
+            $data["activer"]="produit_dispo";
 		    $data["contents"]="pages/Transformation/update-produit";
             $this->load->view('templates/template', $data);
         } else {
@@ -36,6 +40,8 @@ class Produit_Controller extends CI_Controller{
             } else {
                 $data['produit'] = $this->Produit_Model->get_produit($id_produit);
                 $data["title"] = "Produit";
+                $data["etat"]="transformation";
+                $data["activer"]="produit_dispo";
 		        $data["contents"]="pages/Transformation/update-produit";
                 $this->load->view('templates/template', $data);
             }

@@ -15,7 +15,7 @@
           <?php foreach ($productions as $production): ?>
           <tr>
               <th scope="row"><?php echo $production['id_production']; ?></th>
-              <th scope="row"><?php echo $production['nom_matierepremier']; ?></th>
+              <th scope="row"><?php echo $production['nom']; ?></th>
               <td><?php echo $production['quantitebrut']; ?></td>
               <td><?php echo $production['quantiteproduit']; ?></td>
               <td><?php echo $production['dateproduction']; ?></td>

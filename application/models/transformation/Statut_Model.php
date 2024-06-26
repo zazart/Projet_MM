@@ -25,7 +25,7 @@
         }
     
         public function update_statut($id, $data) {
-            $this->db->where('id_statut', $id);
+            $this->db->where('id_stat', $id);
             return $this->db->update('stat_machine', $data);
         }
     
@@ -37,7 +37,10 @@
             $query = $this->db->get_where('machine', array('id_machine' => $id));
             return $query->row_array();
         }
-
+        public function get_machine_statut($idstatut) {
+            $query = $this->db->get_where('stat_machine', array('id_stat' => $idstatut));
+            return $query->row_array();
+        }
         // Nouvelle méthode pour obtenir les statuts les plus récents pour chaque machine
         public function get_statut_actuel() {
             $sql = "

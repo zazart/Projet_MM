@@ -12,6 +12,8 @@ class StockProduit_Controller extends CI_Controller{
     public function index() {
         $data['mouvementstocks'] = $this->StockProduit_Model->get_all_stockproduit2();
         $data["title"] = "Stock Produit";
+        $data["etat"]="transformation";
+        $data["activer"]="mouvement_stock";
 		$data["contents"]="pages/Transformation/liste-mouvement-stockproduit";
 		$this->load->view("templates/template",$data);
     }
@@ -19,6 +21,8 @@ class StockProduit_Controller extends CI_Controller{
     public function view_stockproduit_actuel() {
         $data['stockactuels'] = $this->StockProduit_Model->get_stockproduit_actuel();
         $data["title"] = "Stock Produit";
+        $data["etat"]="transformation";
+        $data["activer"]="etat_stock";
 		$data["contents"]="pages/Transformation/liste-etat-stockproduit";
 		$this->load->view("templates/template",$data);
     }
@@ -33,6 +37,8 @@ class StockProduit_Controller extends CI_Controller{
             $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
             $data['produits'] = $this->Produit_Model->get_all_produit();
             $data["title"] = "Stock Produit";
+            $data["etat"]="transformation";
+            $data["activer"]="etat_stock";
 		    $data["contents"]="pages/Transformation/update-stockproduit";
             $this->load->view('templates/template', $data);
         } else {
@@ -49,6 +55,8 @@ class StockProduit_Controller extends CI_Controller{
                 $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
                 $data['produits'] = $this->Produit_Model->get_all_produit();
                 $data["title"] = "Stock Produit";
+                $data["etat"]="transformation";
+                $data["activer"]="etat_stock";
                 $data["contents"]="pages/Transformation/update-stockproduit";
                 $this->load->view('templates/template', $data);
             }

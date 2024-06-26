@@ -95,8 +95,6 @@
         document.addEventListener("DOMContentLoaded",function(){
           var matiereInsertForm=document.getElementById("matiereInsertForm");
           var formdata=new FormData(matiereInsertForm);
-
-
             var xhr2=creerXHR(); //
             xhr2.open('POST','<?= site_url("Matiere_premier/list_matiere")?>',true);
             xhr2.setRequestHeader("X-Requested-With","XMLHttpRequest");

@@ -18,6 +18,19 @@
             $query = $this->db->get_where('machine', array('id_machine' => $id));
             return $query->row_array();
         }
+        public function get_machine_join($idMachine){
+            $this->db->select('machine.id_machine as id_machine');
+            $this->db->select('stat_machine.id_stat as id_stat');
+            $this->db->select('machine.nom_machine as nom_machine');
+            $this->db->select('stat_machine.statut as statut');
+            $this->db->select('stat_machine.date_verification as date_verification');
+            $this->db->select('stat_machine.descri as descri');
+            $this->db->from('stat_machine');
+            $this->db->join('machine', 'stat_machine.id_machine = machine.id_machine');
+            $this->db->where('machine.id_machine', $idMachine); 
+            $query = $this->db->get();
+            return $query->result_array();
+        }
     
         public function update_machine($id, $data) {
             $this->db->where('id_machine', $id);

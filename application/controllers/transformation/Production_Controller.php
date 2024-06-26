@@ -13,31 +13,50 @@ class Production_Controller extends CI_Controller{
     }
 
     public function index() {
-        $data['productions'] = $this->Production_Model->get_all_production();
-        $data["title"] = "Production";
-		$data["contents"]="pages/Transformation/liste-production";
-		$this->load->view("templates/template",$data);
+        $data= $this->Production_Model->get_all_production();
+        $response = array(
+            'success' => true,
+            'detail' => $data
+        );
+
+        $this->output
+        ->set_content_type('application/json')
+        ->set_output(json_encode($response));
     }
 
     public function view_insertion_production() {
         $data['matierepremiers'] = $this->MatierePremier_Model->get_all_matierepremier();
         $data["title"] = "Production";
+        $data["etat"]="transformation";
+        $data["activer"]="production_insert";
 		$data["contents"]="pages/Transformation/insert-production";
 		$this->load->view("templates/template",$data);
         // $this->load->view('transformation/insertion-statut', $data);
     }
 
+    function validationProduction(){
+        $this->form_validation->set_rules('id_matierep', 'id_matierep', 'required',array('required'=>'le choix de la matière premiere ne doit pas être vide'));
+        $this->form_validation->set_rules('quantitebrut', '', 'required',array('required'=>'la quantité brûte ne doit pas être vide'));
+        $this->form_validation->set_rules('quantite_produite', 'quantite_produite', 'required',array('required'=>'la quantite produite ne doit pas être vide'));
+        $this->form_validation->set_rules('date_prod', 'date_prod', 'required',array('required'=>'la date ne doit pas être vide'));
+    }
     public function validation_insert_production() {
-        $this->form_validation->set_rules('id_matierep', 'Matiere premiere', 'required');
-        $this->form_validation->set_rules('quantitebrut', 'Quantite Matière première utilisée', 'required');
-        $this->form_validation->set_rules('quantite_produite', 'Quantite produite', 'required');
-        $this->form_validation->set_rules('date_prod', 'Date de production', 'required');
-
-        if ($this->form_validation->run() === FALSE) {
-            $data['matierepremiers'] = $this->MatierePremier_Model->get_all_matierepremier();
-            $data["title"] = "Production";
-            $data["contents"]="pages/Transformation/insert-production";
-            $this->load->view("templates/template",$data);
+           
+        $this->validationProduction();
+        if ($this->form_validation->run() == FALSE) {
+            $errors=array(
+                'date'=>form_error('date_prod'),
+                'matiere'=>form_error('id_matierep'),
+                'in_qtt'=>form_error('quantitebrut'),
+                'out_qtt'=>form_error('quantite_produite'), 
+            );
+            $response=array(
+                'success' => FALSE,
+                'errors'=>$errors
+            );
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         } else {
             $data = array(
                 'matierepremier' => $this->input->post('id_matierep'),
@@ -56,15 +75,15 @@ class Production_Controller extends CI_Controller{
                 $data2 = array(
                     'matierepremier' => $id_matierep,
                     'dates' => $date_prod,
-                    'quantiteentrant' => 0.00,
-                    'quantitesortant' => $quantite_utilise
+                    'in_qtt' => 0.00,
+                    'out_qtt' => $quantite_utilise
                 );
                 $this->StockMatierePremier_Model->insert_stockmatierep($data2);
 
                 //insertion dans table produit si ce matierepremier n'existe pas encore 
                 //dans la table des produits
                 $matiere = $this->MatierePremier_Model->get_matiere($id_matierep);
-                $nom_matierepremier = $matiere['nom_matierepremier']; 
+                $nom_matierepremier = $matiere['nom']; 
                 if($this->Produit_Model->nom_existe($nom_matierepremier) == false){
                     //inserte dans produit si cela n'existe pas encore
                     $data_produit = array(
@@ -72,11 +91,10 @@ class Production_Controller extends CI_Controller{
                         'prix_unitaire' => 0.00
                     );
                     // Insérer le produit
-                    return $this->Produit_Model->insert_produit_simple($data_produit);
+                    $this->Produit_Model->insert_produit_simple($data_produit);
                 } 
 
                 $suffixe = 'huile de '. $nom_matierepremier;
-                echo("blbala");
                 //insertion dans stockproduit
                 //mampiditra ao amin'ny stockproduit
                 $produit_stockena = $this->Produit_Model->get_produit_by_nom($suffixe);
@@ -88,11 +106,20 @@ class Production_Controller extends CI_Controller{
                     'id_produit' => $id_produit
                 );
                 $this->StockProduit_Model->insert_stockproduit($data_stockprod);
-                redirect('transformation/production_controller');
                 
+                // envoi du seccess
+                $response=array(
+                    'success' => true,
+                    'message' => 'Production ajoutée avec succès!',
+                );
+                $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode($response));                
             } else {
                 $data['matierepremiers'] = $this->MatierePremier_Model->get_all_matierepremier();
                 $data["title"] = "Production";
+                $data["etat"]="transformation";
+                $data["activer"]="production_insert";
                 $data["contents"]="pages/Transformation/insert-production";
                 $this->load->view("templates/template",$data);
             }
@@ -118,6 +145,8 @@ class Production_Controller extends CI_Controller{
 
     public function statistique() {
         $data["title"] = "Statistique | Production";
+        $data["etat"]="transformation";
+        $data["activer"]="statistique_production";
         $data["contents"]="pages/Transformation/statistique-production";
         $this->load->view("templates/template",$data);
     }

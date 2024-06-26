@@ -191,57 +191,48 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#transformation-nav" data-bs-toggle="collapse" href="#">
+        <a class="<?php echo ($etat == "transformation") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#transformation-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-arrow-repeat color_black"></i><span class="color_black">Transformation</span><i class="bi bi-chevron-down ms-auto color_black"></i>
         </a>
         <ul id="transformation-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="<?php echo(site_url("transformation/machine_controller/view_insertion_machine")); ?>">
+            <a href="<?php echo(site_url("transformation/machine_controller/view_insertion_machine")); ?>" <?php if ($activer == "machine_insert") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion machine</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/machine_controller")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Machines du MM</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("transformation/statut_controller/view_insertion_statut")); ?>">
+            <a href="<?php echo(site_url("transformation/statut_controller/view_insertion_statut")); ?>" <?php if ($activer == "etat_machine_insert") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion état machine</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/statut_controller")); ?>">
+            <a href="<?php echo(site_url("transformation/statut_controller")); ?>" <?php if ($activer == "etat_machine") { echo 'class="active"';}?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat machines</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/production_controller/view_insertion_production")); ?>">
+            <a href="<?php echo(site_url("transformation/production_controller/view_insertion_production")); ?>" <?php if ($activer == "production_insert") { echo 'class="active"';} ?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion production</span>
             </a>
           </li>
+
           <li>
-            <a href="<?php echo(site_url("transformation/production_controller")); ?>">
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Détails production</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("transformation/produit_controller")); ?>">
+            <a href="<?php echo(site_url("transformation/produit_controller")); ?>" <?php if ($activer == "produit_dispo") { echo 'class="active"';}?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Produits Disponibles</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/stockproduit_controller")); ?>">
+            <a href="<?php echo(site_url("transformation/stockproduit_controller")); ?>" <?php if ($activer == "mouvement_stock") { echo 'class="active"';}?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Mouvement Stock Produit</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/stockproduit_controller/view_stockproduit_actuel")); ?>">
+            <a href="<?php echo(site_url("transformation/stockproduit_controller/view_stockproduit_actuel")); ?>" <?php if ($activer == "etat_stock") { echo 'class="active"';}?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat stock produits</span>
             </a>
           </li>
           <li>
-            <a href="<?php echo(site_url("transformation/production_controller/statistique")); ?>">
+            <a href="<?php echo(site_url("transformation/production_controller/statistique")); ?>" <?php if ($activer == "statistique_production") { echo 'class="active"';}?>>
               <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de saison</span>
             </a>
           </li>

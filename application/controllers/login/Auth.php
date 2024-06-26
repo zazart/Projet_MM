@@ -2,7 +2,7 @@
 class Auth extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('login/user_model');
     }
 
     public function login() {
@@ -23,7 +23,7 @@ class Auth extends CI_Controller {
             $users = $this->user_model->get_user($email);
 
             foreach($users as $user) {
-                if ($user && $password == $user['password']) {
+                if ($user && $password == $user['mot_de_passe']) {
                     $this->session->set_userdata('user', $user);
                     redirect(base_url("/"));
                     exit;

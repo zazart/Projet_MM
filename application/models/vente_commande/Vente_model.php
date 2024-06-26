@@ -6,11 +6,23 @@ class Vente_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->load->model("transformation/stockproduit_model");
+        $this->load->model("vente_commande/panier_model");
         $this->load->database();
     }
 
     public function insert_vente($data)
     {
+        $commandes = $this->panier_model->get_panier_by_commande($data['id_commande']);
+        foreach ($commandes as $commande) {
+            $stock = array(
+                'id_produit' => $commande['id_produit'],
+                'quantiteentrant' => 0,
+                'quantitesortant' => $commande['quantite'],
+                'datestockproduit' => $data['date_vente']
+            );
+            $this->stockproduit_model->insert_stockproduit($stock);
+        }
         return $this->db->insert('vente', $data);
     }
 

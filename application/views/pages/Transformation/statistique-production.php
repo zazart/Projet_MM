@@ -3,7 +3,7 @@
 </section>
 <script>
     function drawGraph(data) {
-        const labels = data.map(item => `${item.nom_matierepremier}`);
+        const labels = data.map(item => `${item.nom}`);
         const quantiteBrutData = data.map(item => item.quantitebrut);
         const quantiteProduitData = data.map(item => item.quantiteproduit);
 

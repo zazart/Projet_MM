@@ -18,7 +18,7 @@ class Vente extends CI_Controller
         $data["contents"] = "pages/vente/insert_vente";
         $data["etat"] = "vente_commande";
         $data["activer"] = "lien_vente";
-        $data["commandes"] = $this->Commande_model->get_commandes();
+        $data["commandes"] = $this->Commande_model->get_commandes_sv();
         $this->load->view("templates/template", $data);
     }
 
@@ -143,8 +143,13 @@ class Vente extends CI_Controller
     {
         $debut = $this->input->get("debut");
         $fin = $this->input->get("fin");
-        header('Content-Type: application/json');
-        echo json_encode($this->Vente_model->get_all($debut, $fin));
+        $data = $this->Vente_model->get_all($debut, $fin);
+        $this->output
+        ->set_status_header(200)
+        ->set_content_type('application/json; charset=utf-8')
+        ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+        ->_display();
+        exit;
     }
 
     public function delete()

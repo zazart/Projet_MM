@@ -1,8 +1,9 @@
-<?php 
-    // application/controllers/Journal.php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+// application/controllers/Journal.php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Journal extends CI_Controller {
+class Journal extends CI_Controller
+{
 
     public function __construct()
     {
@@ -20,7 +21,7 @@ class Journal extends CI_Controller {
         $data['journal'] = $this->Journal_model->getJournal($month, $year);
         $data['month'] = $month;
         $data['year'] = $year;
-
+        $data["title"] = "Journal";
         // Load the template view with the contents view
         $data['contents'] = 'pages/depenses/journal_view'; // Contents view
         // Activation de lien
@@ -29,7 +30,8 @@ class Journal extends CI_Controller {
         $this->load->view('templates/template', $data);
     }
 
-    public function getJournal(){
+    public function getJournal()
+    {
         $month = intval($this->input->get('month')) ?: date('m');
         $year = intval($this->input->get('year')) ?: date('Y');
         $response = array(
@@ -87,5 +89,3 @@ class Journal extends CI_Controller {
         redirect(base_url('uploads\journal_' . $month . '_' . $year . '.pdf'));
     }
 }
-
-?>

@@ -12,7 +12,7 @@ class Depense extends CI_Controller
         // $this->load->library('session');
     }
 
-    
+
     // Access to the insertion form
     public function formulaire()
     {
@@ -23,6 +23,7 @@ class Depense extends CI_Controller
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
         $data["pcg"] = $this->Depense_model->get_pcg();
         $data["contents"] = "pages/depenses/formulaire-depense";
+        $data["title"] = "Depense";
         // Activation de lien
         $data['etat'] = 'depense';
         $data['activer'] = 'formulaire_depense';
@@ -43,15 +44,7 @@ class Depense extends CI_Controller
             ->set_output(json_encode($response));
     }
 
-    public function listDepense()
-    {
-        $data['depenses'] = $this->Depense_model->get_depense();
-        $data["contents"] = "pages/depenses/liste-depense";
-        // Activation de lien
-        $data['etat'] = 'depense';
-        $data['activer'] = 'list_depense';
-        $this->load->view("templates/template", $data);
-    }
+
     public function getListDepenses()
     {
         $response = array(
@@ -107,7 +100,8 @@ class Depense extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
-    public function delete(){
+    public function delete()
+    {
         $id = $this->input->post('id');
         $this->Depense_Model->delete_depense($id);
         $response = array(
@@ -118,7 +112,8 @@ class Depense extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
-    public function update(){
+    public function update()
+    {
         $id = $this->input->post('id_depense');
         $data = array(
             'description' => $this->input->post('description'),
@@ -136,7 +131,7 @@ class Depense extends CI_Controller
             } else {
                 // Handle file upload error
                 // $this->session->set_flashdata('error', $upload['error']);
-               
+
                 redirect('depense/formulaire');
             }
         }
@@ -151,11 +146,13 @@ class Depense extends CI_Controller
             ->set_output(json_encode($response));
     }
 
-    public  function update_depense($id_depense){
+    public  function update_depense($id_depense)
+    {
         $data["categories"] = $this->Depense_model->get_categories();
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
-        $data["pcg"]= $this->Depense_model->get_pcg();
+        $data["pcg"] = $this->Depense_model->get_pcg();
         $data["contents"] = "pages/depenses/modification-depense";
+        $data["title"] = "Modification Depense";
         // Activation de lien
         $data['etat'] = 'depense';
         $data['activer'] = 'formulaire_depense';

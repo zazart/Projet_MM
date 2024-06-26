@@ -217,6 +217,7 @@ CREATE TABLE Profil(
    type_profil int REFERENCES TypeProfil(id_typeProfil)
 );
 
+
 CREATE TABLE SourceMatierePremier(
    id SERIAL,
    datePrelevement DATE NOT NULL,
@@ -265,6 +266,7 @@ CREATE TABLE Depense(
    FOREIGN KEY (id_ModePaiment) REFERENCES modeDepaiement(id_ModePaiment),
    FOREIGN KEY (id_sub_comptes) REFERENCES sub_comptes(id_sub_comptes)
 );
+
 
 CREATE TABLE PanierProduit(
    id INTEGER,

@@ -61,6 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/language.html
  */
+#[\AllowDynamicProperties]
 class MY_Lang extends CI_Lang {
 
 	/**

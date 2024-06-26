@@ -75,6 +75,8 @@ CREATE TABLE Production (
    DateProduction DATE,
    FOREIGN KEY (MatierePremier) REFERENCES MatierePremier(id_matierepremier)
 );
+alter table production
+add column quantitebrut integer;
 create table machine(
    id_machine serial primary key,
    nom_machine varchar(255),

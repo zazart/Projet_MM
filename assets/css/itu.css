@@ -222,7 +222,7 @@
 
   /*Image pour les liste */
     .card-img-top {
-        max-height: 10vh;
+        max-height: 15vh;
         object-fit: cover;
     }
   /*Fin*/
@@ -238,3 +238,18 @@
         padding: 20px; /* Ajouter du padding pour une meilleure présentation */
     }
 /*Fin*/
+
+/* input shadow dans tout le projet */
+.form-control:focus ,.form-select:valid:focus {
+    color: var(--bs-body-color);
+    background-color: #F9F7E5;
+    border-color: #c29e00bd !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 197, 13, 0.25);
+}
+/* fin */
+
+/* input shadow dans tout le projet */
+.form-control:valid{
+    background-color: #fff !important;
+}

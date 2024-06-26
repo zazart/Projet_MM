@@ -44,7 +44,7 @@
         // Nouvelle méthode pour obtenir les statuts les plus récents pour chaque machine
         public function get_statut_actuel() {
             $sql = "
-            SELECT sm.id_stat, sm.id_machine, m.nom_machine, sm.date_verification, sm.statut, sm.descri
+            SELECT sm.id_stat, m.nom_machine, sm.date_verification, sm.statut, sm.descri
             FROM stat_machine sm
             INNER JOIN (
                 SELECT id_machine, MAX(date_verification) AS max_date

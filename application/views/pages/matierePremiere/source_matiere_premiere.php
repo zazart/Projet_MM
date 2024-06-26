@@ -67,7 +67,7 @@
     <?php if (!isset($source_matiere_premier_data['matierpremier'])) { ?>
       <div class="col-lg-4">
         <div class="card">
-          <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
+          <img src="<?php echo (base_url("assets/img/source.jpeg")) ?>" class="card-img-top">
           <div class="card-body d-flex justify-content-center mt-3">
             <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des source de matieres premieres</button>
           </div>

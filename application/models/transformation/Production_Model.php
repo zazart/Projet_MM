@@ -14,7 +14,7 @@ class Production_Model extends CI_Model
     public function get_all_production()
     {
         $sql =
-            "select p.id_production,m.id_matierepremier, m.nom, 
+            "select p.id_production, m.nom, 
             p.quantitebrut, p.quantiteproduit, p.dateproduction
             from production as p join matierepremier as m on
             p.matierepremier = m.id_matierepremier";

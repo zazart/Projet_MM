@@ -7,8 +7,6 @@
         <div class="card-body">
           <h5 class="card-title text-center color_black_0"><?php echo $title; ?></h5>
 
-            <h2>Recherche des employés</h2>
-
             <form  class="row g-3" id="employesForm"> 
             <div class="col-12">
                 <label for="nom" class="form-label">Nom ou email:</label>
@@ -139,7 +137,7 @@
                       title: 'Actions',
                       render: function(data, type, row, meta) {
                           var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
-                          var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                          var deleteImgSrc = '<?php echo base_url('assets/img/detail.png'); ?>';
                           return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
                             '<img class="img-detail" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Details">';
                       }

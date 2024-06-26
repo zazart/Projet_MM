@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="text-center">
-                        <input type="submit" name="submit" class="btn btn-secondary" value="<?php echo isset($statut) ? 'Mettre à Jour' : 'Ajouter'; ?>" /> 
+                        <input type="submit" name="submit" class="boutton boutton-secondary" value="<?php echo isset($statut) ? 'Mettre à Jour' : 'Ajouter'; ?>" /> 
                     </div>
                     
                     </form><!-- Vertical Form -->
@@ -64,7 +64,7 @@
         <?php if (!isset($statut)){ ?>
               <div class="col-lg-4">
                     <div class="card" >
-                      <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+                      <img src="<?php echo(base_url("assets/img/etat.jpg"))?>" class="card-img-top">
                       <div class="card-body d-flex justify-content-center mt-3">
                         <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir l'état des machines</button>
                       </div>
@@ -135,7 +135,8 @@
                       var table = $('#etatData').DataTable({
                         data: etatArray,
                         columns: [
-                          { title: 'Nom' },
+                          { title: 'Id' },
+                          { title: 'Nom du machine' },
                           { title: 'Date derniere verification' },
                           { title: 'statut' },
                           { title: 'Description' },

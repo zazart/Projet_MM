@@ -53,17 +53,17 @@
         </div>
         <div class="col-lg-4">
             <div class="card">
-                <img src="<?php echo (base_url("assets/img/news-4.jpg")) ?>" class="card-img-top">
+                <img src="<?php echo (base_url("assets/img/collecte.jpg")) ?>" class="card-img-top">
                 <div class="card-body d-flex justify-content-center mt-3">
                     <button class="boutton boutton-primary" data-bs-toggle="modal"
-                        data-bs-target="#verticalycentered">Voir liste des collects</button>
+                        data-bs-target="#verticalycentered">Voir liste des collectes</button>
                 </div>
                 <div class="modal fade" id="verticalycentered">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-body">
                                 <h5 class="card-title">Listes des collects</h5>
-                                <p>Voici les listes de tous les collects dans le <span class="color_secondary">projet MM
+                                <p>Voici la liste de toutes les collectes dans le <span class="color_secondary">projet MM
                                     </span>avec ses informations:</p>
                                 <div id="valiny">
                                     <table id="collectData">

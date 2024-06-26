@@ -35,7 +35,7 @@
         <?php if (!isset($machine)){ ?>
               <div class="col-lg-4">
                     <div class="card" >
-                      <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+                      <img src="<?php echo(base_url("assets/img/machine.jpg"))?>" class="card-img-top">
                       <div class="card-body d-flex justify-content-center mt-3">
                         <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des machines</button>
                       </div>
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded",function(){
                           var id = $(this).data('id');
                         swal({
                           title: 'Confirmation de la suppression',
-                          text:'Voulez vous vraiment la machine?',
+                          text:'Voulez vous vraiment supprimer ce machine?',
                           icon:'warning',
                           buttons:true,
                           dangerMode:true,

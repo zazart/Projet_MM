@@ -87,7 +87,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-              <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+              <img src="<?php echo(base_url("assets/img/personnel.jpg"))?>" class="card-img-top">
               <div class="card-body d-flex justify-content-center mt-3">
                 <button class="boutton boutton-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Voir liste des employes</button>
               </div>
@@ -120,7 +120,7 @@
         </div>  
         <div class="col-lg-12">
           <div class="card">
-              <img src="<?php echo(base_url("assets/img/news-4.jpg"))?>" class="card-img-top">
+              <img src="<?php echo(base_url("assets/img/recherche.jpg"))?>" class="card-img-top">
               <div class="card-body d-flex justify-content-center mt-3">
                 <a href="<?php echo(site_url("Personnel/employes/form")); ?>"><button  class="boutton boutton-primary" >Recherche</button></a>
               </div>

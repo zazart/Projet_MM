@@ -25,6 +25,10 @@
 
   <!-- Template Main JS File -->
   <script src="<?php echo (base_url("assets/js/main.js")) ?>"></script>
+  <script src="<?php echo (base_url("assets/js/frontend.js")) ?>"></script>
+  <script>
+    const base_url = '<?=base_url()?>';
+  </script>
 
 
   </body>

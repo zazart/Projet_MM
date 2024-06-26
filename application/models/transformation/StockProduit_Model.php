@@ -11,10 +11,9 @@
         }
 
         public function get_all_stockproduit2() {
-            $sql = "      	
-            SELECT p.nom_produit, sp.datestockproduit,
-            sp.quantiteentrant, sp.quantitesortant,
-            sp.id_stockproduit 
+            $sql = "
+            SELECT sp.id_stockproduit ,p.nom_produit, sp.datestockproduit,
+            sp.quantiteentrant, sp.quantitesortant 
             from stockproduit as sp join produit as p
             on sp.id_produit = p.id_produit";
             $query = $this->db->query($sql);

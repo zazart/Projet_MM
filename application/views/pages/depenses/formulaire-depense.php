@@ -113,136 +113,8 @@
 
 <!-- SCRIPT DYNAMYSME FORMULAIRE -->
 <script>
-  function creeXHR() {
-    var xhr;
-    try {
-      xhr = new ActiveXObject('Msxml2.XMLHTTP');
-    } catch (e) {
-      try {
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      } catch (e2) {
-        try {
-          xhr = new XMLHttpRequest();
-        } catch (e3) {
-          xhr = false;
-        }
-      }
-    }
-    return xhr;
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
     var depenseForm = document.getElementById('depenseForm');
-
-    function viewDepenses(depensesArray) {
-      if ($.fn.DataTable.isDataTable('#depenseData')) {
-        $('#depenseData').DataTable().destroy();
-      }
-      var table = $('#depenseData').DataTable({
-        data: depensesArray,
-        columns: [{
-            title: 'Id'
-          },
-          {
-            title: 'Description'
-          },
-          {
-            title: 'Montant'
-          },
-          {
-            title: 'Date de depense'
-          },
-          {
-            title: 'Justificatif'
-          },
-          {
-            title: 'Mode de paiement'
-          },
-          {
-            title: 'Categories'
-          },
-          {
-            title: 'Actions',
-            render: function(data, type, row, meta) {
-              var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
-              var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
-              return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
-                '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
-            }
-          }
-        ]
-      });
-
-      // Événement click sur les images Modifier
-      $('#depenseData tbody').on('click', '.img-modifier', function() {
-        var id = $(this).data('id');
-        window.location.href =
-          '<?= base_url("depense/update_depense") ?>' +
-          "/" + id;
-      });
-
-      // Événement click sur les images Supprimer
-      $('#depenseData tbody').on('click', '.img-supprimer', function() {
-        var id = $(this).data('id');
-        swal({
-          title: 'Confirmation de la suppression',
-          text: 'Voulez vous vraiment supprimer cette depense',
-          icon: 'warning',
-          buttons: true,
-          dangerMode: true,
-        }).then((isOkay) => {
-          if (isOkay) {
-            var xhrSupprimer = new XMLHttpRequest();
-
-            xhrSupprimer.open('POST',
-              '<?= base_url("depense/delete") ?>',
-              true);
-            xhrSupprimer.setRequestHeader('X-Requested-With',
-              'XMLHttpRequest');
-            xhrSupprimer.setRequestHeader('Content-Type',
-              'application/x-www-form-urlencoded');
-            xhrSupprimer.onreadystatechange = function() {
-              if (xhrSupprimer.readyState == 4 && xhrSupprimer
-                .status == 200) {
-                var response = JSON.parse(xhrSupprimer
-                  .responseText);
-                if (response.success) {
-                  swal({
-                    title: 'Succès',
-                    text: 'Collecteur supprimé avec succès.',
-                    icon: 'success',
-                    buttons: 'OK'
-                  }).then((isOkay) => {
-                    if (isOkay) {
-                      window.location
-                        .reload();
-                    }
-                  });
-                }
-              }
-              if (xhrSupprimer
-                .status == 500) {
-                swal({
-                  title: 'Erreur',
-                  text: 'Cette depense ne peut pas etre supprimer',
-                  icon: 'error',
-                  buttons: 'OK'
-                }).then((isOkay) => {
-                  if (isOkay) {
-                    window.location
-                      .reload(); // Actualise la page après la confirmation
-                  }
-                });
-              }
-            };
-
-            xhrSupprimer.send('id=' + encodeURIComponent(
-              id
-            )); // Envoie l'ID du client en tant que paramètre POST
-          }
-        });
-      });
-    }
     depenseForm.addEventListener('submit', function(event) {
       // Prevent the default action
       event.preventDefault();
@@ -332,7 +204,13 @@
             if (response.success) {
               var var_depenses = response.depenses;
               const depensesArray = var_depenses.map(depense => Object.values(depense));
-              viewDepenses(depensesArray);
+              viewTableData(
+                'depenseData',
+                [{title: 'Id'},{title: 'Description'},{title: 'Montant'},{title: 'Date de depense'},{title: 'Justificatif'},{title: 'Mode de paiement'},{title: 'Categories'}],
+                depensesArray,
+                "depense/update_depense",
+                "depense/delete_depense"
+              );
             } else {
               alert('Erreur lors de l\'insertion : ' + response.message);
             }

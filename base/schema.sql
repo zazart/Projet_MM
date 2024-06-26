@@ -267,7 +267,6 @@ CREATE TABLE Depense(
    FOREIGN KEY (id_sub_comptes) REFERENCES sub_comptes(id_sub_comptes)
 );
 
-
 CREATE TABLE PanierProduit(
    id INTEGER,
    id_1 INTEGER,

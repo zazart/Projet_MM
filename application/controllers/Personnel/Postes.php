@@ -98,8 +98,6 @@ class Postes extends CI_Controller {
     }
 
     public function edit($id_poste) {
-        $this->load->library('form_validation');
-
         $data['poste'] = $this->Poste_model->get_postes($id_poste);
 
         if (empty($data['poste'])) {
@@ -112,9 +110,10 @@ class Postes extends CI_Controller {
         $this->form_validation->set_rules('montant_salaire', 'Salaire', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('pages/Personnel/postes/edit', $data);
-            $this->load->view('templates/footer');
+            $data["etat"] = "personnel";
+            $data["activer"] = "lien_postes_create";
+            $data["contents"]="pages/Personnel/postes/edit";
+            $this->load->view("templates/template",$data);
         } else {
             $nom = $this->input->post('nom');
             $montant_salaire = $this->input->post('montant_salaire');
@@ -128,20 +127,34 @@ class Postes extends CI_Controller {
             );
             $this->Poste_model->insert_salaire($data_salaire);
 
-            redirect('/Personnel/postes');
+            $response = array(
+                'success' => true,
+                'message' => 'Poste modifié avec succès.',
+            );
+
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         }
+
     }
 
-    public function delete($id_poste) {
+    public function delete() {
+        $id = $this->input->post('id');
         // Supprimer les salaires associés à ce poste
-        $this->Poste_model->delete_salaire_by_poste($id_poste);
-        $this->Poste_model->delete_employe_by_poste($id_poste);
+        $this->Poste_model->delete_salaire_by_poste($id);
+        $this->Poste_model->delete_employe_by_poste($id);
 
         // Supprimer le poste
-        $this->Poste_model->delete_poste($id_poste);
+        $this->Poste_model->delete_poste($id);
 
-        // Rediriger vers la liste des postes
-        redirect('/Personnel/postes');
+        $response = array(
+            'success' => true,
+            'message' => 'Poste supprimer avec succès.'
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }
 ?>

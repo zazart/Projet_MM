@@ -129,7 +129,6 @@ class Employes extends CI_Controller {
     }
 
     public function edit($id_employe) {
-        $this->load->library('form_validation');
 
         $data['employe'] = $this->Employe_model->get_employes($id_employe);
         $data['genres'] = $this->Employe_model->get_genres();
@@ -151,7 +150,7 @@ class Employes extends CI_Controller {
 
         if ($this->form_validation->run() === FALSE) {
             $data["etat"] = "personnel";
-            $data["activer"] = "lien_employes_edit";
+            $data["activer"] = "lien_employes_create";
             $data["contents"]="pages/Personnel/employes/edit";
             $this->load->view("templates/template",$data);
         } else {

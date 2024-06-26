@@ -140,10 +140,65 @@
                 // Événement click sur les images Supprimer
                 $('#postesData tbody').on('click', '.img-supprimer', function() {
                   var id = $(this).data('id');
-                    window.location.href =
-                      '<?= base_url("personnel/employes/view/") ?>' +
-                      "/" + id;
-                });
+                  swal({
+                      title: 'Confirmation de la suppression',
+                      text: 'Voulez vous vraiment supprimer ce poste',
+                      icon: 'warning',
+                      buttons: true,
+                      dangerMode: true,
+                  }).then((isOkay) => {
+                      if (isOkay) {
+                          var xhrSupprimer = new XMLHttpRequest();
+
+                          xhrSupprimer.open('POST',
+                              '<?= base_url("personnel/postes/edit/") ?>',
+                              true);
+                          xhrSupprimer.setRequestHeader('X-Requested-With',
+                              'XMLHttpRequest');
+                          xhrSupprimer.setRequestHeader('Content-Type',
+                              'application/x-www-form-urlencoded');
+
+                          xhrSupprimer.onreadystatechange = function() {
+                              if (xhrSupprimer.readyState == 4 && xhrSupprimer
+                                  .status == 200) {
+                                  var response = JSON.parse(xhrSupprimer
+                                      .responseText);
+                                  if (response.success) {
+                                      swal({
+                                          title: 'Succès',
+                                          text: 'Poste supprimé avec succès.',
+                                          icon: 'success',
+                                          buttons: 'OK'
+                                      }).then((isOkay) => {
+                                          if (isOkay) {
+                                              window.location
+                                                  .reload();
+                                          }
+                                      });
+                                  }
+                              }
+                              if (xhrSupprimer
+                                  .status == 500) {
+                                  swal({
+                                      title: 'Erreur',
+                                      text: 'Ce poste ne peut pas etre supprimer',
+                                      icon: 'error',
+                                      buttons: 'OK'
+                                  }).then((isOkay) => {
+                                      if (isOkay) {
+                                          window.location
+                                              .reload(); // Actualise la page après la confirmation
+                                      }
+                                  });
+                              }
+                          };
+
+                          xhrSupprimer.send('id=' + encodeURIComponent(
+                              id
+                          )); // Envoie l'ID du client en tant que paramètre POST
+                      }
+                  });
+              });
             }
           } else {
             console.error('Erreur AJAX : ', xhr_.status, xhr_.statusText);

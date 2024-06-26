@@ -188,7 +188,7 @@
                       title: 'Actions',
                       render: function(data, type, row, meta) {
                           var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
-                          var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
+                          var deleteImgSrc = '<?php echo base_url('assets/img/detail.png'); ?>';
                           return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
                             '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
                       }

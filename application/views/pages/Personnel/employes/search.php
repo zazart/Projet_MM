@@ -13,7 +13,6 @@
             <div class="col-12">
                 <label for="nom" class="form-label">Nom ou email:</label>
                 <input type="text" class="form-control" name="nom" id="nom">
-                <p class="text-danger" id="nomError"></p>
             </div>
 
 
@@ -34,7 +33,6 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <p class="text-danger" id="id_genreError"></p>
             </div>
 
 
@@ -48,7 +46,6 @@
                     <?php endforeach; ?>
                     </select>
                 </div>
-                <p class="text-danger" id="id_posteError"></p>
             </div>
             <div class="text-center">
                 <button type="submit" data-bs-toggle="modal" data-bs-target="#verticalycentered" class="boutton boutton-secondary">Rechercher</button>
@@ -112,14 +109,17 @@
     return xhr;
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var xhr_ = creeXHR();
-    xhr_.open('POST', '<?= base_url("Personnel/employes/search") ?>', true);
-    xhr_.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr_.onreadystatechange = function() {
-        if (xhr_.readyState === XMLHttpRequest.DONE) {
-          if (xhr_.status === 200) {
-            var response = JSON.parse(xhr_.responseText);
+      var employesForm = document.getElementById('employesForm');
+      employesForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      var formData = new FormData(employesForm);
+      var xhr = creeXHR();
+      xhr.open('POST', '<?= base_url("Personnel/employes/search") ?>', true);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
             if (response.success) {
                 var var_employes = response.employes;
                 const employesArray = var_employes.map(employe => Object.values(employe));
@@ -141,7 +141,7 @@
                           var editImgSrc = '<?php echo base_url('assets/img/modifier.png'); ?>';
                           var deleteImgSrc = '<?php echo base_url('assets/img/corbeille.png'); ?>';
                           return '<img class="img-modifier" style="margin-right:30px;cursor:pointer;" src="' + editImgSrc + '" data-id="' + row[0] + '" alt="Modifier">' +
-                            '<img class="img-supprimer" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Supprimer">';
+                            '<img class="img-detail" style="margin-right:30px;cursor:pointer;" src="' + deleteImgSrc + '" data-id="' + row[0] + '" alt="Details">';
                       }
                     }
                   ]
@@ -155,57 +155,15 @@
                 });
 
                 // Événement click sur les images Supprimer
-                $('#employesData tbody').on('click', '.img-supprimer', function() {
+                $('#employesData tbody').on('click', '.img-detail', function() {
                   var id = $(this).data('id');
                     window.location.href =
                       '<?= base_url("personnel/employes/view/") ?>' +
                       "/" + id;
                 });
             }
-          } else {
-            console.error('Erreur AJAX : ', xhr_.status, xhr_.statusText);
-            alert('Une erreur s\'est produite lors de la requête AJAX.');
-          }
-        }
-      };
-
-      xhr_.onerror = function() {
-        console.error('Erreur réseau');
-        alert('Une erreur s\'est produite lors de la requête AJAX.');
-      };
-
-      xhr_.send();
-
-
-      
-      var employesForm = document.getElementById('employesForm');
-      employesForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      var formData = new FormData(employesForm);
-      var xhr = creeXHR();
-      xhr.open('POST', '<?= base_url("Personnel/employes/create") ?>', true);
-      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              swal({
-                title: 'Succès',
-                text: 'Employé ajouté avec succès.',
-                icon: 'success',
-                buttons: 'OK'
-              }).then((isOkay) => {
-                if (isOkay) {
-                    window.location
-                        .reload();
-                }
-              });
-            } else {
+            else {
               // Gérer les erreurs de validation et afficher les messages d'erreur
-              document.getElementById('nomError').innerHTML = response.errors.nom;
-              document.getElementById('id_genreError').innerHTML = response.errors.id_genre;
-              document.getElementById('id_posteError').innerHTML = response.errors.id_poste;
             }
           } else {
             console.error('Erreur AJAX : ', xhr.status, xhr.statusText);
@@ -221,5 +179,4 @@
 
       xhr.send(formData);
     });
-  });
 </script>

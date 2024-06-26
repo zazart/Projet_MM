@@ -33,29 +33,29 @@ class Employe_model extends CI_Model {
     }
 
     public function search_employes($criteria = array()) {
-        $this->db->select('employe.*, genre.description as genre_description, poste.nom as poste_nom');
-        $this->db->from('employe');
-        $this->db->join('genre', 'employe.id_genre = genre.id_genre');
-        $this->db->join('poste', 'employe.id_poste = poste.id_poste');
+        $this->db->select('e.id_employe,  e.nom,e.email, e.telephone, poste.nom as poste_nom');
+        $this->db->from('employe as e');
+        $this->db->join('genre', 'e.id_genre = genre.id_genre');
+        $this->db->join('poste', 'e.id_poste = poste.id_poste');
 
          // Appliquer les critères de recherche
         if (!empty($criteria['nom'])) {
             $this->db->group_start();  // Open bracket
-            $this->db->like('employe.nom', $criteria['nom']);
-            $this->db->or_like('employe.email', $criteria['nom']);
+            $this->db->like('e.nom', $criteria['nom']);
+            $this->db->or_like('e.email', $criteria['nom']);
             $this->db->group_end();  // Close bracket
         }
         if (!empty($criteria['debut_embauche'])) {
-            $this->db->where('employe.embauche >', $criteria['debut_embauche']);
+            $this->db->where('e.embauche >', $criteria['debut_embauche']);
         }
         if (!empty($criteria['fin_embauche'])) {
-            $this->db->where('employe.embauche <', $criteria['fin_embauche']);
+            $this->db->where('e.embauche <', $criteria['fin_embauche']);
         }
         if (!empty($criteria['id_genre'])) {
-            $this->db->where('employe.id_genre', $criteria['id_genre']);
+            $this->db->where('e.id_genre', $criteria['id_genre']);
         }
         if (!empty($criteria['id_poste'])) {
-            $this->db->where('employe.id_poste', $criteria['id_poste']);
+            $this->db->where('e.id_poste', $criteria['id_poste']);
         }
 
         $query = $this->db->get();

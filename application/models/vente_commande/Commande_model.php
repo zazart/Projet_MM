@@ -19,6 +19,7 @@ class Commande_model extends CI_Model
         $this->db->select('commande.id_commande,commande.datecommande, client.nomglobal');
         $this->db->from('commande');
         $this->db->join('client', 'commande.id_client = client.id_client');
+        $this->db->order_by("commande.datecommande", "desc");
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -38,5 +39,14 @@ class Commande_model extends CI_Model
     {
         $this->db->where('id_commande', $id);
         return $this->db->update('commande', $data);
+    }
+
+    public function get_commandes_sv() {
+        $this->db->select('commande.*, client.id_client, client.nomglobal');
+        $this->db->from('commande');
+        $this->db->join('client', 'commande.id_client = client.id_client');
+        $this->db->where('commande.id_commande NOT IN (SELECT id_commande FROM vente)', NULL, FALSE);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

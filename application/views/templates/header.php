@@ -6,7 +6,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title><?php echo ($title) ?></title>
 
-
     <!-- Favicons -->
     <link href="<?php echo (base_url("assets/img/favicon.png")) ?>" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -171,43 +170,35 @@
                     </li>
                 </ul>
             </li><!-- Matière première -->
-
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
+                <a class="<?php echo ($etat == "personnel") ? 'nav-link' : 'nav-link collapsed'; ?>"
+                    data-bs-target="#personnel-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-person-fill color_black"></i><span class="color_black">Personnel</span><i
                         class="bi bi-chevron-down ms-auto color_black"></i>
                 </a>
-                <ul id="personnel-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="personnel-nav"
+                    class="<?php echo ($etat == "personnel") ? 'nav-content collapse show' : 'nav-content collapse'; ?>"
+                    data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="personnel-alerts.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion
-                                personnel</span>
+                        <a href="<?php echo (site_url("Personnel/employes/insert_employes")); ?>" <?php if ($activer == "lien_employes_create") {
+                                                                                        echo 'class="active"';
+                                                                                      } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Employé</span>
                         </a>
                     </li>
                     <li>
-                        <a href="personnel-accordion.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste employés</span>
+                        <a href="<?php echo (site_url("Personnel/postes/insert_postes")); ?>" <?php if ($activer == "lien_postes_create") {
+                                                                                    echo 'class="active"';
+                                                                                  } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Poste</span>
                         </a>
                     </li>
                     <li>
-                        <a href="personnel-badges.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Insertion poste</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="personnel-breadcrumbs.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Liste poste</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="personnel-breadcrumbs.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Enregistrement heure
-                                de travail</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="personnel-breadcrumbs.html">
-                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
+                        <a href="<?php echo (site_url("Personnel/paiementemployes/create")); ?>" <?php if ($activer == "lien_payement") {
+                                                                                      echo 'class="active"';
+                                                                                    } ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Paiement
+                                employé</span>
                         </a>
                     </li>
                 </ul>
@@ -224,48 +215,56 @@
                     class="<?php echo ($etat == "transformation") ? 'nav-content collapse show' : 'nav-content collapse'; ?> data-bs-parent="
                     #sidebar-nav">
                     <li>
-                        <a href="<?php echo(site_url("transformation/machine_controller/view_insertion_machine")); ?>"
-                            <?php if ($activer == "machine_insert") { echo 'class="active"';} ?>>
+                        <a href="<?php echo (site_url("transformation/machine_controller/view_insertion_machine")); ?>" <?php if ($activer == "machine_insert") {
+                                                                                                              echo 'class="active"';
+                                                                                                            } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Machine</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo(site_url("transformation/statut_controller/view_insertion_statut")); ?>"
-                            <?php if ($activer == "etat_machine_insert") { echo 'class="active"';} ?>>
+                        <a href="<?php echo (site_url("transformation/statut_controller/view_insertion_statut")); ?>" <?php if ($activer == "etat_machine_insert") {
+                                                                                                            echo 'class="active"';
+                                                                                                          } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat machines</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo(site_url("transformation/production_controller/view_insertion_production")); ?>"
-                            <?php if ($activer == "production_insert") { echo 'class="active"';} ?>>
+                        <a href="<?php echo (site_url("transformation/production_controller/view_insertion_production")); ?>" <?php if ($activer == "production_insert") {
+                                                                                                                    echo 'class="active"';
+                                                                                                                  } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Production</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?php echo(site_url("transformation/produit_controller")); ?>"
-                            <?php if ($activer == "produit_dispo") { echo 'class="active"';}?>>
+                        <a href="<?php echo (site_url("transformation/produit_controller")); ?>" <?php if ($activer == "produit_dispo") {
+                                                                                        echo 'class="active"';
+                                                                                      } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Produits
                                 Disponibles</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo(site_url("transformation/stockproduit_controller")); ?>"
-                            <?php if ($activer == "mouvement_stock") { echo 'class="active"';}?>>
+                        <a href="<?php echo (site_url("transformation/stockproduit_controller")); ?>" <?php if ($activer == "mouvement_stock") {
+                                                                                            echo 'class="active"';
+                                                                                          } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Mouvement Stock
                                 Produit</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo(site_url("transformation/stockproduit_controller/view_stockproduit_actuel")); ?>"
-                            <?php if ($activer == "etat_stock") { echo 'class="active"';}?>>
+                        <a href="<?php echo (site_url("transformation/stockproduit_controller/view_stockproduit_actuel")); ?>"
+                            <?php if ($activer == "etat_stock") {
+                                                                                                                      echo 'class="active"';
+                                                                                                                    } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat stock
                                 produits</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo(site_url("transformation/production_controller/statistique")); ?>"
-                            <?php if ($activer == "statistique_production") { echo 'class="active"';}?>>
+                        <a href="<?php echo (site_url("transformation/production_controller/statistique")); ?>" <?php if ($activer == "statistique_production") {
+                                                                                                      echo 'class="active"';
+                                                                                                    } ?>>
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statistique de
                                 saison</span>
                         </a>

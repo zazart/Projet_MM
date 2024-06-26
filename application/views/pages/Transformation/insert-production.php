@@ -1,11 +1,9 @@
 <section class="section">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title text-center">Insertion production</h5>
-
               <!-- Vertical Form -->
               <form action="" class="row g-3" id="productioninsertForm"> 
               <?php 
@@ -27,13 +25,13 @@
 
                 </div>
                 <div class="col-12">
-                  <label for="quantitebrut" class="form-label">Quantite Matière première utilisée :</label>
+                  <label for="quantitebrut" class="form-label">Quantite Matière première utilisée (kg):</label>
                   <input type="number" class="form-control" name="quantitebrut">
                   <p class="text-danger" id="in_qttError"></p>					
 
                 </div>
                 <div class="col-12">
-                  <label for="quantite_produite" class="form-label">Quantite produite:</label>
+                  <label for="quantite_produite" class="form-label">Quantite produite (L):</label>
                   <input type="number" class="form-control" name="quantite_produite">
                   <p class="text-danger" id="out_qttError"></p>					
 

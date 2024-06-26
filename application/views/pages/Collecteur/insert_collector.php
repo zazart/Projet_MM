@@ -234,7 +234,8 @@
                                         )); // Envoie l'ID du client en tant que paramètre POST
                                     }
                                 });
-                            });
+                            }
+                        );
                     } else {
                         alert('Erreur lors de l\'insertion : ' + response.message);
                     }

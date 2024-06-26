@@ -45,6 +45,7 @@ h6 {
   margin-top: 60px;
   padding: 20px 30px;
   min-height: 80vh;
+  background-color: #fffce8;
   transition: all 0.3s;
 }
 
@@ -611,7 +612,6 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fbfff6;
 }
 
 @media (max-width: 1199px) {
@@ -1219,7 +1219,7 @@ h6 {
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
-  background-color: #fbfff6;
+  background-color: #fffce8;
 }
 
 .footer .copyright {

@@ -10,7 +10,6 @@ class Produit_Controller extends CI_Controller{
     }
 
     public function index() {
-        $data['produits'] = $this->Produit_Model->get_all_produit();
         $data["title"] = "Produit";
         $data["etat"]="transformation";
         $data["activer"]="produit_dispo";
@@ -18,6 +17,15 @@ class Produit_Controller extends CI_Controller{
 		$this->load->view("templates/template",$data);
     }
 
+    public function produitsData(){
+        $response = array (
+            'success'   =>      true,
+            'produits'  =>      $this->Produit_Model->get_all_produit()
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
     public function validation_update_produit($id_produit) {
         $this->form_validation->set_rules('prix_unitaire', 'Prix unitaire', 'required');
 
@@ -48,10 +56,17 @@ class Produit_Controller extends CI_Controller{
         }
     }
 
-    public function validation_delete_produit($id){
+    public function validation_delete_produit(){
+        $id = $this->input->post('id');
         $this->StockProduit_Model->delete_stock_byproduit($id);
         $this->Produit_Model->delete_produit($id);
-        redirect('transformation/produit_controller');
+        $response = array(
+            'success' => true,
+            'message' => 'Produit supprimer avec succès.'
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }
 ?>

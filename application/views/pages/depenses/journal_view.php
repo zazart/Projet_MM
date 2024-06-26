@@ -30,5 +30,5 @@
 <script src="<?php echo base_url('assets/js/depenses/depenses.js')?>"></script>
 <script src="<?php echo base_url('assets/js/depenses/journal.js')?>">></script>
 <script>
-    const base_url = '<?=base_url()?>'; 
+    const base_url = '<?=base_url()?>';
 </script>

@@ -287,39 +287,41 @@
                         <a href="<?php echo (site_url("vente_commande/commande/insert_commande")); ?>" <?php if ($activer == "lien_commande") {
                                                                                               echo 'class="active"';
                                                                                             } ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(site_url("vente_commande/vente/statistique")); ?>" <?php if ($activer == "lien_statistique") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statisique</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- vente et prise de commande -->
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Commande</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo(site_url("vente_commande/vente/statistique")); ?>"
+                            <?php if ($activer == "lien_statistique") { echo 'class="active"';} ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Statisique</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- vente et prise de commande -->
 
-      <li class="nav-item">
-        <a class="<?php echo ($etat == "depense") ? 'nav-link' : 'nav-link collapsed'; ?>" data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i class="bi bi-chevron-down ms-auto color_black"></i>
-        </a>
-        <ul id="depense-nav" class="<?php echo ($etat == "depense") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="<?php echo(base_url("depense/formulaire"))?>" <?php if ($activer == "formulaire_depense") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Dépenses</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(base_url("depense/journal"))?>" <?php if ($activer == "lien_journal") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Journal</span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo(base_url("depense/grandLivre"))?>" <?php if ($activer == "lien_grandLivre") { echo 'class="active"';} ?>>
-              <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Grand livre</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- Dépenses -->
+            <li class="nav-item">
+                <a class="<?php echo ($etat == "depense") ? 'nav-link' : 'nav-link collapsed'; ?>"
+                    data-bs-target="#depense-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-currency-dollar color_black"></i><span class="color_black">Dépenses</span><i
+                        class="bi bi-chevron-down ms-auto color_black"></i>
+                </a>
+                <ul id="depense-nav"
+                    class="<?php echo ($etat == "depense") ? 'nav-content collapse show' : 'nav-content collapse'; ?>"
+                    data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="<?php echo(base_url("depense/formulaire"))?>"
+                            <?php if ($activer == "formulaire_depense") { echo 'class="active"';} ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Dépenses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo(base_url("depense/journal"))?>"
+                            <?php if ($activer == "lien_journal") { echo 'class="active"';} ?>>
+                            <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Journal</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- Dépenses -->
 
 
 

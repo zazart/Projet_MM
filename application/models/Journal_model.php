@@ -1,8 +1,9 @@
 <?php
 // application/models/Journal_model.php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Journal_model extends CI_Model {
+class Journal_model extends CI_Model
+{
 
     public function __construct()
     {
@@ -18,7 +19,7 @@ class Journal_model extends CI_Model {
         $results = $query->result();
 
         // Convertir les données en ISO-8859-1 (Latin-1)
-        array_walk_recursive($results, function(&$item, $key) {
+        array_walk_recursive($results, function (&$item, $key) {
             if (is_string($item)) {
                 $item = utf8_decode($item);
             }
@@ -31,19 +32,25 @@ class Journal_model extends CI_Model {
     {
         // Obtenir les données du journal
         $journal = $this->getJournal($month, $year);
-    
+
         // Initialiser le PDF
         $pdf = new FPDF();
-        $header = array('Date', utf8_decode('Numéro de Compte'), utf8_decode('Libellé'), utf8_decode('Débit'), utf8_decode('Crédit'));
-    
+        $header = array(
+            'Date',
+            mb_convert_encoding('Num de Compte', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Libellé', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Débit', 'ISO-8859-1', 'UTF-8'),
+            mb_convert_encoding('Crédit', 'ISO-8859-1', 'UTF-8')
+        );
+
         // Ajouter une page
         $pdf->AddPage();
-    
+
         // Titre
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Cell(0, 10, 'Journal des transactions '.$month.'/'.$year, 0, 1, 'C');
+        $pdf->Cell(0, 10, 'Journal des transactions ' . $month . '/' . $year, 0, 1, 'C');
         $pdf->Ln(10);
-    
+
         // En-têtes
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetFillColor(200, 220, 255);
@@ -52,15 +59,15 @@ class Journal_model extends CI_Model {
             $pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
         }
         $pdf->Ln();
-    
+
         // Données
         $pdf->SetFont('Arial', '', 10);
         $pdf->SetFillColor(255, 255, 255);
         $fill = false;
         foreach ($journal as $row) {
-            $pdf->Cell($w[0], 6,utf8_decode( $row->transaction_date), 'LR', 0, 'L', $fill);
-            $pdf->Cell($w[1], 6, utf8_decode($row->account_number), 'LR', 0, 'L', $fill);
-            $pdf->Cell($w[2], 6, utf8_decode($row->libelle), 'LR', 0, 'L', $fill);
+            $pdf->Cell($w[0], 6, mb_convert_encoding($row->transaction_date, 'ISO-8859-1', 'UTF-8'), 'LR', 0, 'L', $fill);
+            $pdf->Cell($w[1], 6, mb_convert_encoding($row->account_number, 'ISO-8859-1', 'UTF-8'), 'LR', 0, 'L', $fill);
+            $pdf->Cell($w[2], 6, mb_convert_encoding($row->libelle, 'ISO-8859-1', 'UTF-8'), 'LR', 0, 'L', $fill);
             $pdf->Cell($w[3], 6, number_format($row->debit, 2, ',', ' '), 'LR', 0, 'R', $fill);
             $pdf->Cell($w[4], 6, number_format($row->credit, 2, ',', ' '), 'LR', 0, 'R', $fill);
             $pdf->Ln();
@@ -68,17 +75,15 @@ class Journal_model extends CI_Model {
         }
         // Ligne de clôture
         $pdf->Cell(array_sum($w), 0, '', 'T');
-    
+
         // Sauvegarder le PDF dans le répertoire uploads
-        $uploadDir = FCPATH. 'uploads';
+        $uploadDir = FCPATH . 'uploads';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0755, true);
         }
-        $pdfFilePath = $uploadDir. '/journal_'.$month.'_'.$year.'.pdf';
+        $pdfFilePath = $uploadDir . '/journal_' . $month . '_' . $year . '.pdf';
         $pdf->Output($pdfFilePath, 'F');
-    
+
         return $pdfFilePath;
     }
-
 }
-?>

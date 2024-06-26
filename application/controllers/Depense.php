@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Depense extends CI_Controller {
+class Depense extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('Depense_model');
         $this->load->helper(array('form', 'url'));
@@ -11,10 +13,14 @@ class Depense extends CI_Controller {
     }
 
     // Access to the insertion form
-    public function formulaire() {
+    public function formulaire()
+    {
+        if ($this->Depense_model->get_pcg() == null) {
+            $this->Depense_model->generatePcg();
+        }
         $data["categories"] = $this->Depense_model->get_categories();
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
-        $data["pcg"]= $this->Depense_model->get_pcg();
+        $data["pcg"] = $this->Depense_model->get_pcg();
         $data["contents"] = "pages/depenses/formulaire-depense";
         // Activation de lien
         $data['etat'] = 'depense';
@@ -23,7 +29,8 @@ class Depense extends CI_Controller {
     }
 
     // Method to fetch subcomptes based on selected PCG
-    public function get_subcomptes($pcg_id) {
+    public function get_subcomptes($pcg_id)
+    {
         $subcomptes = $this->Depense_model->get_subcomptes_by_pcg($pcg_id);
         $response = array(
             'success' => true,
@@ -34,8 +41,9 @@ class Depense extends CI_Controller {
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
-    
-    public function listDepense(){
+
+    public function listDepense()
+    {
         $data['depenses'] = $this->Depense_model->get_depense();
         $data["contents"] = "pages/depenses/liste-depense";
         // Activation de lien
@@ -43,7 +51,8 @@ class Depense extends CI_Controller {
         $data['activer'] = 'list_depense';
         $this->load->view("templates/template", $data);
     }
-    public function getListDepenses(){
+    public function getListDepenses()
+    {
         $response = array(
             'success' => true,
             'depenses' => $this->Depense_model->get_depense()
@@ -55,7 +64,8 @@ class Depense extends CI_Controller {
 
 
     // Handle the form submission and insert data into the Depense table
-    public function create() {
+    public function create()
+    {
         $data = array(
             'description' => $this->input->post('description'),
             'montant' =>  $this->input->post('montant'),
@@ -72,7 +82,7 @@ class Depense extends CI_Controller {
             } else {
                 // Handle file upload error
                 // $this->session->set_flashdata('error', $upload['error']);
-               
+
                 redirect('depense/formulaire');
             }
         }
@@ -91,14 +101,15 @@ class Depense extends CI_Controller {
             // echo("tsia");
             // $this->session->set_flashdata('error', 'Échec de l\'insertion de la dépense.');
         }
-        
+
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
 
     // File upload handling
-    private function upload_file($field_name) {
+    private function upload_file($field_name)
+    {
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
         $config['max_size'] = 2048; // 2MB
@@ -113,18 +124,18 @@ class Depense extends CI_Controller {
             return array('status' => false, 'error' => $this->upload->display_errors());
         }
     }
-    public function journal() {
+    public function journal()
+    {
         redirect("journal/index");
     }
 
     // Access to the grand livre list
-    public function grandLivre() {
+    public function grandLivre()
+    {
         $data["contents"] = "pages/depenses/grand-livre";
         // Activation de lien
         $data['etat'] = 'depense';
         $data['activer'] = 'lien_grandLivre';
         $this->load->view("templates/template", $data);
     }
-
 }
-?>

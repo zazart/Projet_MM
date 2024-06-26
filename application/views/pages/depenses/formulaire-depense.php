@@ -209,7 +209,7 @@
                 if (response.success) {
                   swal({
                     title: 'Succès',
-                    text: 'Collecteur supprimé avec succès.',
+                    text: 'Depense supprimé avec succès.',
                     icon: 'success',
                     buttons: 'OK'
                   }).then((isOkay) => {

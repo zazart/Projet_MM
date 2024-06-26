@@ -3,6 +3,7 @@
   <div class="mx-auto col-lg-8 p-2">
     <div class="card ">
       <div class="card-body m-2">
+      <h5 class="card-title text-center">Modification depense</h5>
         <!-- Formulaire -->
         <form id="depenseForm"  class="row g-3" enctype="multipart/form-data">
           <input type="hidden" 
@@ -160,8 +161,8 @@
                 buttons: 'OK'
               }).then((isOkay) => {
                 if (isOkay) {
-                  window.location
-                  .reload();
+                  window.location.href =
+                                    '<?php echo (base_url("depense/formulaire")) ?>'
                 }
               });
             } else {

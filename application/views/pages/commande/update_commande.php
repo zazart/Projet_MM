@@ -32,7 +32,7 @@
                             <div class="card-body">
                                 <div class="card-title">Panier</div>
                                 <div class="col-12">
-                                    <label for="ajoutProduit" class="form-label">Ajouter des Produits :</label>
+                                    <label for="ajoutProduit" class="form-label text-black">Ajouter des Produits :</label>
                                     <div class="col-sm-12">
                                         <select class="form-select" aria-label="Default select example"
                                             name="ajoutProduit" id="ajoutProduit">
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <label for="qtt" class="form-label">Quantite :</label>
+                                    <label for="qtt" class="form-label text-black">Quantite :</label>
                                     <input type="number" id="quantity" name="qtt" class="form-control">
                                     <div class="text-danger" id="qttError"></div>
                                     <button type="button" id="add-product" class="btn btn-success my-3 ">Ajouter dans le

@@ -212,8 +212,7 @@
                         class="bi bi-chevron-down ms-auto color_black"></i>
                 </a>
                 <ul id="transformation-nav"
-                    class="<?php echo ($etat == "transformation") ? 'nav-content collapse show' : 'nav-content collapse'; ?> data-bs-parent="
-                    #sidebar-nav">
+                    class="<?php echo ($etat == "transformation") ? 'nav-content collapse show' : 'nav-content collapse'; ?>" data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="<?php echo (site_url("transformation/machine_controller/view_insertion_machine")); ?>" <?php if ($activer == "machine_insert") {
                                                                                                               echo 'class="active"';

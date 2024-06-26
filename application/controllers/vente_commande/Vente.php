@@ -18,7 +18,7 @@ class Vente extends CI_Controller
         $data["contents"] = "pages/vente/insert_vente";
         $data["etat"] = "vente_commande";
         $data["activer"] = "lien_vente";
-        $data["commandes"] = $this->Commande_model->get_commandes_sv();
+        $data["commandes"] = $this->Commande_model->get_commandes();
         $this->load->view("templates/template", $data);
     }
 

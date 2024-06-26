@@ -3,6 +3,7 @@
   <div class="mx-auto col-lg-8 p-2">
     <div class="card ">
       <div class="card-body m-2">
+      <h5 class="card-title text-center">Insertion depense</h5>
         <!-- Formulaire -->
         <form id="depenseForm" class="row g-3" enctype="multipart/form-data">
           <!-- Description -->

@@ -207,7 +207,7 @@ class Employes extends CI_Controller {
         );
 
         // // Supprimer les critères vides
-        $criteria = array_filter($criteria);ù
+        $criteria = array_filter($criteria);
 
         $employes = $this -> Employe_model->search_employes($criteria);
         $response = array(

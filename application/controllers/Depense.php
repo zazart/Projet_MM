@@ -10,6 +10,7 @@ class Depense extends CI_Controller {
         // $this->load->library('session');
     }
 
+    
     // Access to the insertion form
     public function formulaire() {
         $data["categories"] = $this->Depense_model->get_categories();
@@ -96,7 +97,61 @@ class Depense extends CI_Controller {
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
+    public function delete(){
+        $id = $this->input->post('id');
+        $this->Depense_Model->delete_depense($id);
+        $response = array(
+            'success' => true,
+            'message' => 'Depense supprimer avec succès.'
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+    public function update(){
+        $id = $this->input->post('id_depense');
+        $data = array(
+            'description' => $this->input->post('description'),
+            'montant' =>  $this->input->post('montant'),
+            'datedepense' =>  $this->input->post('dateDepense'),
+            'justificatif' =>  $this->input->post('justification'),
+            'id_modepaiment' => $this->input->post('id_ModePaiment'),
+            'id_sub_comptes' => $this->input->post('id_Categorie')
+        );
+        // // Handle file upload for justificatif
+        if (!empty($_FILES['justificatif']['name'])) {
+            $upload = $this->upload_file('justificatif');
+            if ($upload['status']) {
+                $data['justificatif'] = file_get_contents($upload['file_path']);
+            } else {
+                // Handle file upload error
+                // $this->session->set_flashdata('error', $upload['error']);
+               
+                redirect('depense/formulaire');
+            }
+        }
+        $this->Depense_model->update_depense($id, $data);
+        $response = array(
+            'success' => true,
+            'message' => 'Depense modifié avec succès.',
+        );
 
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
+
+    public  function update_depense($id_depense){
+        $data["categories"] = $this->Depense_model->get_categories();
+        $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
+        $data["pcg"]= $this->Depense_model->get_pcg();
+        $data["contents"] = "pages/depenses/modification-depense";
+        // Activation de lien
+        $data['etat'] = 'depense';
+        $data['activer'] = 'formulaire_depense';
+        $data['depense'] = $this->Depense_model->get_depense_by_id($id_depense)[0];
+        $this->load->view("templates/template", $data);
+    }
     // File upload handling
     private function upload_file($field_name) {
         $config['upload_path'] = './uploads/';

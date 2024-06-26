@@ -19,7 +19,7 @@ class Depense_model extends CI_Model {
 
     // Function to get all depense
     public function get_depense() {
-        $query = $this->db->get('depense');
+        $query = $this->db->get('v_depense_info');
         return $query->result_array();
     }
 
@@ -32,6 +32,13 @@ class Depense_model extends CI_Model {
     public function get_subcomptes_by_pcg($pcg_id) {
         $this->db->where('idpcg', $pcg_id);
         $query = $this->db->get('sub_comptes');
+        return $query->result_array();
+    }
+
+
+    public function get_depense_by_id($id) {
+        $this->db->where('id_depense', $id);
+        $query = $this->db->get('v_depense');
         return $query->result_array();
     }
 
@@ -87,6 +94,18 @@ class Depense_model extends CI_Model {
             return true;
         }
 
+    public function update_depense($id, $data) {
+        $this->db->where('id_depense', $id);
+        return $this->db->update('depense', $data);
+    }
+    
+    // Function to delete a depense
+    public function delete_depense($id) {
+            $this->db->where('id', $id);
+            return $this->db->delete('depense');
+    }
+
+    
 
 }
 ?>

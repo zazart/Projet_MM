@@ -117,7 +117,7 @@
                             <div class="activite-label">Étapes 1</div>
                             <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
                             <div class="activity-content">
-                                Effectuer la collecte des matières premières par <a href="#" class="fw-bold text-dark">les collecteurs</a>
+                                Effectuer la collecte des matières premières par <span class="fw-bold text-dark">les collecteurs</span>
                             </div>
                         </div><!-- End activity item-->
                         <!-- Exemple d'activité avec une vente -->
@@ -125,7 +125,7 @@
                             <div class="activite-label">Étapes 2</div>
                             <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
                             <div class="activity-content">
-                                Assurer le transport des <a href="#" class="fw-bold text-dark"> matières premières </a>vers le laboratoire
+                                Assurer le transport des <span class="fw-bold text-dark"> matières premières </span>vers le laboratoire
                             </div>
                         </div><!-- End activity item-->
                         <!-- Exemple d'activité avec une production -->
@@ -133,7 +133,7 @@
                             <div class="activite-label">Étapes 3</div>
                             <i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
                             <div class="activity-content">
-                                Recruter des <a href="#" class="fw-bold text-dark"> personnels </a>compétents pour chaque poste de travail
+                                Recruter des <span class="fw-bold text-dark"> personnels </span>compétents pour chaque poste de travail
                             </div>
                         </div><!-- End activity item-->
                         <!-- Exemple d'activité avec une dépense -->
@@ -141,7 +141,7 @@
                             <div class="activite-label">Étapes 4</div>
                             <i class="bi bi-circle-fill activity-badge text-info align-self-start"></i>
                             <div class="activity-content">
-                                Optimiser la<a href="#" class="fw-bold text-dark"> transformation </a>des matières premières pour la qualité des produits finaux
+                                Optimiser la<span class="fw-bold text-dark"> transformation </span>des matières premières pour la qualité des produits finaux
                             </div>
                         </div><!-- End activity item-->
                         <!-- Exemple d'activité avec une modification de machine -->
@@ -149,7 +149,7 @@
                             <div class="activite-label">Étapes 5</div>
                             <i class="bi bi-circle-fill activity-badge text-warning align-self-start"></i>
                             <div class="activity-content">
-                                Gérer les  <a href="#" class="fw-bold text-dark">ventes et les commandes </a>des produits avec efficacité
+                                Gérer les  <span class="fw-bold text-dark">ventes et les commandes </span>des produits avec efficacité
                             </div>
                         </div><!-- End activity item-->
                         <!-- Exemple d'activité avec une collecte -->
@@ -157,7 +157,7 @@
                             <div class="activite-label">Étapes 6</div>
                             <i class="bi bi-circle-fill activity-badge text-muted align-self-start"></i>
                             <div class="activity-content">
-                                Réduire les <a href="#" class="fw-bold text-dark">dépenses </a>pour maximiser les bénéfices
+                                Réduire les <span class="fw-bold text-dark">dépenses </span>pour maximiser les bénéfices
                             </div>
                         </div><!-- End activity item-->
                     </div>

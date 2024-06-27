@@ -23,6 +23,8 @@ class Machine_Controller extends CI_Controller{
     
 
     public function view_insertion_machine() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Machine";
 		$data["contents"]="pages/Transformation/insert-machine";
         $data["etat"]="transformation";
@@ -36,6 +38,8 @@ class Machine_Controller extends CI_Controller{
         $this->form_validation->set_rules('date_achat', 'Date Achat', 'required');
 
         if ($this->form_validation->run() === FALSE) {
+            $user = $this->session->userdata('user');
+            $data["user"] = $user;
             $data['machine'] = $this->Machine_Model->get_machine($id);
             $data["title"] = "Machine";
             $data["etat"]="transformation";
@@ -54,6 +58,8 @@ class Machine_Controller extends CI_Controller{
             if ($this->Machine_Model->update_machine($id, $data)) {
                 redirect('transformation/machine_controller');
             } else {
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $data['machine'] = $this->Machine_Model->get_machine($id);
                 $data["title"] = "Machine";
                 $data["etat"]="transformation";
@@ -116,6 +122,8 @@ class Machine_Controller extends CI_Controller{
                             ->set_output(json_encode($response));
                     
                 } else {
+                    $user = $this->session->userdata('user');
+                    $data["user"] = $user;
                     $data["title"] = "Machine";
                     $data["contents"]="pages/Transformation/insert-machine";
                     $data["etat"]="transformation";

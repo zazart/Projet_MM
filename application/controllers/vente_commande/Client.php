@@ -11,6 +11,8 @@ class Client extends CI_Controller
 
     public function insert_client()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion Client";
         $data["contents"] = "pages/client/insert_client";
         $data["etat"] = "vente_commande";
@@ -20,6 +22,8 @@ class Client extends CI_Controller
 
     public function update_client($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $client = $this->Client_model->get_client_by_id($id);
         $data["title"] = "Modifier Client";
         $data["contents"] = "pages/client/update_client";

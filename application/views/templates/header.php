@@ -1,3 +1,15 @@
+<?php
+    function obfuscateEmail($email) {
+        // Trouver l'index de "@" dans l'email
+        $atIndex = strpos($email, '@');
+        // Si "@" n'est pas trouvé, retourner l'email d'origine
+        if ($atIndex === false) {
+            return $email;
+        }
+        // Retourner la partie avant "@" suivie de "..."
+        return substr($email, 0, $atIndex) . '...';
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +60,6 @@
             <i class="bi bi-list toggle-sidebar-btn color_black"></i>
         </div><!-- End Logo -->
 
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
@@ -57,20 +68,19 @@
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="<?php echo (base_url("assets/img/profile-img.jpg")) ?>" alt="Profile"
                             class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2 color_black">JC.Alex</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2 color_black"><?php echo(obfuscateEmail($user["email"])); ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>JACQUES Chan Alex</h6>
-                            <span>Web Designer</span>
+                            <h6><?php echo($user["email"]); ?></h6>
+                            <span>Admin</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="<?php echo (site_url("login/auth/logout")); ?>">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>

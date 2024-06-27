@@ -18,6 +18,8 @@ class Matiere_premier extends CI_Controller
 
     public function matiere_premier_insert()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion de matiere Premiere";
         $data["contents"] = "pages/matierePremiere/matiere_premier";
         $data["etat"] = "matierePremiere";
@@ -80,6 +82,8 @@ class Matiere_premier extends CI_Controller
 
     public function prixmatierepremier()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $this->load->model('matiere_Premiere/matiere');
         $data["title"] = "insertion de prix des matières Premières";
         $data["contents"] = "pages/matierePremiere/prix_matiere_premier";
@@ -128,6 +132,8 @@ class Matiere_premier extends CI_Controller
 
     public function source()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["contents"] = "pages/matierePremiere/source_insert";
         $data["title"] = "insertion de nouvelle source";
         $data["etat"] = "matierePremiere";
@@ -174,6 +180,8 @@ class Matiere_premier extends CI_Controller
         $this->load->model('matiere_premiere/matiere');
         $this->load->model('matiere_premiere/source');
 
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["contents"] = "pages/matierePremiere/source_matiere_premiere";
         $data["title"] = "Source matiere Premiere";
         $data['matiere_data'] = $this->matiere->get_matiere_data();
@@ -238,6 +246,8 @@ class Matiere_premier extends CI_Controller
 
     public function edit_matier_permier($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $this->load->model('matiere_Premiere/matiere');
         $data['matiere'] = $this->matiere->get_matiere($id);
         $data["title"] = "Modification de matiere Premiere";
@@ -260,6 +270,8 @@ class Matiere_premier extends CI_Controller
         $this->load->model('matiere_Premiere/prix_matiere');
         $this->load->model('matiere_Premiere/matiere');
 
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["contents"] = "pages/matierePremiere/prix_matiere_premier";
         $data["title"] = "prix matiere premiere setter";
         $data['prix_matiere'] = $this->prix_matiere->get_prix_matiere($id);
@@ -305,6 +317,8 @@ class Matiere_premier extends CI_Controller
 
     public function edit_source($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $this->load->model('matiere_Premiere/source');
         $data["contents"] = "pages/matierePremiere/source_insert";
         $data["title"] = "Setting source";
@@ -340,6 +354,8 @@ class Matiere_premier extends CI_Controller
         $this->load->model('matiere_Premiere/matiere');
         $this->load->model('matiere_Premiere/source');
 
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['contents'] = "pages/matierePremiere/source_matiere_premiere";
         $data["title"] = "setting source matiere premiere";
         $data['source_matiere_premier_data'] = $this->source_matiere_premier->get_source_matiere_premiere($id);

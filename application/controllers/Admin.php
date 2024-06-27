@@ -10,10 +10,17 @@ class Admin extends CI_Controller {
     }
 
     public function index(){
+        $this->load->view("pages/login/login");
+    }
+
+    public function dashbord(){
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Projet MM";
 		$data["contents"]="pages/home";
         $data["etat"] = "";
         $data["activer"] = "";
+        $data["user"] = $user;
 		$this->load->view("templates/template",$data);
     }
 }

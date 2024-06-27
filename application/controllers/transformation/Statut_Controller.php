@@ -23,6 +23,8 @@ class Statut_Controller extends CI_Controller{
     }
 
     public function view_insertion_statut() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['machines'] = $this->Statut_Model->get_all_machine();
         $data["title"] = "Etat Machine";
         $data["etat"]="transformation";
@@ -72,6 +74,8 @@ class Statut_Controller extends CI_Controller{
                 ->set_content_type('application/json')
                 ->set_output(json_encode($response));
             } else {
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $data['statut'] = $this->Machine_Model->get_machine($id_statut);
                 $data['machines'] = $this->Statut_Model->get_all_machine(); 
                 $data["title"] = "Etat Machine";
@@ -90,6 +94,8 @@ class Statut_Controller extends CI_Controller{
                 $data["etat"]="transformation";
                 $data["activer"]="etat_machine_insert";
                 $data["contents"]="pages/Transformation/insert-etat-machine";
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $this->load->view('templates/template',$data);
     }
     public function validation_insert_statut() {

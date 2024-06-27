@@ -9,6 +9,8 @@ class Postes extends CI_Controller {
     }
 
     public function index() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['postes'] = $this->Poste_model->get_postes();
         $data['title'] = 'Liste des Postes';
         $data["etat"] = "personnel";
@@ -33,6 +35,8 @@ class Postes extends CI_Controller {
     }
 
     public function view($id_poste) {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['poste'] = $this->Poste_model->get_postes($id_poste);
 
         if (empty($data['poste'])) {
@@ -47,7 +51,9 @@ class Postes extends CI_Controller {
         $this->load->view('templates/template', $data);
     }
 
-    public function insert_postes() {            
+    public function insert_postes() {    
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;        
         $data['title'] = 'Créer un nouveau poste';
         // $data['types_profil'] = $this->TypeProfil_model->get_types_profil();
         $data["etat"] = "personnel";
@@ -98,6 +104,8 @@ class Postes extends CI_Controller {
     }
 
     public function edit($id_poste) {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['poste'] = $this->Poste_model->get_postes($id_poste);
 
         if (empty($data['poste'])) {

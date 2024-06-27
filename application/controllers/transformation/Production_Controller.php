@@ -25,6 +25,8 @@ class Production_Controller extends CI_Controller{
     }
 
     public function view_insertion_production() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['matierepremiers'] = $this->MatierePremier_Model->get_all_matierepremier();
         $data["title"] = "Production";
         $data["etat"]="transformation";
@@ -116,6 +118,8 @@ class Production_Controller extends CI_Controller{
                         ->set_content_type('application/json')
                         ->set_output(json_encode($response));                
             } else {
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $data['matierepremiers'] = $this->MatierePremier_Model->get_all_matierepremier();
                 $data["title"] = "Production";
                 $data["etat"]="transformation";
@@ -144,17 +148,14 @@ class Production_Controller extends CI_Controller{
     }
 
     public function statistique() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Statistique | Production";
         $data["etat"]="transformation";
         $data["activer"]="statistique_production";
         $data["contents"]="pages/Transformation/statistique-production";
         $this->load->view("templates/template",$data);
     }
-
-    //liste production
-    //update production
-    //supprimer 
-
 
 }
 ?>

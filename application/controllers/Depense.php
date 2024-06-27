@@ -19,6 +19,8 @@ class Depense extends CI_Controller
         if ($this->Depense_model->get_pcg() == null) {
             $this->Depense_model->generatePcg();
         }
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["categories"] = $this->Depense_model->get_categories();
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
         $data["pcg"] = $this->Depense_model->get_pcg();
@@ -148,6 +150,8 @@ class Depense extends CI_Controller
 
     public  function update_depense($id_depense)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["categories"] = $this->Depense_model->get_categories();
         $data["modes_de_paiement"] = $this->Depense_model->get_modes_de_paiement();
         $data["pcg"] = $this->Depense_model->get_pcg();
@@ -184,6 +188,8 @@ class Depense extends CI_Controller
     // Access to the grand livre list
     public function grandLivre()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["contents"] = "pages/depenses/grand-livre";
         // Activation de lien
         $data['etat'] = 'depense';

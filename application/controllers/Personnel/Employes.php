@@ -16,6 +16,8 @@ class Employes extends CI_Controller
 
     public function index()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['employes'] = $this->Employe_model->get_employes();
         $data['title'] = 'Liste des Employés';
 
@@ -40,6 +42,8 @@ class Employes extends CI_Controller
 
     public function view($id_employe)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['employe'] = $this->Employe_model->get_employes($id_employe);
 
         if (empty($data['employe'])) {
@@ -55,6 +59,8 @@ class Employes extends CI_Controller
 
     public function insert_employes()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['title'] = 'Créer un nouvel Employé';
         $data['genres'] = $this->Employe_model->get_genres();
         $data['postes'] = $this->Employe_model->get_postes();
@@ -133,7 +139,8 @@ class Employes extends CI_Controller
 
     public function edit($id_employe)
     {
-
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['employe'] = $this->Employe_model->get_employes($id_employe);
         $data['genres'] = $this->Employe_model->get_genres();
         $data['postes'] = $this->Employe_model->get_postes();
@@ -192,6 +199,8 @@ class Employes extends CI_Controller
 
     public function form()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['title'] = 'Recherche des employés';
 
         $data["etat"] = "personnel";

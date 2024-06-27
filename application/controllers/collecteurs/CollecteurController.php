@@ -10,6 +10,8 @@ class CollecteurController extends CI_Controller
 
     public function insert_collector()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion Collecteur";
         $data["etat"] = "collecteur";
         $data["activer"] = "lien_collecteur";
@@ -32,6 +34,8 @@ class CollecteurController extends CI_Controller
 
     public function update_collecteur($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Modifier Collecteur";
         $data["etat"] = "collecteur";
         $data["activer"] = "lien_collecteur";

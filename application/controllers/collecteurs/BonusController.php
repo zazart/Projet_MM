@@ -10,6 +10,8 @@ class BonusController extends CI_Controller
 
     public function insert_bonus()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion Bonus";
         $data["contents"] = "pages/Collecteur/insert_bonus";
         $data["etat"] = "collecteur";
@@ -38,6 +40,8 @@ class BonusController extends CI_Controller
 
     public function update_bonus($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Modifier Bonus";
         $data["etat"] = "collecteur";
         $data["activer"] = "lien_bonus";

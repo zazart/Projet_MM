@@ -11,6 +11,8 @@ class CollectController extends CI_Controller
     }
 
     public function form() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Recherche Collecte";
 
         $data['collecteurs'] = $this->Collecteur_model->get_collecteur();
@@ -29,6 +31,8 @@ class CollectController extends CI_Controller
     }
 
     public function search() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Résultat de Collecte";
 
         $criteria = array(
@@ -45,6 +49,8 @@ class CollectController extends CI_Controller
 
     public function insert_collect()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion Collect";
         $data["contents"] = "pages/Collecteur/insert_collect";
         $data["etat"] = "collecteur";
@@ -77,6 +83,8 @@ class CollectController extends CI_Controller
 
     public function update_collect($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Modifier Collect";
         $data["etat"] = "collecteur";
         $data["activer"] = "lien_collecteur";

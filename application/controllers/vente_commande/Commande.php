@@ -14,6 +14,8 @@ class Commande extends CI_Controller
 
     public function update_commande($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Modifier Client";
         $data["contents"] = "pages/commande/update_commande";
         $data["etat"] = "vente_commande";
@@ -27,6 +29,8 @@ class Commande extends CI_Controller
 
     public function insert_commande()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion commande";
         $data["contents"] = "pages/commande/insert_commande";
         $data["etat"] = "vente_commande";

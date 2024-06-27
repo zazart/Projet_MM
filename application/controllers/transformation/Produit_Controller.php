@@ -10,6 +10,8 @@ class Produit_Controller extends CI_Controller{
     }
 
     public function index() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Produit";
         $data["etat"]="transformation";
         $data["activer"]="produit_dispo";
@@ -30,6 +32,8 @@ class Produit_Controller extends CI_Controller{
         $this->form_validation->set_rules('prix_unitaire', 'Prix unitaire', 'required');
 
         if ($this->form_validation->run() === FALSE) {
+            $user = $this->session->userdata('user');
+            $data["user"] = $user;
             $data['produit'] = $this->Produit_Model->get_produit($id_produit);
             $data["title"] = "Produit";
             $data["etat"]="transformation";
@@ -46,6 +50,8 @@ class Produit_Controller extends CI_Controller{
             if ($this->Produit_Model->update_produit($id_produit, $data)) {
                 redirect('transformation/produit_controller');
             } else {
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $data['produit'] = $this->Produit_Model->get_produit($id_produit);
                 $data["title"] = "Produit";
                 $data["etat"]="transformation";

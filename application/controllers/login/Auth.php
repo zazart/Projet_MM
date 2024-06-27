@@ -5,10 +5,6 @@ class Auth extends CI_Controller {
         $this->load->model('login/user_model');
     }
 
-    public function index()  {
-        redirect(base_url("/login/auth/"));
-    }
-
     public function login() {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -27,7 +23,7 @@ class Auth extends CI_Controller {
             foreach($users as $user) {
                 if ($user && $password == $user['mot_de_passe']) {
                     $this->session->set_userdata('user', $user);
-                    redirect(base_url("/"));
+                    redirect(base_url("/admin/dashbord"));
                     exit;
                 }
             }
@@ -38,6 +34,6 @@ class Auth extends CI_Controller {
 
     public function logout() {
         $this->session->unset_userdata('user');
-        redirect(base_url('/login/auth/login'));
+        redirect(base_url('/'));
     }
 }

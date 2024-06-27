@@ -10,6 +10,8 @@ class PaiementEmployes extends CI_Controller {
     }
 
     public function create() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['employes'] = $this->PaiementEmploye_model->get_employes();
 
         // Définir les règles de validation

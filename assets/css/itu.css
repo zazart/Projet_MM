@@ -253,3 +253,76 @@
 .form-control:valid{
     background-color: #fff !important;
 }
+/*Fin*/
+
+/*Css Login*/
+
+.section-img-login img{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-10%,-50%);
+}
+
+
+.section-form-login{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-115%,-50%);
+    width: 550px;
+    height: 550px;
+    background-color: #e7e4d2;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout de l'ombre */
+}
+
+.section-form-login h1{
+    color: #1a4b20;
+    margin: 30px;
+    font-size: 3.2em;
+}
+
+
+.section-form-login form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.insertion-donnees-login{
+    margin-bottom: 30px;
+    width: 17vw;
+    height: 45px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    padding-left: 35px;
+    font-size: 0.96em;
+}
+
+.btn-donnees-login{
+    padding: 11px 35px;
+    border-radius: 25px;
+    outline: none;
+    border:none;
+    background-color: #99886a;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.section-form-login p{
+    margin-top: 25px;
+}
+
+.section-form-login-admin p{
+    margin-top: 25px;
+}
+
+
+/*Fin*/

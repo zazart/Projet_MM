@@ -10,6 +10,8 @@ class StockProduit_Controller extends CI_Controller{
     }
 
     public function index() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Stock Produit";
         $data["etat"]="transformation";
         $data["activer"]="mouvement_stock";
@@ -18,6 +20,8 @@ class StockProduit_Controller extends CI_Controller{
     }
 
     public function view_stockproduit_actuel() {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Stock Produit";
         $data["etat"]="transformation";
         $data["activer"]="etat_stock";
@@ -50,6 +54,8 @@ class StockProduit_Controller extends CI_Controller{
         $this->form_validation->set_rules('datestock', 'Date Stockage', 'required');
 
         if ($this->form_validation->run() === FALSE) {
+            $user = $this->session->userdata('user');
+            $data["user"] = $user;
             $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
             $data['produits'] = $this->Produit_Model->get_all_produit();
             $data["title"] = "Stock Produit";
@@ -68,6 +74,8 @@ class StockProduit_Controller extends CI_Controller{
             if ($this->StockProduit_Model->update_stockproduit($id_stockproduitt, $data)) {
                 redirect('transformation/stockproduit_controller');
             } else {
+                $user = $this->session->userdata('user');
+                $data["user"] = $user;
                 $data['stockproduit'] = $this->StockProduit_Model->get_stockproduit($id_stockproduitt);
                 $data['produits'] = $this->Produit_Model->get_all_produit();
                 $data["title"] = "Stock Produit";

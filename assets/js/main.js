@@ -321,3 +321,18 @@
   }
 
 })();
+
+/*Changer l'email en pseudo*/
+function obfuscateEmail(email) {
+  // Trouver l'index de "@" dans l'email
+  const atIndex = email.indexOf('@');
+
+  // Si "@" n'est pas trouvé, retourner l'email d'origine
+  if (atIndex === -1) {
+      return email;
+  }
+
+  // Retourner la partie avant "@" suivie de "..."
+  return email.substring(0, atIndex) + '...';
+}
+/*Fin*/

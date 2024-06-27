@@ -26,6 +26,8 @@ class Journal extends CI_Controller
         $data['contents'] = 'pages/depenses/journal_view'; // Contents view
         // Activation de lien
         $data['etat'] = 'depense';
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data['activer'] = 'lien_journal';
         $this->load->view('templates/template', $data);
     }

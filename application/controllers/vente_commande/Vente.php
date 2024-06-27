@@ -14,16 +14,20 @@ class Vente extends CI_Controller
 
     public function insert_vente()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Insertion vente";
         $data["contents"] = "pages/vente/insert_vente";
         $data["etat"] = "vente_commande";
         $data["activer"] = "lien_vente";
-        $data["commandes"] = $this->Commande_model->get_commandes();
+        $data["commandes"] = $this->Commande_model->get_commandes_sv();
         $this->load->view("templates/template", $data);
     }
 
     public function update_vente($id)
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Modifier vente";
         $data["contents"] = "pages/vente/update_vente";
         $data["etat"] = "vente_commande";
@@ -132,6 +136,8 @@ class Vente extends CI_Controller
 
     public function statistique()
     {
+        $user = $this->session->userdata('user');
+        $data["user"] = $user;
         $data["title"] = "Projet MM";
         $data["contents"] = 'pages/vente/vente_statistique';
         $data["etat"] = "vente_commande";

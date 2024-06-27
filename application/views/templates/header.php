@@ -52,7 +52,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
-            <a href="<?php echo (site_url("admin/")) ?>" class="logo d-flex align-items-center">
+            <a href="<?php echo (site_url("admin/dashbord")) ?>" class="logo d-flex align-items-center">
                 <img src="<?php echo (base_url("assets/img/logo.png")) ?>" alt="">
                 <span class="d-none d-lg-block color_secondary text-uppercase">Flecs </span> <span
                     class="d-none d-lg-block color_black"> Company</span>
@@ -131,11 +131,11 @@
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Bonus</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="components-breadcrumbs.html">
                             <i class="bi bi-circle color_black_0"></i><span class="color_black_0">Etat</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li><!-- Collecteurs Nav -->
 
